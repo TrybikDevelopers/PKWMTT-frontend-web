@@ -1,0 +1,18 @@
+services:
+    pkwmtt-web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: pkwmtt-web
+        container_name: pkwmtt-web-app
+        ports:
+            - "3000:3000"
+        environment:
+            - NEXT_TELEMETRY_DISABLED=1
+        restart: unless-stopped
+
+        # networks:
+        #     - pkwmtt-network
+# networks:
+#     pkwmtt-network:
+#         driver: bridge

@@ -1,0 +1,16 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+README.md
+.next
+.git
+
+# /generated/prisma
+
+# # Ignore local environment files during Docker build
+# .env
+# .env.local
+
+# # Keep .env.docker for copying
+# !.env.docker
