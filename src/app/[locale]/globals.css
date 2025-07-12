@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Colors to be changed later */
 :root {
     --background: #ffffff;
     --foreground: #171717;
@@ -19,6 +20,11 @@
         --background: #0a0a0a;
         --foreground: #ededed;
     }
+}
+
+html,
+body {
+    height: 100%;
 }
 
 body {
