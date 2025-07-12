@@ -1,0 +1,16 @@
+{
+    // typescript
+    "typescript.tsdk": "node_modules/typescript/lib",
+    // "typescript.preferences.importModuleSpecifier": "non-relative",
+
+    // eslint
+    "eslint.nodePath": "node_modules/eslint/lib/api.js",
+
+    // editor
+    "editor.formatOnSave": true,
+
+    // prettier
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.configPath": "./prettier.config.json",
+    "prettier.prettierPath": "./node_modules/prettier"
+}
