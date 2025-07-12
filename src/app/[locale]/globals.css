@@ -1,24 +1,33 @@
 @import "tailwindcss";
 
-/* Colors to be changed later */
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #191919;
+    --background-elevated: #1e1e1e;
+    --foreground: #ffffff;
+    --button: #3c3c3c;
+    --accent: #8c95ff12;
 }
 
 @theme inline {
     --breakpoint-xs: 31.25rem; /* 500px */
 
     --color-background: var(--background);
+    --color-background-elevated: var(--background-elevated);
     --color-foreground: var(--foreground);
+    --color-button: var(--button);
+    --color-accent: var(--accent);
+
     --font-sans: var(--font-geist-sans);
     --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
+        --background: #191919;
+        --background-elevated: #1e1e1e;
+        --foreground: #ffffff;
+        --button: #3c3c3c;
+        --accent: #8c95ff12;
     }
 }
 
