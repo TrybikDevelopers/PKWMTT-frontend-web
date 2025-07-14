@@ -1,3 +1,4 @@
+import Header from "@/components/header/header";
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -31,8 +32,11 @@ export default async function RootLayout({
 
     return (
         <html lang={locale}>
-            <body className={`${inter.className}`}>
-                <NextIntlClientProvider>{children}</NextIntlClientProvider>
+            <body className={`${inter.className} flex flex-col`}>
+                <NextIntlClientProvider>
+                    <Header />
+                    {children}
+                </NextIntlClientProvider>
             </body>
         </html>
     );
