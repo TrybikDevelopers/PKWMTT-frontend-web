@@ -7,7 +7,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "compose:up": "docker-compose up --build -d"
+        "compose:up": "docker-compose up --build -d",
+        "compose:down": "docker-compose down"
     },
     "dependencies": {
         "@radix-ui/react-dialog": "^1.1.14",
