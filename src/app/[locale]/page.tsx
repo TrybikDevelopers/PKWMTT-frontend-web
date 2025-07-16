@@ -1,7 +1,5 @@
+import MainPageView from "@/views/main-page-view/main-page-view";
+
 export default function Home() {
-    return (
-        <main className="text-foreground flex h-full w-full flex-col">
-            123123
-        </main>
-    );
+    return <MainPageView />;
 }

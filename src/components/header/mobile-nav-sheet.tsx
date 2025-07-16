@@ -17,12 +17,8 @@ export default function MobileNavSheet() {
             </SheetTrigger>
             <SheetContent>
                 <SheetHeader>
-                    <SheetTitle>Are you absolutely sure?</SheetTitle>
-                    <SheetDescription>
-                        This action cannot be undone. This will permanently
-                        delete your account and remove your data from our
-                        servers.
-                    </SheetDescription>
+                    <SheetTitle>Nawigacja</SheetTitle>
+                    <SheetDescription>tutaj będzie</SheetDescription>
                 </SheetHeader>
             </SheetContent>
         </Sheet>
