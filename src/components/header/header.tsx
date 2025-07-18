@@ -1,6 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-import MobileNavSheet from "./mobile-nav-sheet";
+import MobileNavSheet from "./mobile-nav-sheet/mobile-nav-sheet";
 
 export default function Header() {
     return (
