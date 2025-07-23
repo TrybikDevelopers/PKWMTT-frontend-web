@@ -5,7 +5,14 @@ export default function MainPageView() {
     return (
         <main className="text-foreground flex h-full w-full flex-col">
             <LessonHeader />
-            <div className="mt-6 flex flex-col">
+            <div className="mt-6 flex flex-col pb-10 *:border-b-1 *:border-zinc-800 *:first:border-t-1 *:first:border-t-zinc-800">
+                <LessonCard />
+                <LessonCard />
+                <LessonCard />
+                <LessonCard />
+                <LessonCard />
+                <LessonCard />
+                <LessonCard />
                 <LessonCard />
                 <LessonCard />
                 <LessonCard />

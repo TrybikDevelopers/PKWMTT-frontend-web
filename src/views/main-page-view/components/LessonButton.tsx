@@ -1,19 +1,11 @@
-import ButtonArrowSVG from "@/components/svg/button-arrow-svg";
-
 interface LessonButtonProps {
-    arrowClassName?: string;
-    arrowRotationClass?: string; // Tailwind rotation class, e.g. "rotate-90"
+    children: React.ReactNode;
 }
 
-export default function LessonButton({
-    arrowClassName,
-    arrowRotationClass = "",
-}: LessonButtonProps) {
+export default function LessonButton({ children }: LessonButtonProps) {
     return (
-        <button className="bg-button flex items-center gap-2 rounded-full px-6 py-3 text-base font-semibold text-gray-800 shadow transition hover:bg-gray-200">
-            <ButtonArrowSVG
-                className={`h-4 w-4 text-gray-600 ${arrowClassName ?? ""} ${arrowRotationClass}`}
-            />
+        <button className="bg-button hover:bg-button/70 flex cursor-pointer items-center gap-2 rounded-xl px-6 py-1.5 text-base font-semibold text-[#AFAFAF] shadow transition *:size-6">
+            {children}
         </button>
     );
 }

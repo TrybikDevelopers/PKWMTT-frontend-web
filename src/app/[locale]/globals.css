@@ -95,7 +95,8 @@
 }
 
 @theme inline {
-    --breakpoint-xs: 31.25rem; /* 500px */
+    --breakpoint-xs: 31.25rem;
+    /* 500px */
 
     --color-background: var(--background);
     --color-background-darker: var(--background-darker);
