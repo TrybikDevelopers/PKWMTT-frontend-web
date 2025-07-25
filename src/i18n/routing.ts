@@ -26,5 +26,9 @@ export const routing = defineRouting({
             en: "/settings",
             pl: "/ustawienia",
         },
+        "/api/trpc": {
+            en: "/api/trpc",
+            pl: "/api/trpc",
+        },
     },
 });

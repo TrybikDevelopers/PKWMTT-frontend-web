@@ -9,12 +9,8 @@ export default async function middleware(request: NextRequest) {
         return NextResponse.next();
     }
 
-    // request.nextUrl.pathname.match(
-    //         "/((?!api|trpc|_next|_vercel|.*\\..*).*)",
-    //     )
     if (
         !request.nextUrl.pathname.startsWith("/api") &&
-        !request.nextUrl.pathname.startsWith("/trpc") &&
         !request.nextUrl.pathname.startsWith("/_next") &&
         !request.nextUrl.pathname.startsWith("/_vercel") &&
         !request.nextUrl.pathname.includes(".")

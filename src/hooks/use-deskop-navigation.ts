@@ -35,7 +35,7 @@ const useDesktopNavigation = () => {
             width: linkRect.width,
             opacity: 1,
         };
-    }, [activeIndex, pathname, isMounted]);
+    }, [activeIndex, isMounted]);
 
     useEffect(() => {
         setIsMounted(true);

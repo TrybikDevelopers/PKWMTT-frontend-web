@@ -1,6 +1,7 @@
 import Header from "@/components/header/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
+import { TRPCReactProvider } from "@/trpc/react";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { Inter } from "next/font/google";
@@ -41,8 +42,10 @@ export default async function RootLayout({
                     disableTransitionOnChange
                 >
                     <NextIntlClientProvider>
-                        <Header />
-                        {children}
+                        <TRPCReactProvider>
+                            <Header />
+                            {children}
+                        </TRPCReactProvider>
                     </NextIntlClientProvider>
                 </ThemeProvider>
             </body>
