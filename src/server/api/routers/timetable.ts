@@ -1,3 +1,5 @@
+import "server-only";
+
 import { getSubGroupsSchema } from "@/schema/trpc/timetable/get-sub-groups-schema";
 import { getTimetableSchema } from "@/schema/trpc/timetable/get-timetable-schema";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
@@ -7,35 +9,64 @@ import {
     fetchSubGroupsForGeneralGroup,
     fetchTimetable,
 } from "@/server/data-access/timetable";
+import { TRPCError } from "@trpc/server";
 
 export const timetableRouter = createTRPCRouter({
     getGeneralGroups: publicProcedure.query(async () => {
-        const { data } = await fetchGeneralGroups();
+        const { generalGroups, error } = await fetchGeneralGroups();
 
-        return data;
+        if (error) {
+            throw new TRPCError({
+                code: "INTERNAL_SERVER_ERROR",
+                message: "Failed to fetch general groups",
+            });
+        }
+
+        return generalGroups;
     }),
     getSubGroups: publicProcedure
         .input(getSubGroupsSchema)
         .query(async ({ input }) => {
-            const { data } = await fetchSubGroupsForGeneralGroup(
+            const { subGroups, error } = await fetchSubGroupsForGeneralGroup(
                 input.generalGroupLabel,
             );
 
-            return data;
+            if (error) {
+                throw new TRPCError({
+                    code: "INTERNAL_SERVER_ERROR",
+                    message: "Failed to fetch subgroups",
+                });
+            }
+
+            return subGroups;
         }),
     getAcademicHours: publicProcedure.query(async () => {
-        const { data } = await fetchAcademicHours();
+        const { academicHours, error } = await fetchAcademicHours();
 
-        return data;
+        if (error) {
+            throw new TRPCError({
+                code: "INTERNAL_SERVER_ERROR",
+                message: "Failed to fetch academic hours",
+            });
+        }
+
+        return academicHours;
     }),
     getTimetable: publicProcedure
         .input(getTimetableSchema)
         .query(async ({ input }) => {
-            const { data } = await fetchTimetable(
+            const { timetable, error } = await fetchTimetable(
                 input.generalGroup,
                 input.subGroups,
             );
 
-            return data;
+            if (error) {
+                throw new TRPCError({
+                    code: "INTERNAL_SERVER_ERROR",
+                    message: "Failed to fetch timetable",
+                });
+            }
+
+            return timetable;
         }),
 });

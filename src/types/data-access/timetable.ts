@@ -26,40 +26,40 @@ export type Timetable = {
 
 export type FetchGeneralGroupsResult =
     | {
-          data: null;
+          generalGroups: null;
           error: "UnknownError";
       }
     | {
+          generalGroups: GeneralGroups;
           error: null;
-          data: GeneralGroups;
       };
 
 export type FetchSubGroupsResult =
     | {
-          data: null;
+          subGroups: null;
           error: "UnknownError";
       }
     | {
+          subGroups: SubGroups;
           error: null;
-          data: SubGroups;
       };
 
 export type FetchAcademicHoursResult =
     | {
-          data: null;
+          academicHours: null;
           error: "UnknownError";
       }
     | {
+          academicHours: AcademicHours;
           error: null;
-          data: { hours: AcademicHours };
       };
 
 export type FetchTimetableResult =
     | {
-          data: null;
+          timetable: null;
           error: "UnknownError";
       }
     | {
+          timetable: Timetable;
           error: null;
-          data: Timetable;
       };

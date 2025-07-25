@@ -1,14 +1,16 @@
 import "server-only";
 
 import type {
+    AcademicHours,
     FetchAcademicHoursResult,
     FetchGeneralGroupsResult,
     FetchSubGroupsResult,
     FetchTimetableResult,
+    GeneralGroups,
+    SubGroups,
+    Timetable,
 } from "@/types/data-access/timetable";
 import { generateFetchUrl } from ".";
-
-// TODO: work on types
 
 export const fetchGeneralGroups =
     async (): Promise<FetchGeneralGroupsResult> => {
@@ -22,15 +24,15 @@ export const fetchGeneralGroups =
             console.log(await response.text());
 
             return {
-                data: null,
+                generalGroups: null,
                 error: "UnknownError",
             };
         }
 
-        const data = await response.json();
+        const data = (await response.json()) as GeneralGroups;
 
         return {
-            data,
+            generalGroups: data,
             error: null,
         };
     };
@@ -48,15 +50,15 @@ export const fetchSubGroupsForGeneralGroup = async (
         console.log(await response.text());
 
         return {
-            data: null,
+            subGroups: null,
             error: "UnknownError",
         };
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as SubGroups;
 
     return {
-        data,
+        subGroups: data,
         error: null,
     };
 };
@@ -72,15 +74,15 @@ export const fetchAcademicHours =
         if (!response.ok) {
             console.log(await response.text());
             return {
-                data: null,
+                academicHours: null,
                 error: "UnknownError",
             };
         }
 
-        const data = await response.json();
+        const data = (await response.json()) as { hours: AcademicHours };
 
         return {
-            data,
+            academicHours: data.hours,
             error: null,
         };
     };
@@ -99,16 +101,17 @@ export const fetchTimetable = async (
 
     if (!response.ok) {
         console.log(await response.text());
+
         return {
-            data: null,
+            timetable: null,
             error: "UnknownError",
         };
     }
 
-    const data = await response.json();
+    const data = (await response.json()) as Timetable;
 
     return {
-        data,
+        timetable: data,
         error: null,
     };
 };
