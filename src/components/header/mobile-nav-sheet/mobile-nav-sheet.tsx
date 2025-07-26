@@ -43,7 +43,7 @@ export default function MobileNavSheet() {
                         {t("navigation")}
                     </SheetDescription>
                 </SheetHeader>
-                <div className="flex flex-col gap-3 px-2">
+                <nav className="flex flex-col gap-3 px-2">
                     {navigationItems.map(({ href, label, icon }) => (
                         <MobileNavLink
                             key={href}
@@ -54,7 +54,7 @@ export default function MobileNavSheet() {
                             <span>{label}</span>
                         </MobileNavLink>
                     ))}
-                </div>
+                </nav>
             </SheetContent>
         </Sheet>
     );
