@@ -4,12 +4,12 @@ type Props = {
     className?: string;
 };
 
-export default function ButtonArrowSVG({ className }: Props) {
+export default function ChevronLeftSVG({ className }: Props) {
     return (
         <svg
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
-            className={cn(className)}
+            className={cn("text-[#AFAFAF]", className)}
         >
             <g>
                 <line
