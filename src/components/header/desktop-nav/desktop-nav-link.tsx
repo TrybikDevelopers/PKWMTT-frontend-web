@@ -1,10 +1,14 @@
 "use client";
 
 import { Link, usePathname } from "@/i18n/navigation";
+import type { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
 type Props = {
-    href: "/" | "/calendar" | "/year-organization" | "/settings";
+    href: keyof Pick<
+        typeof routing.pathnames,
+        "/" | "/calendar" | "/ects-calculator" | "/settings"
+    >;
     children: React.ReactNode;
     ref: React.Ref<HTMLAnchorElement>;
 };
