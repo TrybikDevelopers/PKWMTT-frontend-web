@@ -18,9 +18,9 @@ export const routing = defineRouting({
             en: "/calendar",
             pl: "/kalendarz",
         },
-        "/year-organization": {
-            en: "/year-organization",
-            pl: "/organizacja-roku",
+        "/ects-calculator": {
+            en: "/ects-calculator",
+            pl: "/kalkulator-ects",
         },
         "/settings": {
             en: "/settings",

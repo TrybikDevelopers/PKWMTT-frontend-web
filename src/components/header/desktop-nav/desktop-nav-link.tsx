@@ -2,9 +2,10 @@
 
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { NavigationItemHref } from "@/types/navigation";
 
 type Props = {
-    href: "/" | "/calendar" | "/year-organization" | "/settings";
+    href: NavigationItemHref;
     children: React.ReactNode;
     ref: React.Ref<HTMLAnchorElement>;
 };

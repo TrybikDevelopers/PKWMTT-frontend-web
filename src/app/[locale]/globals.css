@@ -10,6 +10,7 @@
     --background-lighter: #00000040;
     --button: #313131;
     --accent: #727dff;
+    --accent-light: #daddff;
     /* Copilot proposed */
     /* --background: oklch(1 0 0);
     --background-darker: oklch(0.95 0 0);
@@ -58,6 +59,7 @@
     --background-lighter: #00000040;
     --button: #313131;
     --accent: #727dff;
+    --accent-light: #daddff;
     /* end */
 
     /* Shadcn vars */
@@ -95,6 +97,7 @@
 }
 
 @theme inline {
+    --breakpoint-xxs: 26.25rem; /* 420px */
     --breakpoint-xs: 31.25rem; /* 500px */
 
     --color-background: var(--background);
@@ -103,6 +106,7 @@
     --color-foreground: var(--foreground);
     --color-button: var(--button);
     --color-accent: var(--accent);
+    --color-accent-light: var(--accent-light);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
