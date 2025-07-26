@@ -1,7 +1,5 @@
-import type { routing } from "@/i18n/routing";
-
 export type NavigationItem = {
-    href: keyof typeof routing.pathnames;
+    href: "/" | "/calendar" | "/year-organization" | "/settings";
     label: string;
     icon: React.ReactNode;
 };
