@@ -1,9 +1,8 @@
 import Header from "@/components/header/header";
-import { ThemeProvider } from "@/components/theme-provider";
+import RootLayoutProvider from "@/components/providers/root-layout-provider";
 import { routing } from "@/i18n/routing";
-import { TRPCReactProvider } from "@/trpc/react";
 import type { Metadata } from "next";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { hasLocale } from "next-intl";
 import { Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 import "./globals.css";
@@ -35,19 +34,10 @@ export default async function RootLayout({
     return (
         <html lang={locale} suppressHydrationWarning>
             <body className={`${inter.className} flex flex-col`}>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="dark"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <NextIntlClientProvider>
-                        <TRPCReactProvider>
-                            <Header />
-                            {children}
-                        </TRPCReactProvider>
-                    </NextIntlClientProvider>
-                </ThemeProvider>
+                <RootLayoutProvider>
+                    <Header />
+                    {children}
+                </RootLayoutProvider>
             </body>
         </html>
     );
