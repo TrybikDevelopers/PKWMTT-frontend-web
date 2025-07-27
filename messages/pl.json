@@ -2,6 +2,9 @@
     "home": {
         "metadata": {
             "title": "Strona główna"
+        },
+        "mobileTimetable": {
+            "classRoom": "Sala"
         }
     },
     "navigation": {
