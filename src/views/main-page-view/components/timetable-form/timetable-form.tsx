@@ -1,13 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { cn } from "@/lib/utils";
 import type { GeneralGroups } from "@/types/data-access/timetable";
 import { useTranslations } from "next-intl";
 import useTimetableForm from "../../hooks/use-timetable-form";
 import GeneralGroupCombobox from "./general-group-combobox";
 import SubGroupsSelects from "./subgroups-selects";
 import SubGroupsSelectsFallback from "./subgroups-selects-fallback";
+import SubmitButton from "./submit-button";
 
 type Props = {
     generalGroups: GeneralGroups;
@@ -25,12 +26,26 @@ export default function TimetableForm({ generalGroups }: Props) {
     } = useTimetableForm();
 
     return (
-        <div className="flex h-full w-full flex-col items-center justify-center p-4 pb-20">
+        <div className="flex h-full w-full flex-col items-center justify-center p-4">
             <Form {...form}>
                 <form
-                    onSubmit={form.handleSubmit((data) => console.log(data))}
-                    className="flex w-full max-w-84 flex-col gap-4"
+                    onSubmit={form.handleSubmit(async (data) => {
+                        await new Promise((resolve) =>
+                            setTimeout(resolve, 1000),
+                        );
+                        console.log("Form submitted with data:", data);
+                    })}
+                    className={cn(
+                        "mb-28 flex w-full max-w-84 flex-col gap-4",
+                        generalGroup.length > 0 && "mb-10",
+                    )}
                 >
+                    <h1 className="text-center text-2xl font-bold">
+                        {t("welcomeFirstTime")}
+                    </h1>
+                    <p className="text-muted-foreground text-center">
+                        {t("selectGroupsToContinue")}
+                    </p>
                     <GeneralGroupCombobox generalGroups={generalGroups} />
                     {!isFetchingSubGroups &&
                         subGroups &&
@@ -43,12 +58,7 @@ export default function TimetableForm({ generalGroups }: Props) {
                         />
                     )}
                     {generalGroup.length > 0 && (
-                        <Button
-                            type="submit"
-                            className="mx-auto cursor-pointer"
-                        >
-                            {t("submit")}
-                        </Button>
+                        <SubmitButton isLoading={form.formState.isSubmitting} />
                     )}
                 </form>
             </Form>

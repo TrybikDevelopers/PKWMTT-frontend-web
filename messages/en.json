@@ -7,6 +7,8 @@
             "classRoom": "Classroom"
         },
         "timetableForm": {
+            "welcomeFirstTime": "Welcome to PKWMTT!",
+            "selectGroupsToContinue": "Select your general group and subgroups to continue.",
             "generalGroup": "General Group",
             "selectGeneralGroup": "Select General Group",
             "searchForGeneralGroup": "Search for General Group",

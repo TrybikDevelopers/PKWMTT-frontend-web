@@ -74,7 +74,7 @@ export const timetableRouter = createTRPCRouter({
         .query(async ({ input }) => {
             const { timetable, error } = await fetchTimetable(
                 input.generalGroup,
-                input.subGroups,
+                input.groups,
             );
 
             if (error) {
