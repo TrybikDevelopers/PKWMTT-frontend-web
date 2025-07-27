@@ -16,6 +16,7 @@ export default function Header() {
                     height={1024}
                     alt="logo"
                     className="object-cover"
+                    priority
                 />
             </Link>
             <div className="flex h-full w-full items-center justify-end p-5">

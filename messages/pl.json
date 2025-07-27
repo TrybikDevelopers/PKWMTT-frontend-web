@@ -5,6 +5,16 @@
         },
         "mobileTimetable": {
             "classRoom": "Sala"
+        },
+        "timetableForm": {
+            "generalGroup": "Oddział",
+            "selectGeneralGroup": "Wybierz oddział",
+            "searchForGeneralGroup": "Szukaj oddziału",
+            "noGeneralGroupFound": "Nie znaleziono oddziału",
+            "group": "Grupa - {group}",
+            "selectGroup": "Wybierz grupę",
+            "submit": "Szukaj",
+            "required": "To pole jest wymagane"
         }
     },
     "navigation": {

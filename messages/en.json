@@ -5,6 +5,16 @@
         },
         "mobileTimetable": {
             "classRoom": "Classroom"
+        },
+        "timetableForm": {
+            "generalGroup": "General Group",
+            "selectGeneralGroup": "Select General Group",
+            "searchForGeneralGroup": "Search for General Group",
+            "noGeneralGroupFound": "No General Group found",
+            "group": "Group - {group}",
+            "selectGroup": "Select Group",
+            "submit": "Search",
+            "required": "This field is required"
         }
     },
     "navigation": {

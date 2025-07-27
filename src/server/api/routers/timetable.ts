@@ -28,7 +28,7 @@ export const timetableRouter = createTRPCRouter({
         .input(getSubGroupsSchema)
         .query(async ({ input }) => {
             const { subGroups, error } = await fetchSubGroupsForGeneralGroup(
-                input.generalGroupLabel,
+                input.generalGroup,
             );
 
             if (error) {
@@ -38,7 +38,24 @@ export const timetableRouter = createTRPCRouter({
                 });
             }
 
-            return subGroups;
+            const groupedSubGroups: Map<string, Set<string>> = new Map();
+
+            subGroups.forEach((subGroup) => {
+                const firstLetter = subGroup.charAt(0);
+
+                if (!groupedSubGroups.has(firstLetter)) {
+                    groupedSubGroups.set(firstLetter, new Set([subGroup]));
+                }
+
+                groupedSubGroups.get(firstLetter)?.add(subGroup);
+            });
+
+            return Array.from(groupedSubGroups).map(
+                ([firstLetter, subGroupSet]) => ({
+                    firstLetter,
+                    subGroups: Array.from(subGroupSet),
+                }),
+            );
         }),
     getAcademicHours: publicProcedure.query(async () => {
         const { academicHours, error } = await fetchAcademicHours();
