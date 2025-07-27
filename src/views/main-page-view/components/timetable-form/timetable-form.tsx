@@ -2,7 +2,7 @@
 
 import { Form } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
-import type { GeneralGroups } from "@/types/data-access/timetable";
+import { api } from "@/trpc/react";
 import { useTranslations } from "next-intl";
 import useTimetableForm from "../../hooks/use-timetable-form";
 import GeneralGroupCombobox from "./general-group-combobox";
@@ -10,11 +10,9 @@ import SubGroupsSelects from "./subgroups-selects";
 import SubGroupsSelectsFallback from "./subgroups-selects-fallback";
 import SubmitButton from "./submit-button";
 
-type Props = {
-    generalGroups: GeneralGroups;
-};
+export default function TimetableForm() {
+    const [generalGroups] = api.timetable.getGeneralGroups.useSuspenseQuery();
 
-export default function TimetableForm({ generalGroups }: Props) {
     const t = useTranslations("home.timetableForm");
 
     const {

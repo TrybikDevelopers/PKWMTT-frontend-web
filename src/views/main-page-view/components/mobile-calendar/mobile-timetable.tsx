@@ -1,13 +1,19 @@
-import type { AcademicHours, Timetable } from "@/types/data-access/timetable";
+"use client";
+
+import type { TimetableSettingsSchema } from "@/schema/timetable-settings-schema";
+import { api } from "@/trpc/react";
 import LessonCard from "./lesson-card";
 import TimetableHeader from "./timetable-header";
 
 type Props = {
-    timetable: Timetable;
-    hours: AcademicHours;
+    timetableSettings: TimetableSettingsSchema;
 };
 
-export default function MobileTimetable({ timetable, hours }: Props) {
+export default function MobileTimetable({ timetableSettings }: Props) {
+    const [timetable] =
+        api.timetable.getTimetable.useSuspenseQuery(timetableSettings);
+    const [hours] = api.timetable.getAcademicHours.useSuspenseQuery(undefined);
+
     console.log(timetable, hours);
     return (
         <div className="mx-auto flex h-full w-full max-w-2xl flex-col">

@@ -87,3 +87,5 @@ export const timetableRouter = createTRPCRouter({
             return timetable;
         }),
 });
+
+// TODO: add saving timetable settings

@@ -79,10 +79,10 @@ export const fetchAcademicHours =
             };
         }
 
-        const data = (await response.json()) as { hours: AcademicHours };
+        const data = (await response.json()) as AcademicHours;
 
         return {
-            academicHours: data.hours,
+            academicHours: data,
             error: null,
         };
     };
