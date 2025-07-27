@@ -1,15 +1,15 @@
-import type { Timetable } from "@/types/data-access/timetable";
+import type { AcademicHours, Timetable } from "@/types/data-access/timetable";
 import MobileTimetable from "./components/mobile-calendar/mobile-timetable";
 
 type Props = {
     timetable: Timetable;
+    hours: AcademicHours;
 };
 
-export default function MainPageView({ timetable }: Props) {
+export default function MainPageView({ timetable, hours }: Props) {
     return (
         <div className="text-foreground flex h-full w-full flex-col">
-            <pre>{JSON.stringify(timetable, null, 2)}</pre>
-            <MobileTimetable />
+            <MobileTimetable timetable={timetable} hours={hours} />
         </div>
     );
 }

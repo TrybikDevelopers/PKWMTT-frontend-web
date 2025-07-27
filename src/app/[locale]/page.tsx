@@ -7,10 +7,10 @@ export default async function Home() {
 
     return (
         <main className="h-full w-full">
-            {data.timetable ? (
-                <MainPageView timetable={data.timetable} />
-            ) : (
+            {data.generalGroups ? (
                 <TimetableForm generalGroups={data.generalGroups} />
+            ) : (
+                <MainPageView timetable={data.timetable} hours={data.hours} />
             )}
         </main>
     );
