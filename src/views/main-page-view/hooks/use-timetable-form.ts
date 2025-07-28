@@ -1,3 +1,4 @@
+import { useRouter } from "@/i18n/navigation";
 import {
     getTimetableFormSchema,
     type TimetableFormSchema,
@@ -10,8 +11,10 @@ import { useForm } from "react-hook-form";
 
 const useTimetableForm = () => {
     const [subGroupsPlaceholdersLength, setSubGroupsPlaceholdersLength] =
-        useState(3);
+        useState<number>(3);
     const t = useTranslations("home.timetableForm");
+
+    const router = useRouter();
 
     const form = useForm<TimetableFormSchema>({
         resolver: zodResolver(getTimetableFormSchema(t)),
@@ -36,6 +39,18 @@ const useTimetableForm = () => {
             },
         );
 
+    const { mutate, isPending } = api.timetable.submitTimetableForm.useMutation(
+        {
+            onSuccess: () => {
+                router.refresh();
+            },
+            onError: (error) => {
+                // TODO: handle errors
+                console.error("Error submitting form:", error);
+            },
+        },
+    );
+
     useEffect(() => {
         if (prevGeneralGroup.current !== generalGroup) {
             form.reset({
@@ -54,12 +69,16 @@ const useTimetableForm = () => {
         }
     }, [subGroups, setSubGroupsPlaceholdersLength]);
 
+    const onSubmit = form.handleSubmit((data) => mutate(data));
+
     return {
         form,
         generalGroup,
         subGroups,
         isFetchingSubGroups,
         subGroupsPlaceholdersLength,
+        onSubmit,
+        isSubmitting: isPending,
     };
 };
 

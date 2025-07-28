@@ -1,8 +1,10 @@
 import "server-only";
 
+import { getTimetableFormSchema } from "@/schema/forms/timetable-form-schema";
 import { getSubGroupsSchema } from "@/schema/trpc/timetable/get-sub-groups-schema";
 import { getTimetableSchema } from "@/schema/trpc/timetable/get-timetable-schema";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { setTimetableSettings } from "@/server/cookies";
 import {
     fetchAcademicHours,
     fetchGeneralGroups,
@@ -10,6 +12,7 @@ import {
     fetchTimetable,
 } from "@/server/data-access/timetable";
 import { TRPCError } from "@trpc/server";
+import { getTranslations } from "next-intl/server";
 
 export const timetableRouter = createTRPCRouter({
     getGeneralGroups: publicProcedure.query(async () => {
@@ -86,6 +89,15 @@ export const timetableRouter = createTRPCRouter({
 
             return timetable;
         }),
-});
+    submitTimetableForm: publicProcedure
+        .input(async (value) =>
+            getTimetableFormSchema(await getTranslations("home")).parse(value),
+        )
+        .mutation(async ({ input }) => {
+            await setTimetableSettings(input);
 
-// TODO: add saving timetable settings
+            return {
+                success: true,
+            };
+        }),
+});

@@ -21,18 +21,15 @@ export default function TimetableForm() {
         isFetchingSubGroups,
         subGroups,
         subGroupsPlaceholdersLength,
+        isSubmitting,
+        onSubmit,
     } = useTimetableForm();
 
     return (
         <div className="flex h-full w-full flex-col items-center justify-center p-4">
             <Form {...form}>
                 <form
-                    onSubmit={form.handleSubmit(async (data) => {
-                        await new Promise((resolve) =>
-                            setTimeout(resolve, 1000),
-                        );
-                        console.log("Form submitted with data:", data);
-                    })}
+                    onSubmit={onSubmit}
                     className={cn(
                         "mb-28 flex w-full max-w-84 flex-col gap-4",
                         generalGroup.length > 0 && "mb-10",
@@ -56,7 +53,7 @@ export default function TimetableForm() {
                         />
                     )}
                     {generalGroup.length > 0 && (
-                        <SubmitButton isLoading={form.formState.isSubmitting} />
+                        <SubmitButton isLoading={isSubmitting} />
                     )}
                 </form>
             </Form>
