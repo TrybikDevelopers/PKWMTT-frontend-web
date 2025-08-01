@@ -3,6 +3,31 @@
         "metadata": {
             "title": "Strona główna"
         },
+        "days": {
+            "monday": "Poniedziałek",
+            "tuesday": "Wtorek",
+            "wednesday": "Środa",
+            "thursday": "Czwartek",
+            "friday": "Piątek"
+        },
+        "lessonType": {
+            "seminar": "Seminarium",
+            "lecture": "Wykład",
+            "laboratory": "Laboratorium",
+            "computerLaboratory": "Laboratorium komputerowe",
+            "exercises": "Ćwiczenia",
+            "project": "Projekt",
+            "other": "Inne",
+            "short": {
+                "seminar": "S",
+                "lecture": "W",
+                "laboratory": "L",
+                "computerLaboratory": "K",
+                "exercises": "Ć",
+                "project": "P",
+                "other": "I"
+            }
+        },
         "mobileTimetable": {
             "classRoom": "Sala"
         },
@@ -25,5 +50,10 @@
         "calendar": "Kalendarz",
         "ectsCalculator": "Kalkulator ECTS",
         "settings": "Ustawienia"
+    },
+    "errors": {
+        "actions": {
+            "unknown": "Wystąpił nieznany błąd. Proszę spróbować ponownie później."
+        }
     }
 }

@@ -3,6 +3,31 @@
         "metadata": {
             "title": "Home Page"
         },
+        "days": {
+            "monday": "Monday",
+            "tuesday": "Tuesday",
+            "wednesday": "Wednesday",
+            "thursday": "Thursday",
+            "friday": "Friday"
+        },
+        "lessonType": {
+            "seminar": "Seminar",
+            "lecture": "Lecture",
+            "laboratory": "Laboratory",
+            "computerLaboratory": "Computer Laboratory",
+            "exercises": "Exercises",
+            "project": "Project",
+            "other": "Other",
+            "short": {
+                "seminar": "S",
+                "lecture": "L",
+                "laboratory": "L",
+                "computerLaboratory": "C",
+                "exercises": "E",
+                "project": "P",
+                "other": "O"
+            }
+        },
         "mobileTimetable": {
             "classRoom": "Classroom"
         },
@@ -25,5 +50,10 @@
         "calendar": "Calendar",
         "ectsCalculator": "ECTS Calculator",
         "settings": "Settings"
+    },
+    "errors": {
+        "actions": {
+            "unknown": "An unknown error occurred. Please try again later."
+        }
     }
 }

@@ -91,7 +91,9 @@ export const timetableRouter = createTRPCRouter({
         }),
     submitTimetableForm: publicProcedure
         .input(async (value) =>
-            getTimetableFormSchema(await getTranslations("home")).parse(value),
+            getTimetableFormSchema(
+                await getTranslations("home.timetableForm"),
+            ).parse(value),
         )
         .mutation(async ({ input }) => {
             await setTimetableSettings(input);

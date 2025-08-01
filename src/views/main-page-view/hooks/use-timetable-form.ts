@@ -8,11 +8,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const useTimetableForm = () => {
     const [subGroupsPlaceholdersLength, setSubGroupsPlaceholdersLength] =
-        useState<number>(3);
+        useState<number>(2);
     const t = useTranslations("home.timetableForm");
+    const tErrors = useTranslations("errors");
 
     const router = useRouter();
 
@@ -44,9 +46,8 @@ const useTimetableForm = () => {
             onSuccess: () => {
                 router.refresh();
             },
-            onError: (error) => {
-                // TODO: handle errors
-                console.error("Error submitting form:", error);
+            onError: () => {
+                toast.error(tErrors("actions.unknown"));
             },
         },
     );
