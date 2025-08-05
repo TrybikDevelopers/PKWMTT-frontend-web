@@ -13,7 +13,7 @@ type Badge = {
     className: string;
 };
 
-const useLessonCard = (type: ClassEntry["type"] | null) => {
+const useLessonCard = (type: ClassEntry["type"] | null, hour: string) => {
     const t = useTranslations("home.lessonType");
 
     const badge = useMemo((): Badge | null => {
@@ -60,21 +60,58 @@ const useLessonCard = (type: ClassEntry["type"] | null) => {
         }
     }, [type, t]);
 
-    return badge;
+    const sanitizedHour = hour.replace(/\s+/g, "");
+
+    const lessonStart = sanitizedHour.split("-")[0];
+    const lessonEnd = sanitizedHour.split("-")[1];
+
+    const now = new Date();
+
+    const lessonStartDate = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        parseInt(lessonStart.split(":")[0], 10),
+        parseInt(lessonStart.split(":")[1], 10),
+    );
+    const lessonEndDate = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        parseInt(lessonEnd.split(":")[0], 10),
+        parseInt(lessonEnd.split(":")[1], 10),
+    );
+
+    const isCurrentLessonActive =
+        now >= lessonStartDate && now <= lessonEndDate;
+
+    return {
+        badge,
+        sanitizedHour,
+        isCurrentLessonActive,
+    };
 };
 
 export default function LessonCard({ lesson, hour }: Props) {
     const t = useTranslations("home.mobileTimetable");
 
-    const badge = useLessonCard(lesson?.type ?? null);
+    const { badge, sanitizedHour, isCurrentLessonActive } = useLessonCard(
+        lesson?.type ?? null,
+        hour,
+    );
 
     return (
         <div className="bg-background flex min-h-25 shrink-0 flex-row overflow-hidden py-2.5">
-            <div className="flex h-full w-1.5 shrink-0 bg-[#D2D4D3]"></div>
+            <div
+                className={cn(
+                    "flex h-full w-1.5 shrink-0 bg-[#D2D4D3]",
+                    isCurrentLessonActive && "bg-accent",
+                )}
+            ></div>
             <div className="flex w-full flex-col justify-between gap-5 p-1.25 px-2">
                 <div className="flex items-center">
                     <span className="xs:text-base w-fit text-sm font-normal text-white">
-                        {hour}
+                        {sanitizedHour}
                     </span>
                     {lesson && (
                         <span className="xs:text-base ml-auto flex items-center gap-1 rounded-full text-sm">
