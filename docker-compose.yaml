@@ -3,6 +3,8 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+            # args:
+            #     - API_BASE_URL=http://localhost:3005
         image: pkwmtt-web
         container_name: pkwmtt-web-app
         ports:
