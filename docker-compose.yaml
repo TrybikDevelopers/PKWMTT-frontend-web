@@ -6,7 +6,7 @@ services:
         image: pkwmtt-web
         container_name: pkwmtt-web-app
         ports:
-            - "3000:3000"
+            - "3005:3000"
         environment:
             - NEXT_TELEMETRY_DISABLED=1
         restart: unless-stopped
