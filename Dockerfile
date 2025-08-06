@@ -17,6 +17,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV DOCKER_BUILD=true
+ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN corepack enable pnpm && pnpm run build
 
@@ -36,10 +37,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-EXPOSE 3000
-
 ENV PORT=3000
-ENV NEXT_TELEMETRY_DISABLED=1
 
 ENV HOSTNAME="0.0.0.0"
 CMD ["node", "server.js"]
