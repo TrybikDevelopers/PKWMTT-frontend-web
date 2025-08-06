@@ -1,9 +1,11 @@
+import { env } from "@/env";
 import { getTimetableSettings } from "@/server/cookies";
 import { api, HydrateClient } from "@/trpc/server";
 import TimetableForm from "@/views/main-page-view/components/timetable-form/timetable-form";
 import MainPageView from "@/views/main-page-view/main-page-view";
 
 export default async function Home() {
+    console.log(env.API_BASE_URL);
     const timetableSettings = await getTimetableSettings();
 
     if (!timetableSettings) {
