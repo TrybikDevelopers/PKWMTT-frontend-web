@@ -2,6 +2,48 @@
     "home": {
         "metadata": {
             "title": "Strona główna"
+        },
+        "days": {
+            "monday": "Poniedziałek",
+            "tuesday": "Wtorek",
+            "wednesday": "Środa",
+            "thursday": "Czwartek",
+            "friday": "Piątek"
+        },
+        "lessonType": {
+            "seminar": "Seminarium",
+            "lecture": "Wykład",
+            "laboratory": "Laboratorium",
+            "computerLaboratory": "Laboratorium komputerowe",
+            "exercises": "Ćwiczenia",
+            "project": "Projekt",
+            "other": "Inne",
+            "short": {
+                "seminar": "S",
+                "lecture": "W",
+                "laboratory": "L",
+                "computerLaboratory": "K",
+                "exercises": "Ć",
+                "project": "P",
+                "other": "I"
+            }
+        },
+        "mobileTimetable": {
+            "classRoom": "Sala",
+            "evenWeek": "Parzysty",
+            "oddWeek": "Nieparzysty"
+        },
+        "timetableForm": {
+            "welcomeFirstTime": "Witamy w PKWMTT!",
+            "selectGroupsToContinue": "Wybierz swój oddział i grupy, aby kontynuować.",
+            "generalGroup": "Oddział",
+            "selectGeneralGroup": "Wybierz oddział",
+            "searchForGeneralGroup": "Szukaj oddziału",
+            "noGeneralGroupFound": "Nie znaleziono oddziału",
+            "group": "Grupa - {group}",
+            "selectGroup": "Wybierz grupę",
+            "submit": "Szukaj",
+            "required": "To pole jest wymagane"
         }
     },
     "navigation": {
@@ -10,5 +52,10 @@
         "calendar": "Kalendarz",
         "ectsCalculator": "Kalkulator ECTS",
         "settings": "Ustawienia"
+    },
+    "errors": {
+        "actions": {
+            "unknown": "Wystąpił nieznany błąd. Proszę spróbować ponownie później."
+        }
     }
 }

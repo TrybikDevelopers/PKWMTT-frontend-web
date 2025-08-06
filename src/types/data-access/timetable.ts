@@ -11,9 +11,10 @@ export type ClassEntry = {
         | "LECTURE"
         | "LABORATORY"
         | "COMPUTER_LABORATORY"
-        | "OTHER"
-        | "EXERCISES";
-}[];
+        | "EXERCISES"
+        | "PROJECT"
+        | "OTHER";
+};
 
 export type Timetable = {
     name: string;

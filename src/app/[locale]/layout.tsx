@@ -1,5 +1,6 @@
 import Header from "@/components/header/header";
 import RootLayoutProvider from "@/components/providers/root-layout-provider";
+import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
@@ -37,6 +38,7 @@ export default async function RootLayout({
                 <RootLayoutProvider>
                     <Header />
                     {children}
+                    <Toaster duration={3000} />
                 </RootLayoutProvider>
             </body>
         </html>

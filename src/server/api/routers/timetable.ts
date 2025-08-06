@@ -1,8 +1,10 @@
 import "server-only";
 
+import { getTimetableFormSchema } from "@/schema/forms/timetable-form-schema";
 import { getSubGroupsSchema } from "@/schema/trpc/timetable/get-sub-groups-schema";
 import { getTimetableSchema } from "@/schema/trpc/timetable/get-timetable-schema";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import { setTimetableSettings } from "@/server/cookies";
 import {
     fetchAcademicHours,
     fetchGeneralGroups,
@@ -10,6 +12,7 @@ import {
     fetchTimetable,
 } from "@/server/data-access/timetable";
 import { TRPCError } from "@trpc/server";
+import { getTranslations } from "next-intl/server";
 
 export const timetableRouter = createTRPCRouter({
     getGeneralGroups: publicProcedure.query(async () => {
@@ -28,7 +31,7 @@ export const timetableRouter = createTRPCRouter({
         .input(getSubGroupsSchema)
         .query(async ({ input }) => {
             const { subGroups, error } = await fetchSubGroupsForGeneralGroup(
-                input.generalGroupLabel,
+                input.generalGroup,
             );
 
             if (error) {
@@ -38,7 +41,24 @@ export const timetableRouter = createTRPCRouter({
                 });
             }
 
-            return subGroups;
+            const groupedSubGroups: Map<string, Set<string>> = new Map();
+
+            subGroups.forEach((subGroup) => {
+                const firstLetter = subGroup.charAt(0);
+
+                if (!groupedSubGroups.has(firstLetter)) {
+                    groupedSubGroups.set(firstLetter, new Set([subGroup]));
+                }
+
+                groupedSubGroups.get(firstLetter)?.add(subGroup);
+            });
+
+            return Array.from(groupedSubGroups).map(
+                ([firstLetter, subGroupSet]) => ({
+                    firstLetter,
+                    subGroups: Array.from(subGroupSet),
+                }),
+            );
         }),
     getAcademicHours: publicProcedure.query(async () => {
         const { academicHours, error } = await fetchAcademicHours();
@@ -57,7 +77,7 @@ export const timetableRouter = createTRPCRouter({
         .query(async ({ input }) => {
             const { timetable, error } = await fetchTimetable(
                 input.generalGroup,
-                input.subGroups,
+                input.groups,
             );
 
             if (error) {
@@ -68,5 +88,18 @@ export const timetableRouter = createTRPCRouter({
             }
 
             return timetable;
+        }),
+    submitTimetableForm: publicProcedure
+        .input(async (value) =>
+            getTimetableFormSchema(
+                await getTranslations("home.timetableForm"),
+            ).parse(value),
+        )
+        .mutation(async ({ input }) => {
+            await setTimetableSettings(input);
+
+            return {
+                success: true,
+            };
         }),
 });

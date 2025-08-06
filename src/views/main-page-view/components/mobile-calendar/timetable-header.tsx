@@ -1,16 +1,49 @@
 import ChevronLeftSVG from "@/components/svg/chevron-left-svg";
+import useWeekParity from "@/hooks/use-week-parity";
+import { useTranslations } from "next-intl";
 import ChangeDayButton from "./change-day-button";
 
-export default function TimetableHeader() {
+type Props = {
+    incrementDayIndex: () => void;
+    decrementDayIndex: () => void;
+    selectedDayIndex: number;
+};
+
+export default function TimetableHeader({
+    incrementDayIndex,
+    decrementDayIndex,
+    selectedDayIndex,
+}: Props) {
+    const t = useTranslations("home");
+
+    const { weekParity } = useWeekParity();
+
+    const days = [
+        t("days.monday"),
+        t("days.tuesday"),
+        t("days.wednesday"),
+        t("days.thursday"),
+        t("days.friday"),
+    ];
+
+    const dayName = days[selectedDayIndex];
+
     return (
         <header className="flex items-center justify-between p-4">
-            <ChangeDayButton>
+            <ChangeDayButton onClick={decrementDayIndex}>
                 <ChevronLeftSVG />
             </ChangeDayButton>
-            <div className="xs:text-xl text-lg font-bold text-[#DADDFF]">
-                Poniedziałek
+            <div className="flex w-fit flex-col items-center justify-center gap-0.5">
+                <div className="xs:text-xl text-lg font-bold text-[#DADDFF]">
+                    {dayName}
+                </div>
+                <div className="h-fit w-fit text-xs">
+                    {weekParity === "EVEN"
+                        ? t("mobileTimetable.evenWeek")
+                        : t("mobileTimetable.oddWeek")}
+                </div>
             </div>
-            <ChangeDayButton>
+            <ChangeDayButton onClick={incrementDayIndex}>
                 <ChevronLeftSVG className="rotate-180" />
             </ChangeDayButton>
         </header>
