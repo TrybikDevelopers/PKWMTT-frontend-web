@@ -29,7 +29,9 @@
             }
         },
         "mobileTimetable": {
-            "classRoom": "Sala"
+            "classRoom": "Sala",
+            "evenWeek": "Parzysty",
+            "oddWeek": "Nieparzysty"
         },
         "timetableForm": {
             "welcomeFirstTime": "Witamy w PKWMTT!",

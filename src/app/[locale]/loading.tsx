@@ -32,7 +32,10 @@ export default function MainPageLoading() {
             <div className="mx-auto flex w-full max-w-2xl flex-col lg:hidden">
                 <div className="flex items-center justify-between p-4">
                     <div className="bg-button h-9 w-10 rounded-xl"></div>
-                    <div className="bg-button h-8 w-28 rounded-xl"></div>
+                    <div className="flex w-fit flex-col items-center justify-center gap-2">
+                        <div className="bg-button h-6 w-20 rounded-sm"></div>
+                        <div className="bg-button h-3.5 w-16 rounded-sm"></div>
+                    </div>
                     <div className="bg-button h-9 w-10 rounded-xl"></div>
                 </div>
                 <div className="xxs:mt-6 mt-4 flex flex-col px-2 pb-10 *:border-b-1 *:border-[#5A5B5C] *:first:border-t-1 *:first:border-t-[#5A5B5C]">

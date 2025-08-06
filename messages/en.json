@@ -29,7 +29,9 @@
             }
         },
         "mobileTimetable": {
-            "classRoom": "Classroom"
+            "classRoom": "Classroom",
+            "evenWeek": "Even",
+            "oddWeek": "Odd"
         },
         "timetableForm": {
             "welcomeFirstTime": "Welcome to PKWMTT!",
