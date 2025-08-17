@@ -9,15 +9,9 @@ type Props = {
 export default function MainPageView({ timetableSettings }: Props) {
     return (
         <div className="text-foreground flex h-full w-full flex-col">
-            {/* Mobile view - hidden on lg and up */}
-            <div className="lg:hidden">
-                <MobileTimetable timetableSettings={timetableSettings} />
-            </div>
+            <MobileTimetable timetableSettings={timetableSettings} />
 
-            {/* Desktop view - visible on lg and up (1024px+) */}
-            <div className="hidden lg:block">
-                <DesktopTimetable timetableSettings={timetableSettings} />
-            </div>
+            <DesktopTimetable timetableSettings={timetableSettings} />
         </div>
     );
 }
