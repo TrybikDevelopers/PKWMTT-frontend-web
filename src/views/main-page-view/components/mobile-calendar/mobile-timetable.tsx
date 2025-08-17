@@ -19,7 +19,7 @@ export default function MobileTimetable({ timetableSettings }: Props) {
     } = useMobileTimetable(timetableSettings);
 
     return (
-        <div className="mx-auto flex h-full w-full max-w-2xl flex-col">
+        <div className="mx-auto flex h-full w-full max-w-2xl flex-col lg:hidden">
             <TimetableHeader
                 incrementDayIndex={incrementDayIndex}
                 decrementDayIndex={decrementDayIndex}

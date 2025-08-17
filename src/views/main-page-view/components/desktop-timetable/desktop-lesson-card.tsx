@@ -1,76 +1,38 @@
 import { cn } from "@/lib/utils";
 import type { ClassEntry } from "@/types/data-access/timetable";
 import { useTranslations } from "next-intl";
-import { useMemo } from "react";
+import useLessonCard from "../../hooks/use-lesson-card";
 
 type Props = {
     lesson: ClassEntry | null;
+    hour: string;
 };
 
-type Badge = {
-    letter: string;
-    className: string;
-};
-
-const useDesktopLessonCard = (type: ClassEntry["type"] | null) => {
-    const t = useTranslations("home.lessonType");
-
-    const badge = useMemo((): Badge | null => {
-        if (!type) {
-            return null;
-        }
-
-        switch (type) {
-            case "SEMINAR":
-                return {
-                    letter: t("short.seminar"),
-                    className: "bg-[#CF2EEF]",
-                };
-            case "LECTURE":
-                return {
-                    letter: t("short.lecture"),
-                    className: "bg-[#E35D23]",
-                };
-            case "LABORATORY":
-                return {
-                    letter: t("short.laboratory"),
-                    className: "bg-[#3BBFE4]",
-                };
-            case "COMPUTER_LABORATORY":
-                return {
-                    letter: t("short.laboratory"),
-                    className: "bg-[#3BBFE4]",
-                };
-            case "EXERCISES":
-                return {
-                    letter: t("short.exercises"),
-                    className: "bg-[#83D32E]",
-                };
-            case "PROJECT":
-                return {
-                    letter: t("short.project"),
-                    className: "bg-[#D32E2E]",
-                };
-            default:
-                return { letter: t("short.other"), className: "bg-gray-600" };
-        }
-    }, [type, t]);
-
-    return badge;
-};
-
-export default function DesktopLessonCard({ lesson }: Props) {
+export default function DesktopLessonCard({ lesson, hour }: Props) {
     const t = useTranslations("home.mobileTimetable");
-    const badge = useDesktopLessonCard(lesson?.type ?? null);
+    const { badge, isCurrentLessonActive } = useLessonCard(
+        lesson?.type ?? null,
+        hour,
+    );
 
-    if (!lesson) {
-        return null;
-    }
+    if (!lesson) return null;
 
     return (
-        <div className="bg-background-darker flex h-full w-full flex-col justify-between gap-2 rounded-lg p-2">
+        <div
+            className={cn(
+                "bg-background-darker flex h-full w-full flex-col justify-between gap-2 rounded-lg p-2 transition-all duration-200",
+                isCurrentLessonActive && "ring-accent bg-accent/10 ring-2",
+            )}
+        >
             <div className="flex items-start justify-between gap-2">
-                <div className="flex-1 truncate text-xs font-medium text-white">
+                <div
+                    className={cn(
+                        "flex-1 truncate text-xs font-medium",
+                        isCurrentLessonActive
+                            ? "text-accent-light"
+                            : "text-white",
+                    )}
+                >
                     {lesson.name}
                 </div>
                 {badge && (
@@ -84,7 +46,14 @@ export default function DesktopLessonCard({ lesson }: Props) {
                     </span>
                 )}
             </div>
-            <div className="truncate text-xs text-[#AFAFAF]">
+            <div
+                className={cn(
+                    "truncate text-xs",
+                    isCurrentLessonActive
+                        ? "text-accent-light/80"
+                        : "text-[#AFAFAF]",
+                )}
+            >
                 {t("classRoom")}: {lesson.classroom}
             </div>
         </div>

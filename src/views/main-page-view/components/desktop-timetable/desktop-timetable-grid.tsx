@@ -32,8 +32,8 @@ export default function DesktopTimetableGrid({ hours, timetableData }: Props) {
     const { getLesson } = useDesktopTimetableGrid(timetableData);
 
     return (
-        <div className="flex-1 overflow-auto">
-            <div className="grid min-h-full grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] gap-4">
+        <div className="flex-1 pb-4">
+            <div className="grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] gap-4">
                 {/* Time column */}
                 <div className="flex flex-col">
                     {hours.map((hour, index) => (
@@ -48,14 +48,18 @@ export default function DesktopTimetableGrid({ hours, timetableData }: Props) {
 
                 {/* Days columns */}
                 {Array.from({ length: 5 }, (_, dayIndex) => (
-                    <div key={`day-${dayIndex}`} className="flex flex-col">
-                        {hours.map((_, hourIndex) => (
+                    <div
+                        key={`day-${dayIndex}`}
+                        className="flex h-full flex-col"
+                    >
+                        {hours.map((hour, hourIndex) => (
                             <div
                                 key={`cell-${dayIndex}-${hourIndex}`}
                                 className="min-h-20 border-b border-[#5A5B5C] p-1 first:border-t"
                             >
                                 <DesktopLessonCard
                                     lesson={getLesson(dayIndex, hourIndex)}
+                                    hour={hour}
                                 />
                             </div>
                         ))}
