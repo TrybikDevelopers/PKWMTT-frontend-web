@@ -1,4 +1,3 @@
-import { env } from "@/env";
 import { getTimetableSettings } from "@/server/cookies";
 import { api, HydrateClient } from "@/trpc/server";
 import TimetableForm from "@/views/main-page-view/components/timetable-form/timetable-form";

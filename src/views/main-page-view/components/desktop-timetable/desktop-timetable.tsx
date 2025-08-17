@@ -10,12 +10,20 @@ type Props = {
 };
 
 export default function DesktopTimetable({ timetableSettings }: Props) {
-    const { hours, timetableData } = useDesktopTimetable(timetableSettings);
+    const { hours, timetableData, weekParity, toggleWeekParity } =
+        useDesktopTimetable(timetableSettings);
 
     return (
         <div className="mx-auto hidden h-full w-full max-w-[1920px] flex-col p-4 lg:flex">
-            <DesktopTimetableHeader />
-            <DesktopTimetableGrid hours={hours} timetableData={timetableData} />
+            <DesktopTimetableHeader
+                weekParity={weekParity}
+                toggleWeekParity={toggleWeekParity}
+            />
+            <DesktopTimetableGrid
+                hours={hours}
+                timetableData={timetableData}
+                weekParity={weekParity}
+            />
         </div>
     );
 }

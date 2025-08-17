@@ -6,13 +6,19 @@ import useLessonCard from "../../hooks/use-lesson-card";
 type Props = {
     lesson: ClassEntry | null;
     hour: string;
+    weekDayIndex: number;
 };
 
-export default function DesktopLessonCard({ lesson, hour }: Props) {
-    const t = useTranslations("home.mobileTimetable");
+export default function DesktopLessonCard({
+    lesson,
+    hour,
+    weekDayIndex,
+}: Props) {
+    const t = useTranslations("home.common");
     const { badge, isCurrentLessonActive } = useLessonCard(
         lesson?.type ?? null,
         hour,
+        weekDayIndex,
     );
 
     if (!lesson) return null;
