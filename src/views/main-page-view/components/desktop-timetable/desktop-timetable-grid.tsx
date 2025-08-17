@@ -60,6 +60,7 @@ export default function DesktopTimetableGrid({ hours, timetableData }: Props) {
                                 <DesktopLessonCard
                                     lesson={getLesson(dayIndex, hourIndex)}
                                     hour={hour}
+                                    weekDayIndex={dayIndex}
                                 />
                             </div>
                         ))}

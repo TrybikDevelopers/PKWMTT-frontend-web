@@ -16,6 +16,8 @@ export default function MobileTimetable({ timetableSettings }: Props) {
         selectedDayIndex,
         incrementDayIndex,
         decrementDayIndex,
+        toggleWeekParity,
+        weekParity,
     } = useMobileTimetable(timetableSettings);
 
     return (
@@ -24,8 +26,15 @@ export default function MobileTimetable({ timetableSettings }: Props) {
                 incrementDayIndex={incrementDayIndex}
                 decrementDayIndex={decrementDayIndex}
                 selectedDayIndex={selectedDayIndex}
+                weekParity={weekParity}
+                toggleWeekParity={toggleWeekParity}
             />
-            <LessonsCards hours={hours} currentDayData={currentDayData} />
+            <LessonsCards
+                hours={hours}
+                currentDayData={currentDayData}
+                weekDayIndex={selectedDayIndex}
+                weekParity={weekParity}
+            />
         </div>
     );
 }

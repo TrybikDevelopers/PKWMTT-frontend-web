@@ -7,7 +7,11 @@ type Badge = {
     className: string;
 };
 
-const useLessonCard = (type: ClassEntry["type"] | null, hour: string) => {
+const useLessonCard = (
+    type: ClassEntry["type"] | null,
+    hour: string,
+    weekDayIndex: number,
+) => {
     const t = useTranslations("home.lessonType");
 
     const badge = useMemo((): Badge | null => {
@@ -60,6 +64,7 @@ const useLessonCard = (type: ClassEntry["type"] | null, hour: string) => {
     const lessonEnd = sanitizedHour.split("-")[1];
 
     const now = new Date();
+    const currentWeekDay = now.getDay() === 0 ? 6 : now.getDay() - 1;
 
     const lessonStartDate = new Date(
         now.getFullYear(),
@@ -77,7 +82,9 @@ const useLessonCard = (type: ClassEntry["type"] | null, hour: string) => {
     );
 
     const isCurrentLessonActive =
-        now >= lessonStartDate && now <= lessonEndDate;
+        currentWeekDay === weekDayIndex &&
+        now >= lessonStartDate &&
+        now <= lessonEndDate;
 
     return {
         badge,
