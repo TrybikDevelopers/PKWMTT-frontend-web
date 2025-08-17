@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
-    const t = useTranslations("home.mobileTimetable");
+    const t = useTranslations("home.common");
 
     const { badge, sanitizedHour, isCurrentLessonActive } = useLessonCard(
         lesson?.type ?? null,

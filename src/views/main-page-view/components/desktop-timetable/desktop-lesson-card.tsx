@@ -14,7 +14,7 @@ export default function DesktopLessonCard({
     hour,
     weekDayIndex,
 }: Props) {
-    const t = useTranslations("home.mobileTimetable");
+    const t = useTranslations("home.common");
     const { badge, isCurrentLessonActive } = useLessonCard(
         lesson?.type ?? null,
         hour,

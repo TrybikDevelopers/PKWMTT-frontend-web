@@ -49,8 +49,9 @@ export default function MainPageLoading() {
             <div className="mx-auto hidden h-full w-full max-w-[1920px] flex-col p-4 lg:flex">
                 {/* Desktop Header */}
                 <div className="mb-5 grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] gap-4">
-                    {/* Empty cell for time column */}
-                    <div></div>
+                    <div className="flex justify-center py-4">
+                        <div className="bg-button h-8 w-16 rounded-sm"></div>
+                    </div>
                     {Array.from({ length: 5 }).map((_, index) => (
                         <div
                             key={`day-header-skeleton-${index}`}

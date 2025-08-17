@@ -1,6 +1,5 @@
 import ChevronLeftSVG from "@/components/svg/chevron-left-svg";
 import { Button } from "@/components/ui/button";
-import useWeekParity from "@/hooks/use-week-parity";
 import { RefreshCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
 import ChangeDayButton from "./change-day-button";
@@ -49,8 +48,8 @@ export default function TimetableHeader({
                     <RefreshCcw className="size-3.25" />
                     <div className="h-fit w-fit text-xs">
                         {weekParity === "EVEN"
-                            ? t("mobileTimetable.evenWeek")
-                            : t("mobileTimetable.oddWeek")}
+                            ? t("common.even")
+                            : t("common.odd")}
                     </div>
                 </Button>
             </div>

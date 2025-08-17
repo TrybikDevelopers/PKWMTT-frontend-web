@@ -1,4 +1,3 @@
-import useWeekParity from "@/hooks/use-week-parity";
 import type { Timetable } from "@/types/data-access/timetable";
 import { useCallback } from "react";
 import DesktopLessonCard from "./desktop-lesson-card";
@@ -6,11 +5,13 @@ import DesktopLessonCard from "./desktop-lesson-card";
 type Props = {
     hours: string[];
     timetableData: Timetable["data"];
+    weekParity: "EVEN" | "ODD";
 };
 
-const useDesktopTimetableGrid = (timetableData: Timetable["data"]) => {
-    const { weekParity } = useWeekParity();
-
+const useDesktopTimetableGrid = (
+    timetableData: Timetable["data"],
+    weekParity: "EVEN" | "ODD",
+) => {
     const getLesson = useCallback(
         (dayIndex: number, hourIndex: number) => {
             const dayData = timetableData[dayIndex];
@@ -28,8 +29,12 @@ const useDesktopTimetableGrid = (timetableData: Timetable["data"]) => {
     return { getLesson };
 };
 
-export default function DesktopTimetableGrid({ hours, timetableData }: Props) {
-    const { getLesson } = useDesktopTimetableGrid(timetableData);
+export default function DesktopTimetableGrid({
+    hours,
+    timetableData,
+    weekParity,
+}: Props) {
+    const { getLesson } = useDesktopTimetableGrid(timetableData, weekParity);
 
     return (
         <div className="flex-1 pb-4">
