@@ -34,7 +34,7 @@ export const setTimetableSettings = async (data: TimetableSettingsSchema) => {
             httpOnly: true,
             sameSite: "lax",
             secure: !!env.ALLOW_UNSECURE_COOKIES
-                ? true
+                ? false
                 : env.NEXT_PUBLIC_IS_PROD,
         },
     );
