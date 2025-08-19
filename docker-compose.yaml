@@ -3,6 +3,8 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
         image: pkwmtt-web
         container_name: pkwmtt-web-app
         ports:
