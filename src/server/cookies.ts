@@ -33,8 +33,9 @@ export const setTimetableSettings = async (data: TimetableSettingsSchema) => {
             maxAge: 60 * 60 * 24 * 365, // 1 year
             httpOnly: true,
             sameSite: "lax",
-            secure:
-                env.ALLOW_UNSECURE_COOKIES === true || env.NEXT_PUBLIC_IS_PROD,
+            secure: !!env.ALLOW_UNSECURE_COOKIES
+                ? true
+                : env.NEXT_PUBLIC_IS_PROD,
         },
     );
 };
