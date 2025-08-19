@@ -8,6 +8,7 @@ export const env = createEnv({
             const url = new URL(val);
             return url.origin;
         }),
+        ALLOW_UNSECURE_COOKIES: z.boolean().optional(),
     },
     client: {
         NEXT_PUBLIC_IS_PROD: z.boolean(),
@@ -20,5 +21,6 @@ export const env = createEnv({
         NEXT_PUBLIC_IS_PROD: process.env.NODE_ENV === "production",
         NEXT_PUBLIC_IS_DEV: process.env.NODE_ENV === "development",
         NEXT_PUBLIC_IS_TEST: process.env.NODE_ENV === "test",
+        ALLOW_UNSECURE_COOKIES: process.env.ALLOW_UNSECURE_COOKIES,
     },
 });
