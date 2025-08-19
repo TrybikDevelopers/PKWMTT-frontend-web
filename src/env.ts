@@ -8,7 +8,17 @@ export const env = createEnv({
             const url = new URL(val);
             return url.origin;
         }),
-        ALLOW_UNSECURE_COOKIES: z.boolean().optional(),
+        ALLOW_UNSECURE_COOKIES: z
+            .preprocess((val) => {
+                if (typeof val === "string") {
+                    return val === "true";
+                }
+                if (typeof val === "boolean") {
+                    return val;
+                }
+                return false;
+            }, z.boolean())
+            .optional(),
     },
     client: {
         NEXT_PUBLIC_IS_PROD: z.boolean(),
