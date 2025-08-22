@@ -2,6 +2,17 @@ import { getTimetableSettings } from "@/server/cookies";
 import { api, HydrateClient } from "@/trpc/server";
 import TimetableForm from "@/views/main-page-view/components/timetable-form/timetable-form";
 import MainPageView from "@/views/main-page-view/main-page-view";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata(): Promise<Metadata> {
+    const t = await getTranslations("home.metadata");
+
+    return {
+        title: t("title"),
+        description: t("description"),
+    };
+}
 
 export default async function Home() {
     const timetableSettings = await getTimetableSettings();
