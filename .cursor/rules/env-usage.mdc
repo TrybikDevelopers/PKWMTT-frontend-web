@@ -1,0 +1,10 @@
+---
+description: Using environment variables
+alwaysApply: false
+---
+
+- Use `src/env.ts` to access type-safe environment variables.
+- Example: `import { env } from "@/env";`
+- Example: `const apiUrl = env.API_BASE_URL;`
+
+@env.ts

@@ -1,7 +1,8 @@
 {
     "home": {
         "metadata": {
-            "title": "Home Page"
+            "title": "Timetable | PKWMTT",
+            "description": "View your university timetable and manage your academic schedule with PKWMTT."
         },
         "days": {
             "monday": "Monday",
@@ -52,6 +53,24 @@
         "calendar": "Calendar",
         "ectsCalculator": "ECTS Calculator",
         "settings": "Settings"
+    },
+    "calendar": {
+        "metadata": {
+            "title": "Calendar | PKWMTT",
+            "description": "Academic calendar with important dates and events for your university schedule."
+        }
+    },
+    "ectsCalculator": {
+        "metadata": {
+            "title": "ECTS Calculator | PKWMTT",
+            "description": "Calculate your ECTS credits and track your academic progress with our easy-to-use calculator."
+        }
+    },
+    "settings": {
+        "metadata": {
+            "title": "Settings | PKWMTT",
+            "description": "Customize your PKWMTT experience and manage your preferences."
+        }
     },
     "errors": {
         "actions": {
