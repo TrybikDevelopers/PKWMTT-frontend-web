@@ -15,7 +15,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 
 COPY . .
-RUN mv .env.docker .env
+RUN if [ -f .env.docker ]; then mv .env.docker .env; fi
 
 ENV DOCKER_BUILD=true
 ENV NEXT_TELEMETRY_DISABLED=1
