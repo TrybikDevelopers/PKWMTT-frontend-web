@@ -1,5 +1,5 @@
-import MobileECTSCalculator from "@/views/ects-calculator-view/mobile-ects-calculator/mobile-ects-calculator";
+import ECTSCalculatorView from "@/views/ects-calculator-view/ects-calculator-view";
 
 export default function ECTSCalculatorPage() {
-    return <MobileECTSCalculator />;
+    return <ECTSCalculatorView />;
 }
