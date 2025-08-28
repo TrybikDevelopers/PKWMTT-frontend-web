@@ -10,14 +10,14 @@ export default function CalendarPageView() {
         useCalendar();
 
     return (
-        <div className="mx-auto w-full max-w-lg space-y-4 px-4">
+        <div className="mx-auto w-full max-w-3xl space-y-4 px-4 md:max-w-6xl">
             <MonthSelect
                 month={month}
                 monthNames={monthNames}
                 onMonthChange={setMonth}
             />
 
-            <div className="grid grid-cols-7 gap-2.5">
+            <div className="grid grid-cols-7 gap-2 md:gap-3">
                 <WeekdaysHeader weekdayHeaders={weekdayHeaders} />
                 <DaysGrid cells={cells} />
             </div>
