@@ -232,8 +232,6 @@ export default function ECTSCalculatorView() {
                                         <FormControl>
                                             <Input
                                                 type="number"
-                                                min={0}
-                                                step={1}
                                                 placeholder="e.g. 6"
                                                 {...field}
                                             />
@@ -268,9 +266,6 @@ export default function ECTSCalculatorView() {
                                         <FormControl>
                                             <Input
                                                 type="number"
-                                                min={2}
-                                                max={5}
-                                                step={0.1}
                                                 placeholder="e.g. 2.5"
                                                 {...field}
                                             />
