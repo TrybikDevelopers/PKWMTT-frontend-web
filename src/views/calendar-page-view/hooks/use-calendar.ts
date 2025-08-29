@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 type CalendarDay = {
     date: Date;
@@ -95,9 +95,19 @@ function getMonthMatrix(
 
 export function useCalendar() {
     const t = useTranslations("calendar");
-    const today = useMemo(() => new Date(), []);
-    const baseYear = today.getFullYear();
-    const [month, setMonth] = useState<number>(today.getMonth()); // 0-11
+    const [month, setMonth] = useState<number>(new Date().getMonth()); // 0-11
+
+    const updateMonth = useCallback((month: number) => {
+        setMonth(month);
+    }, []);
+
+    const incrementMonth = useCallback(() => {
+        updateMonth(month === 11 ? 0 : month + 1);
+    }, [updateMonth, month]);
+
+    const decrementMonth = useCallback(() => {
+        updateMonth(month === 0 ? 11 : month - 1);
+    }, [updateMonth, month]);
 
     const monthNames = useMemo(
         () => [
@@ -130,14 +140,18 @@ export function useCalendar() {
         [t],
     ); // Always Monday-first week
 
-    const cells = useMemo(
-        () => getMonthMatrix(baseYear, month),
-        [baseYear, month],
-    );
+    const cells = useMemo(() => {
+        const today = new Date();
+        const baseYear = today.getFullYear();
+
+        return getMonthMatrix(baseYear, month);
+    }, [month]);
 
     return {
         month,
-        setMonth,
+        updateMonth,
+        incrementMonth,
+        decrementMonth,
         monthNames,
         weekdayHeaders,
         cells,
