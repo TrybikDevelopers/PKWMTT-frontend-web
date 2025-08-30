@@ -1,4 +1,9 @@
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useWindowSize } from "usehooks-ts";
+import useCalendarDay from "../hooks/use-calendar-day";
+import DayDetailsDialog from "./day-details-dialog";
+import DayDetailsDrawer from "./day-details-drawer";
 
 type Props = {
     day: {
@@ -9,18 +14,24 @@ type Props = {
 };
 
 export default function CalendarDay({ day }: Props) {
-    const isToday = day.isToday;
-    const isMuted = !day.inCurrentMonth;
+    const { open, updateOpen, isToday, isMuted } = useCalendarDay(day);
+
+    const { width } = useWindowSize({
+        debounceDelay: 20,
+        initializeWithValue: false,
+    });
 
     return (
         <>
-            {/* Mobile: Compact design (below md breakpoint) */}
+            {/* Mobile */}
             <div className="md:hidden">
-                <div
+                <Button
                     className={cn(
-                        "flex aspect-square items-center justify-center rounded-md",
+                        "flex aspect-square h-full w-full cursor-pointer items-center justify-center rounded-md bg-transparent p-0 hover:bg-transparent",
                         isMuted && "text-muted-foreground/70",
                     )}
+                    type="button"
+                    onClick={() => updateOpen(true)}
                 >
                     <div className="relative h-10 w-10">
                         <div className="absolute top-0 right-0 size-2 rounded-full bg-[#E35D23]"></div>
@@ -34,10 +45,10 @@ export default function CalendarDay({ day }: Props) {
                             {day.date.getDate()}
                         </span>
                     </div>
-                </div>
+                </Button>
             </div>
 
-            {/* Desktop: Card-like design (md breakpoint and above) */}
+            {/* Desktop */}
             <div className="hidden md:block">
                 <div
                     className={cn(
@@ -74,6 +85,23 @@ export default function CalendarDay({ day }: Props) {
                     </div>
                 </div>
             </div>
+
+            {width &&
+                width < 768 && ( // Mobile
+                    <DayDetailsDrawer
+                        open={open}
+                        setOpen={updateOpen}
+                        mockedInfo={["xd"]}
+                    />
+                )}
+            {width &&
+                width >= 768 && ( // Desktop
+                    <DayDetailsDialog
+                        open={open}
+                        setOpen={updateOpen}
+                        mockedInfo={["xd"]}
+                    />
+                )}
         </>
     );
 }
