@@ -59,7 +59,7 @@ export default function ECTSCalculatorView() {
                         key={`${r.name}-${idx}`}
                         name={r.name}
                         ects={r.ects}
-                        grade={r.grade}
+                        grade={r.grade.toString()}
                         checked={selected.has(idx)}
                         onToggle={() => toggleOne(idx)}
                     />

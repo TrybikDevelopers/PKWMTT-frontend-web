@@ -3,7 +3,7 @@
 type Props = {
     name: string;
     ects: number | string;
-    grade: number;
+    grade: string;
     checked: boolean;
     onToggle?: () => void;
 };
