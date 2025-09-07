@@ -1,10 +1,10 @@
 "use client";
 
-type EctsTableRowProps = {
+type Props = {
     name: string;
     ects: number | string;
     grade: number;
-    checked?: boolean;
+    checked: boolean;
     onToggle?: () => void;
 };
 
@@ -12,17 +12,17 @@ export default function EctsTableRow({
     name,
     ects,
     grade,
-    checked = false,
+    checked,
     onToggle,
-}: EctsTableRowProps) {
+}: Props) {
     return (
         <div className="bg-button mt-4 flex min-h-12 items-center rounded-2xl p-1">
-            <div className="w-12 px-4 py-2 text-center">
+            <div className="xs:px-4 w-12 px-2 py-2 text-center">
                 <input
+                    className="size-4 align-middle accent-current"
                     type="checkbox"
                     checked={checked}
                     onChange={onToggle}
-                    className="size-4 align-middle accent-current"
                     aria-label={`Select ${name}`}
                 />
             </div>
