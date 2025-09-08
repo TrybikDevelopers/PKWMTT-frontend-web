@@ -35,13 +35,13 @@ export default function EctsTableHeader({
                     aria-label="Select all"
                 />
             </div>
-            <div className="flex-1 px-2 py-2 text-center sm:px-4">
+            <div className="xs:text-base flex-1 px-2 py-2 text-center text-sm sm:px-4">
                 {t("tableHeaderName")}
             </div>
-            <div className="flex-1 px-2 py-2 text-center sm:px-4">
+            <div className="xs:text-base flex-1 px-2 py-2 text-center text-sm sm:px-4">
                 {t("tableHeaderEcts")}
             </div>
-            <div className="flex-1 px-2 py-2 text-center sm:px-4">
+            <div className="xs:text-base flex-1 px-2 py-2 text-center text-sm sm:px-4">
                 {t("tableHeaderGrade")}
             </div>
         </div>

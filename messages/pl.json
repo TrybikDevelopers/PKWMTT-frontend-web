@@ -68,7 +68,9 @@
             "emptyState": "Brak dodanych przedmiotów. Kliknij przycisk + aby dodać pierwszy przedmiot.",
             "tableHeaderName": "Nazwa",
             "tableHeaderEcts": "Wartość ECTS",
-            "tableHeaderGrade": "Ocena"
+            "tableHeaderGrade": "Ocena",
+            "ectsLabelShort": "ECTS:",
+            "gradeLabelShort": "Ocena:"
         }
     },
     "navigation": {

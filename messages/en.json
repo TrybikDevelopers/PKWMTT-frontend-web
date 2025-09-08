@@ -68,7 +68,9 @@
             "emptyState": "No subjects added yet. Click the + button to add your first subject.",
             "tableHeaderName": "Name",
             "tableHeaderEcts": "ECTS Value",
-            "tableHeaderGrade": "Grade"
+            "tableHeaderGrade": "Grade",
+            "ectsLabelShort": "ECTS:",
+            "gradeLabelShort": "Grade:"
         }
     },
     "navigation": {
