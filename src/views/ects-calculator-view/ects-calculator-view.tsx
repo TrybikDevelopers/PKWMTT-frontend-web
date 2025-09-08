@@ -1,27 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Plus, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import EctsDialog from "./components/ects-dialog";
 import EctsTableHeader from "./components/ects-table-header";
 import EctsTableRow from "./components/ects-table-row";
 import useEctsCalculatorPage from "./hooks/use-ects-calculator-page";
@@ -101,104 +81,14 @@ export default function ECTSCalculatorView() {
                 )}
             </div>
 
-            <Dialog open={open} onOpenChange={handleDialogOpenChange}>
-                {selected.size === 0 ? (
-                    <DialogTrigger className="bg-accent hover:bg-accent/80 absolute bottom-12 left-1/2 flex h-fit w-fit -translate-x-1/2 items-center justify-center rounded-full p-3">
-                        <Plus size={60} strokeWidth={3} />
-                    </DialogTrigger>
-                ) : (
-                    <Button
-                        type="button"
-                        variant="destructive"
-                        className="absolute bottom-12 left-1/2 flex h-fit w-fit -translate-x-1/2 items-center justify-center rounded-full p-3"
-                        onClick={deleteSelected}
-                    >
-                        <Trash2 className="mr-1" /> {t("deleteSelectedButton")}
-                    </Button>
-                )}
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>{t("dialogTitle")}</DialogTitle>
-                        <DialogDescription>
-                            {t("dialogDescription")}
-                        </DialogDescription>
-                    </DialogHeader>
-                    <Form {...form}>
-                        <form
-                            onSubmit={form.handleSubmit(onSubmit)}
-                            className="grid gap-4"
-                        >
-                            <FormField
-                                control={form.control}
-                                name="name"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>{t("nameLabel")}</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                placeholder={t(
-                                                    "namePlaceholder",
-                                                )}
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            <FormField
-                                control={form.control}
-                                name="ects"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>{t("ectsLabel")}</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                placeholder={t(
-                                                    "ectsPlaceholder",
-                                                )}
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            <FormField
-                                control={form.control}
-                                name="grade"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>{t("gradeLabel")}</FormLabel>
-                                        <FormControl>
-                                            <Input
-                                                placeholder={t(
-                                                    "gradePlaceholder",
-                                                )}
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            <DialogFooter>
-                                <DialogClose asChild>
-                                    <Button type="button" variant="outline">
-                                        {t("cancelButton")}
-                                    </Button>
-                                </DialogClose>
-                                <Button type="submit" variant="default">
-                                    {t("confirmButton")}
-                                </Button>
-                            </DialogFooter>
-                        </form>
-                    </Form>
-                </DialogContent>
-            </Dialog>
+            <EctsDialog
+                open={open}
+                selectedCount={selected.size}
+                form={form}
+                onSubmit={onSubmit}
+                onOpenChange={handleDialogOpenChange}
+                onDeleteSelected={deleteSelected}
+            />
         </div>
     );
 }

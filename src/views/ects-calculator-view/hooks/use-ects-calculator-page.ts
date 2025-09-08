@@ -34,11 +34,9 @@ export default function useEctsCalculatorPage() {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState<Set<number>>(new Set());
 
-    // Computed values for selection state
     const allSelected = rows.length > 0 && selected.size === rows.length;
     const someSelected = selected.size > 0 && !allSelected;
 
-    // Selection management functions
     const toggleAll = () => {
         if (allSelected) {
             setSelected(new Set());
