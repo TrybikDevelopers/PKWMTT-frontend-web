@@ -65,7 +65,10 @@
             "averageGrade": "Średnia ocen",
             "totalEcts": "Liczba punktów ECTS",
             "weightedAverage": "Średnia ocen ważona ECTS",
-            "emptyState": "Brak dodanych przedmiotów. Kliknij przycisk + aby dodać pierwszy przedmiot."
+            "emptyState": "Brak dodanych przedmiotów. Kliknij przycisk + aby dodać pierwszy przedmiot.",
+            "tableHeaderName": "Nazwa",
+            "tableHeaderEcts": "Wartość ECTS",
+            "tableHeaderGrade": "Ocena"
         }
     },
     "navigation": {

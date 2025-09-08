@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 
 type EctsTableHeaderProps = {
@@ -13,6 +14,7 @@ export default function EctsTableHeader({
     someSelected,
     onToggleAll,
 }: EctsTableHeaderProps) {
+    const t = useTranslations("ects.form");
     const checkboxRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -33,9 +35,15 @@ export default function EctsTableHeader({
                     aria-label="Select all"
                 />
             </div>
-            <div className="flex-1 px-4 py-2 text-center">Nazwa</div>
-            <div className="flex-1 px-4 py-2 text-center">Wartość ECTS</div>
-            <div className="flex-1 px-4 py-2 text-center">Ocena</div>
+            <div className="flex-1 px-2 py-2 text-center sm:px-4">
+                {t("tableHeaderName")}
+            </div>
+            <div className="flex-1 px-2 py-2 text-center sm:px-4">
+                {t("tableHeaderEcts")}
+            </div>
+            <div className="flex-1 px-2 py-2 text-center sm:px-4">
+                {t("tableHeaderGrade")}
+            </div>
         </div>
     );
 }

@@ -65,7 +65,10 @@
             "averageGrade": "Average grade",
             "totalEcts": "Number of ECTS points",
             "weightedAverage": "ECTS weighted average grade",
-            "emptyState": "No subjects added yet. Click the + button to add your first subject."
+            "emptyState": "No subjects added yet. Click the + button to add your first subject.",
+            "tableHeaderName": "Name",
+            "tableHeaderEcts": "ECTS Value",
+            "tableHeaderGrade": "Grade"
         }
     },
     "navigation": {
