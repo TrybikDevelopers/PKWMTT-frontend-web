@@ -43,7 +43,7 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                                     {badge.letter}
                                 </span>
                             )}
-                            <span className="xs:text-base text-sm text-white lowercase">
+                            <span className="xs:text-base text-sm text-white">
                                 {t("classRoom")}: {lesson.classroom}
                             </span>
                         </span>
