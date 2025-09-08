@@ -11,6 +11,7 @@ export default function ECTSCalculatorView() {
 
     const {
         rows,
+        isFirstRender,
         open,
         selected,
         allSelected,
@@ -34,18 +35,27 @@ export default function ECTSCalculatorView() {
                     someSelected={someSelected}
                     onToggleAll={toggleAll}
                 />
-                {rows.map((r, idx) => (
-                    <EctsTableRow
-                        key={`${r.name}-${idx}`}
-                        name={r.name}
-                        ects={r.ects}
-                        grade={r.grade.toString()}
-                        checked={selected.has(idx)}
-                        onToggle={() => toggleOne(idx)}
-                    />
-                ))}
+                {!isFirstRender && rows.length === 0 ? (
+                    <div className="border-border flex min-h-32 w-full items-center justify-center border-b px-4 py-8">
+                        <div className="text-muted-foreground text-center">
+                            <div className="text-sm">{t("emptyState")}</div>
+                        </div>
+                    </div>
+                ) : (
+                    !isFirstRender &&
+                    rows.map((r, idx) => (
+                        <EctsTableRow
+                            key={`${r.name}-${idx}`}
+                            name={r.name}
+                            ects={r.ects}
+                            grade={r.grade.toString()}
+                            checked={selected.has(idx)}
+                            onToggle={() => toggleOne(idx)}
+                        />
+                    ))
+                )}
 
-                {rows.length > 0 && (
+                {!isFirstRender && rows.length > 0 && (
                     <div className="mt-10 flex min-h-12 grid-cols-3 flex-wrap gap-y-2 rounded-2xl border p-1 sm:grid sm:gap-y-0">
                         <div className="min-w-40 flex-1 px-4 py-2">
                             <div className="flex h-full flex-col items-center justify-center text-center">

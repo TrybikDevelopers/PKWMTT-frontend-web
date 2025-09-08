@@ -64,7 +64,8 @@
             "deleteSelectedButton": "Delete selected",
             "averageGrade": "Average grade",
             "totalEcts": "Number of ECTS points",
-            "weightedAverage": "ECTS weighted average grade"
+            "weightedAverage": "ECTS weighted average grade",
+            "emptyState": "No subjects added yet. Click the + button to add your first subject."
         }
     },
     "navigation": {

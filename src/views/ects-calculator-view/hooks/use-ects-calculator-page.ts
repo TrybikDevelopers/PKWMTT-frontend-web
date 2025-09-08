@@ -117,6 +117,7 @@ export default function useEctsCalculatorPage() {
     return {
         // If first render, return empty array to avoid hydration error
         rows: isFirstRender ? [] : rows,
+        isFirstRender,
         open,
         selected,
         allSelected,
