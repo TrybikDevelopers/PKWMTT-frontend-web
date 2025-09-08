@@ -14,7 +14,7 @@ export default function EctsTableHeader({
     someSelected,
     onToggleAll,
 }: EctsTableHeaderProps) {
-    const t = useTranslations("ects.form");
+    const t = useTranslations("ectsCalculator.form");
     const checkboxRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {

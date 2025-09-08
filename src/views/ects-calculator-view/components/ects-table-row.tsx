@@ -17,7 +17,7 @@ export default function EctsTableRow({
     checked,
     onToggle,
 }: Props) {
-    const t = useTranslations("ects.form");
+    const t = useTranslations("ectsCalculator.form");
     return (
         <div className="bg-button xs:p-1 mt-4 rounded-2xl p-3">
             {/* Mobile */}

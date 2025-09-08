@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useLocalStorage } from "usehooks-ts";
 
 export default function useEctsCalculatorPage() {
-    const t = useTranslations("ects.form");
+    const t = useTranslations("ectsCalculator.form");
 
     const [rows, setRows] = useLocalStorage<EctsEntrySchema[]>(
         "ects-calculator-rows",

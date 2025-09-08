@@ -1,7 +1,7 @@
 import type { TFunction } from "@/types/i18n";
 import * as z from "zod/mini";
 
-export const getEctsFormSchema = (t: TFunction<"ects.form">) => {
+export const getEctsFormSchema = (t: TFunction<"ectsCalculator.form">) => {
     const ectsEntrySchema = z.object({
         name: z.string().check(z.minLength(1, t("nameRequired"))),
         ects: z.string().check(z.regex(/^\d+$/, t("ectsInvalid"))),

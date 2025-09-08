@@ -7,7 +7,7 @@ import EctsTableRow from "./components/ects-table-row";
 import useEctsCalculatorPage from "./hooks/use-ects-calculator-page";
 
 export default function ECTSCalculatorView() {
-    const t = useTranslations("ects.form");
+    const t = useTranslations("ectsCalculator.form");
 
     const {
         rows,

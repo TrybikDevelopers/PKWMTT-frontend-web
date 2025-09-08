@@ -40,7 +40,8 @@ export default function EctsDialog({
     onOpenChange,
     onDeleteSelected,
 }: Props) {
-    const t = useTranslations("ects.form");
+    const t = useTranslations("ectsCalculator.form");
+
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             {selectedCount === 0 ? (

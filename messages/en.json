@@ -47,7 +47,24 @@
             "required": "This field is required"
         }
     },
-    "ects": {
+    "navigation": {
+        "navigation": "Navigation",
+        "timetable": "Timetable",
+        "calendar": "Calendar",
+        "ectsCalculator": "ECTS Calculator",
+        "settings": "Settings"
+    },
+    "calendar": {
+        "metadata": {
+            "title": "Calendar | PKWMTT",
+            "description": "Academic calendar with important dates and events for your university schedule."
+        }
+    },
+    "ectsCalculator": {
+        "metadata": {
+            "title": "ECTS Calculator | PKWMTT",
+            "description": "Calculate your ECTS credits and track your academic progress with our easy-to-use calculator."
+        },
         "form": {
             "nameRequired": "Subject name is required",
             "ectsInvalid": "Please enter a valid number of ECTS credits",
@@ -72,25 +89,6 @@
             "tableHeaderGrade": "Grade",
             "ectsLabelShort": "ECTS:",
             "gradeLabelShort": "Grade:"
-        }
-    },
-    "navigation": {
-        "navigation": "Navigation",
-        "timetable": "Timetable",
-        "calendar": "Calendar",
-        "ectsCalculator": "ECTS Calculator",
-        "settings": "Settings"
-    },
-    "calendar": {
-        "metadata": {
-            "title": "Calendar | PKWMTT",
-            "description": "Academic calendar with important dates and events for your university schedule."
-        }
-    },
-    "ectsCalculator": {
-        "metadata": {
-            "title": "ECTS Calculator | PKWMTT",
-            "description": "Calculate your ECTS credits and track your academic progress with our easy-to-use calculator."
         }
     },
     "settings": {
