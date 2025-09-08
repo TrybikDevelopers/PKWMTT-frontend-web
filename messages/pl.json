@@ -47,33 +47,6 @@
             "required": "To pole jest wymagane"
         }
     },
-    "ects": {
-        "form": {
-            "nameRequired": "Nazwa przedmiotu jest wymagana",
-            "ectsInvalid": "Podaj prawidłową liczbę punktów ECTS",
-            "gradeInvalid": "Podaj prawidłową ocenę",
-            "dialogTitle": "Dodaj przedmiot",
-            "dialogDescription": "Podaj nazwę przedmiotu, wartość ECTS oraz ocenę.",
-            "nameLabel": "Nazwa",
-            "ectsLabel": "Wartość ECTS",
-            "gradeLabel": "Ocena",
-            "namePlaceholder": "np. Mechanika",
-            "ectsPlaceholder": "np. 6",
-            "gradePlaceholder": "np. 4",
-            "cancelButton": "Anuluj",
-            "confirmButton": "Potwierdź",
-            "deleteSelectedButton": "Usuń zaznaczone",
-            "averageGrade": "Średnia ocen",
-            "totalEcts": "Liczba punktów ECTS",
-            "weightedAverage": "Średnia ocen ważona ECTS",
-            "emptyState": "Brak dodanych przedmiotów. Kliknij przycisk + aby dodać pierwszy przedmiot.",
-            "tableHeaderName": "Nazwa",
-            "tableHeaderEcts": "Wartość ECTS",
-            "tableHeaderGrade": "Ocena",
-            "ectsLabelShort": "ECTS:",
-            "gradeLabelShort": "Ocena:"
-        }
-    },
     "navigation": {
         "navigation": "Nawigacja",
         "timetable": "Rozkład zajęć",
@@ -114,6 +87,31 @@
         "metadata": {
             "title": "Kalkulator ECTS | PKWMTT",
             "description": "Oblicz swoje punkty ECTS i śledź postępy akademickie za pomocą naszego łatwego w użyciu kalkulatora."
+        },
+        "form": {
+            "nameRequired": "Nazwa przedmiotu jest wymagana",
+            "ectsInvalid": "Podaj prawidłową liczbę punktów ECTS",
+            "gradeInvalid": "Podaj prawidłową ocenę",
+            "dialogTitle": "Dodaj przedmiot",
+            "dialogDescription": "Podaj nazwę przedmiotu, wartość ECTS oraz ocenę.",
+            "nameLabel": "Nazwa",
+            "ectsLabel": "Wartość ECTS",
+            "gradeLabel": "Ocena",
+            "namePlaceholder": "np. Mechanika",
+            "ectsPlaceholder": "np. 6",
+            "gradePlaceholder": "np. 4",
+            "cancelButton": "Anuluj",
+            "confirmButton": "Potwierdź",
+            "deleteSelectedButton": "Usuń zaznaczone",
+            "averageGrade": "Średnia ocen",
+            "totalEcts": "Liczba punktów ECTS",
+            "weightedAverage": "Średnia ocen ważona ECTS",
+            "emptyState": "Brak dodanych przedmiotów. Kliknij przycisk + aby dodać pierwszy przedmiot.",
+            "tableHeaderName": "Nazwa",
+            "tableHeaderEcts": "Wartość ECTS",
+            "tableHeaderGrade": "Ocena",
+            "ectsLabelShort": "ECTS:",
+            "gradeLabelShort": "Ocena:"
         }
     },
     "settings": {
