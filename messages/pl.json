@@ -1,7 +1,8 @@
 {
     "home": {
         "metadata": {
-            "title": "Strona główna"
+            "title": "Rozkład zajęć | PKWMTT",
+            "description": "Przeglądaj swój rozkład zajęć i zarządzaj harmonogramem akademickim z PKWMTT."
         },
         "days": {
             "monday": "Poniedziałek",
@@ -79,6 +80,24 @@
         "calendar": "Kalendarz",
         "ectsCalculator": "Kalkulator ECTS",
         "settings": "Ustawienia"
+    },
+    "calendar": {
+        "metadata": {
+            "title": "Kalendarz | PKWMTT",
+            "description": "Kalendarz akademicki z ważnymi datami i wydarzeniami dla Twojego harmonogramu uniwersyteckiego."
+        }
+    },
+    "ectsCalculator": {
+        "metadata": {
+            "title": "Kalkulator ECTS | PKWMTT",
+            "description": "Oblicz swoje punkty ECTS i śledź postępy akademickie za pomocą naszego łatwego w użyciu kalkulatora."
+        }
+    },
+    "settings": {
+        "metadata": {
+            "title": "Ustawienia | PKWMTT",
+            "description": "Dostosuj swoje doświadczenie PKWMTT i zarządzaj swoimi preferencjami."
+        }
     },
     "errors": {
         "actions": {

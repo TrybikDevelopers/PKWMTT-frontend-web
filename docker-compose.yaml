@@ -3,12 +3,12 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-            # args:
-            #     - API_BASE_URL=http://localhost:3005
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
         image: pkwmtt-web
         container_name: pkwmtt-web-app
         ports:
-            - "3005:3000"
+            - "3000:3000"
         environment:
             - NEXT_TELEMETRY_DISABLED=1
         restart: unless-stopped

@@ -6,11 +6,8 @@ README.md
 .next
 .git
 
-# /generated/prisma
-
 # # Ignore local environment files during Docker build
-# .env
-# .env.local
+.env*
 
 # # Keep .env.docker for copying
-# !.env.docker
+!.env.docker
