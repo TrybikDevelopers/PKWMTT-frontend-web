@@ -57,5 +57,43 @@
         "actions": {
             "unknown": "Wystąpił nieznany błąd. Proszę spróbować ponownie później."
         }
+    },
+    "ectsCalculator": {
+        "metadata": {
+            "title": "Kalkulator ECTS"
+        },
+        "table": {
+            "selectAll": "Zaznacz wszystkie",
+            "name": "Nazwa",
+            "ectsValue": "Wartość ECTS",
+            "grade": "Ocena",
+            "selectItem": "Zaznacz {name}"
+        },
+        "summary": {
+            "averageGrade": "Średnia ocen",
+            "totalEcts": "Liczba punktów ECTS",
+            "weightedAverage": "Średnia ocen ważona ECTS"
+        },
+        "form": {
+            "addSubject": "Dodaj przedmiot",
+            "addSubjectDescription": "Podaj nazwę przedmiotu, wartość ECTS oraz ocenę.",
+            "name": "Nazwa",
+            "namePlaceholder": "np. Mechanika",
+            "nameRequired": "Nazwa jest wymagana",
+            "ectsValue": "Wartość ECTS",
+            "ectsPlaceholder": "np. 6",
+            "ectsRequired": "Podaj liczbę ECTS",
+            "ectsMustBeNumber": "ECTS muszą być liczbą",
+            "ectsCannotBeNegative": "ECTS nie mogą być ujemne",
+            "grade": "Ocena",
+            "gradePlaceholder": "np. 2.5",
+            "gradeRequired": "Podaj ocenę",
+            "gradeMustBeNumber": "Ocena musi być liczbą",
+            "gradeRange": "Ocena musi być z zakresu 2.0 - 5.0",
+            "gradeDecimals": "Tylko jedna cyfra po przecinku",
+            "cancel": "Anuluj",
+            "confirm": "Potwierdź",
+            "deleteSelected": "Usuń zaznaczone"
+        }
     }
 }

@@ -4,18 +4,31 @@ import { GroupCard } from "@/components/settings/group-card";
 import { SettingsToggle } from "@/components/settings/settings-toggle";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import {
     FlaskConical,
     FolderOpen,
+    Globe,
     Monitor,
     Moon,
     Type,
     Users,
 } from "lucide-react";
+import { useLocale } from "next-intl";
 import { useState } from "react";
 
 export default function SettingsPageView() {
     const [darkMode, setDarkMode] = useState(true);
     const [enlargedFont, setEnlargedFont] = useState(false);
+    const router = useRouter();
+    const pathname = usePathname();
+    const locale = useLocale();
 
     const groups = [
         {
@@ -87,6 +100,34 @@ export default function SettingsPageView() {
                                 checked={enlargedFont}
                                 onCheckedChange={setEnlargedFont}
                             />
+                            <div className="flex items-center justify-between py-3">
+                                <div className="flex items-center gap-3">
+                                    <Globe className="text-foreground h-5 w-5" />
+                                    <span className="text-foreground font-medium">
+                                        Język
+                                    </span>
+                                </div>
+                                <Select
+                                    value={locale}
+                                    onValueChange={(value) => {
+                                        router.replace(pathname, {
+                                            locale: value as "pl" | "en",
+                                        });
+                                    }}
+                                >
+                                    <SelectTrigger size="sm">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="pl">
+                                            Polski
+                                        </SelectItem>
+                                        <SelectItem value="en">
+                                            English
+                                        </SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Plus, Trash2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import EctsTableHeader from "./components/ects-table-header";
@@ -32,6 +33,7 @@ type EctsEntry = {
 };
 
 export default function ECTSCalculatorView() {
+    const t = useTranslations("ectsCalculator");
     const [rows, setRows] = useState<EctsEntry[]>([
         { name: "Mathematics", ects: 6, grade: 5 },
     ]);
@@ -129,7 +131,7 @@ export default function ECTSCalculatorView() {
                     <div className="flex-1 px-4 py-2">
                         <div className="flex h-full flex-col items-center justify-center text-center">
                             <div className="text-muted-foreground text-sm">
-                                Średnia ocen
+                                {t("summary.averageGrade")}
                             </div>
                             <div className="text-xl font-semibold">
                                 {avgGrade.toFixed(2)}
@@ -139,7 +141,7 @@ export default function ECTSCalculatorView() {
                     <div className="flex-1 px-4 py-2">
                         <div className="flex h-full flex-col items-center justify-center text-center">
                             <div className="text-muted-foreground text-sm">
-                                Liczba punktów ECTS
+                                {t("summary.totalEcts")}
                             </div>
                             <div className="text-xl font-semibold">
                                 {totalEcts}
@@ -149,7 +151,7 @@ export default function ECTSCalculatorView() {
                     <div className="flex-1 px-4 py-2">
                         <div className="flex h-full flex-col items-center justify-center text-center">
                             <div className="text-muted-foreground text-sm">
-                                Średnia ocen ważona ECTS
+                                {t("summary.weightedAverage")}
                             </div>
                             <div className="text-xl font-semibold">
                                 {weightedAvg.toFixed(2)}
@@ -179,14 +181,14 @@ export default function ECTSCalculatorView() {
                         className="absolute bottom-12 left-1/2 flex h-fit w-fit -translate-x-1/2 items-center justify-center rounded-full p-3"
                         onClick={deleteSelected}
                     >
-                        <Trash2 className="mr-1" /> Delete selected
+                        <Trash2 className="mr-1" /> {t("form.deleteSelected")}
                     </Button>
                 )}
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Dodaj przedmiot</DialogTitle>
+                        <DialogTitle>{t("form.addSubject")}</DialogTitle>
                         <DialogDescription>
-                            Podaj nazwę przedmiotu, wartość ECTS oraz ocenę.
+                            {t("form.addSubjectDescription")}
                         </DialogDescription>
                     </DialogHeader>
                     <Form {...form}>
@@ -197,13 +199,15 @@ export default function ECTSCalculatorView() {
                             <FormField
                                 control={form.control}
                                 name="name"
-                                rules={{ required: "Nazwa jest wymagana" }}
+                                rules={{ required: t("form.nameRequired") }}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Nazwa</FormLabel>
+                                        <FormLabel>{t("form.name")}</FormLabel>
                                         <FormControl>
                                             <Input
-                                                placeholder="np. Mechanika"
+                                                placeholder={t(
+                                                    "form.namePlaceholder",
+                                                )}
                                                 {...field}
                                             />
                                         </FormControl>
@@ -216,23 +220,29 @@ export default function ECTSCalculatorView() {
                                 control={form.control}
                                 name="ects"
                                 rules={{
-                                    required: "Podaj liczbę ECTS",
+                                    required: t("form.ectsRequired"),
                                     validate: (value) => {
                                         const n = Number(value);
                                         if (Number.isNaN(n))
-                                            return "ECTS muszą być liczbą";
+                                            return t("form.ectsMustBeNumber");
                                         if (n < 0)
-                                            return "ECTS nie mogą być ujemne";
+                                            return t(
+                                                "form.ectsCannotBeNegative",
+                                            );
                                         return true;
                                     },
                                 }}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Wartość ECTS</FormLabel>
+                                        <FormLabel>
+                                            {t("form.ectsValue")}
+                                        </FormLabel>
                                         <FormControl>
                                             <Input
                                                 type="number"
-                                                placeholder="e.g. 6"
+                                                placeholder={t(
+                                                    "form.ectsPlaceholder",
+                                                )}
                                                 {...field}
                                             />
                                         </FormControl>
@@ -245,28 +255,30 @@ export default function ECTSCalculatorView() {
                                 control={form.control}
                                 name="grade"
                                 rules={{
-                                    required: "Podaj ocenę",
+                                    required: t("form.gradeRequired"),
                                     validate: (value) => {
                                         const n = Number(value);
                                         if (Number.isNaN(n))
-                                            return "Ocena musi być liczbą";
+                                            return t("form.gradeMustBeNumber");
                                         if (n < 2 || n > 5)
-                                            return "Ocena musi być z zakresu 2.0 - 5.0";
+                                            return t("form.gradeRange");
                                         const decimals = value.includes(".")
                                             ? value.split(".")[1].length
                                             : 0;
                                         if (decimals > 1)
-                                            return "Tylko jedna cyfra po przecinku";
+                                            return t("form.gradeDecimals");
                                         return true;
                                     },
                                 }}
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Ocena</FormLabel>
+                                        <FormLabel>{t("form.grade")}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 type="number"
-                                                placeholder="e.g. 2.5"
+                                                placeholder={t(
+                                                    "form.gradePlaceholder",
+                                                )}
                                                 {...field}
                                             />
                                         </FormControl>
@@ -282,11 +294,11 @@ export default function ECTSCalculatorView() {
                                         variant="outline"
                                         onClick={() => form.reset()}
                                     >
-                                        Anuluj
+                                        {t("form.cancel")}
                                     </Button>
                                 </DialogClose>
                                 <Button type="submit" variant="default">
-                                    Potwierdź
+                                    {t("form.confirm")}
                                 </Button>
                             </DialogFooter>
                         </form>

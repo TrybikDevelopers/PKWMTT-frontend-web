@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 type EctsTableRowProps = {
     name: string;
     ects: number | string;
@@ -15,6 +17,7 @@ export default function EctsTableRow({
     checked = false,
     onToggle,
 }: EctsTableRowProps) {
+    const t = useTranslations("ectsCalculator");
     return (
         <div className="bg-button mt-4 flex min-h-12 items-center rounded-2xl p-1">
             <div className="w-12 px-4 py-2 text-center">
@@ -23,7 +26,7 @@ export default function EctsTableRow({
                     checked={checked}
                     onChange={onToggle}
                     className="size-4 align-middle accent-current"
-                    aria-label={`Select ${name}`}
+                    aria-label={t("table.selectItem", { name })}
                 />
             </div>
             <div className="flex-1 px-4 py-2 text-center">{name}</div>
