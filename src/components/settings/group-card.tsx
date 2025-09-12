@@ -25,7 +25,7 @@ export function GroupCard({
                     <div className="flex-1">
                         <h3 className="text-foreground font-medium">{title}</h3>
                     </div>
-                    <div className="bg-destructive text-destructive-foreground rounded-md px-2 py-1 text-xs font-medium">
+                    <div className="bg-accent text-destructive-foreground rounded-md px-2 py-1 text-sm font-medium">
                         {tag}
                     </div>
                 </div>

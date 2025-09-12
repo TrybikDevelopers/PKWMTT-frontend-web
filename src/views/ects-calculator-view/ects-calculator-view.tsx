@@ -229,6 +229,8 @@ export default function ECTSCalculatorView() {
                                             return t(
                                                 "form.ectsCannotBeNegative",
                                             );
+                                        if (!Number.isInteger(n))
+                                            return t("form.ectsMustBeInteger");
                                         return true;
                                     },
                                 }}

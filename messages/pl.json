@@ -85,6 +85,7 @@
             "ectsRequired": "Podaj liczbę ECTS",
             "ectsMustBeNumber": "ECTS muszą być liczbą",
             "ectsCannotBeNegative": "ECTS nie mogą być ujemne",
+            "ectsMustBeInteger": "ECTS nie mogą być liczbą zmiennoprzecinkową",
             "grade": "Ocena",
             "gradePlaceholder": "np. 2.5",
             "gradeRequired": "Podaj ocenę",

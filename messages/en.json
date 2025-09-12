@@ -85,6 +85,7 @@
             "ectsRequired": "Enter ECTS number",
             "ectsMustBeNumber": "ECTS must be a number",
             "ectsCannotBeNegative": "ECTS cannot be negative",
+            "ectsMustBeInteger": "ECTS cannot be decimal",
             "grade": "Grade",
             "gradePlaceholder": "e.g. 2.5",
             "gradeRequired": "Enter grade",
