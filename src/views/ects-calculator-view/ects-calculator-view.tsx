@@ -19,9 +19,13 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+    getEctsCalculatorCookie,
+    setEctsCalculatorCookie,
+} from "@/lib/cookies-client";
 import { Plus, Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import EctsTableHeader from "./components/ects-table-header";
 import EctsTableRow from "./components/ects-table-row";
@@ -39,6 +43,17 @@ export default function ECTSCalculatorView() {
     ]);
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState<Set<number>>(new Set());
+
+    useEffect(() => {
+        const savedData = getEctsCalculatorCookie();
+        if (savedData && savedData.length > 0) {
+            setRows(savedData);
+        }
+    }, []);
+
+    useEffect(() => {
+        setEctsCalculatorCookie(rows);
+    }, [rows]);
 
     const allSelected = rows.length > 0 && selected.size === rows.length;
     const someSelected = selected.size > 0 && !allSelected;

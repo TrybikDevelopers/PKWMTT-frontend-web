@@ -11,6 +11,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { usePathname, useRouter } from "@/i18n/navigation";
+import { setLanguageCookie } from "@/lib/cookies-client";
 import {
     FlaskConical,
     FolderOpen,
@@ -110,8 +111,10 @@ export default function SettingsPageView() {
                                 <Select
                                     value={locale}
                                     onValueChange={(value) => {
+                                        const newLocale = value as "pl" | "en";
+                                        setLanguageCookie(newLocale);
                                         router.replace(pathname, {
-                                            locale: value as "pl" | "en",
+                                            locale: newLocale,
                                         });
                                     }}
                                 >

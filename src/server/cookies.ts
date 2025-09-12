@@ -8,6 +8,7 @@ import {
 import { cookies } from "next/headers";
 
 export const TIMETABLE_SETTINGS_COOKIE_KEY = "NEXT_TIMETABLE_SETTINGS" as const;
+export const ECTS_CALCULATOR_COOKIE_KEY = "NEXT_ECTS_CALCULATOR" as const;
 
 export const filterTimetableSettingsInput = (
     data: TimetableSettingsSchema,
@@ -55,3 +56,42 @@ export const getTimetableSettings =
             return null;
         }
     };
+
+type EctsEntry = {
+    name: string;
+    ects: number;
+    grade: number;
+};
+
+export const setEctsCalculatorData = async (data: EctsEntry[]) => {
+    const ectsDataString = JSON.stringify(data);
+    (await cookies()).set(ECTS_CALCULATOR_COOKIE_KEY, ectsDataString, {
+        path: "/",
+        maxAge: 60 * 60 * 24 * 365,
+        httpOnly: false,
+        sameSite: "lax",
+        secure: env.NEXT_PUBLIC_IS_PROD,
+    });
+};
+
+export const getEctsCalculatorData = async (): Promise<EctsEntry[] | null> => {
+    const ectsCookie = (await cookies()).get(ECTS_CALCULATOR_COOKIE_KEY);
+    if (!ectsCookie) return null;
+
+    try {
+        const parsedData = JSON.parse(ectsCookie.value);
+        if (!Array.isArray(parsedData)) return null;
+
+        const isValid = parsedData.every(
+            (item) =>
+                typeof item === "object" &&
+                typeof item.name === "string" &&
+                typeof item.ects === "number" &&
+                typeof item.grade === "number",
+        );
+
+        return isValid ? parsedData : null;
+    } catch {
+        return null;
+    }
+};
