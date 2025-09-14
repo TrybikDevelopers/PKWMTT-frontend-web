@@ -10,8 +10,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { usePathname, useRouter } from "@/i18n/navigation";
-import { setLanguageCookie } from "@/lib/cookies-client";
+import { useRouter } from "@/i18n/navigation";
 import {
     FlaskConical,
     FolderOpen,
@@ -21,14 +20,13 @@ import {
     Type,
     Users,
 } from "lucide-react";
-import { useLocale } from "next-intl";
+import { type Locale, useLocale } from "next-intl";
 import { useState } from "react";
 
 export default function SettingsPageView() {
     const [darkMode, setDarkMode] = useState(true);
     const [enlargedFont, setEnlargedFont] = useState(false);
     const router = useRouter();
-    const pathname = usePathname();
     const locale = useLocale();
 
     const groups = [
@@ -111,9 +109,9 @@ export default function SettingsPageView() {
                                 <Select
                                     value={locale}
                                     onValueChange={(value) => {
-                                        const newLocale = value as "pl" | "en";
-                                        setLanguageCookie(newLocale);
-                                        router.replace(pathname, {
+                                        const newLocale = value as Locale;
+
+                                        router.replace("/settings", {
                                             locale: newLocale,
                                         });
                                     }}
