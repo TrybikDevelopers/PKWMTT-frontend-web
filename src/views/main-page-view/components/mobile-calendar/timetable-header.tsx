@@ -36,7 +36,7 @@ export default function TimetableHeader({
             <ChangeDayButton onClick={decrementDayIndex}>
                 <ChevronLeftSVG />
             </ChangeDayButton>
-            <div className="flex w-fit flex-col items-center justify-center gap-0.5">
+            <div className="flex w-fit flex-col items-center justify-center gap-1">
                 <div className="xs:text-xl text-lg font-bold text-[#DADDFF]">
                     {dayName}
                 </div>
@@ -46,7 +46,7 @@ export default function TimetableHeader({
                     onClick={toggleWeekParity}
                 >
                     <RefreshCcw className="size-3.25" />
-                    <div className="h-fit w-fit text-xs">
+                    <div className="h-fit w-fit text-base">
                         {weekParity === "EVEN"
                             ? t("common.even")
                             : t("common.odd")}

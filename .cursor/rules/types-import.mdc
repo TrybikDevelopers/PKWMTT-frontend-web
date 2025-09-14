@@ -1,0 +1,8 @@
+---
+description: Importing types
+alwaysApply: true
+---
+
+- Use `import type` instead of `import` for types.
+- When importing TypeScript types, interfaces, or type aliases, always use `import type` syntax.
+- If you see types import without `type` keyword, propose to use `import type` syntax.

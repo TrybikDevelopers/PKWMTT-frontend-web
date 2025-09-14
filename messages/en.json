@@ -1,7 +1,8 @@
 {
     "home": {
         "metadata": {
-            "title": "Home Page"
+            "title": "Timetable | PKWMTT",
+            "description": "View your university timetable and manage your academic schedule with PKWMTT."
         },
         "days": {
             "monday": "Monday",
@@ -52,6 +53,49 @@
         "calendar": "Calendar",
         "ectsCalculator": "ECTS Calculator",
         "settings": "Settings"
+    },
+    "calendar": {
+        "metadata": {
+            "title": "Calendar | PKWMTT",
+            "description": "Academic calendar with important dates and events for your university schedule."
+        }
+    },
+    "ectsCalculator": {
+        "metadata": {
+            "title": "ECTS Calculator | PKWMTT",
+            "description": "Calculate your ECTS credits and track your academic progress with our easy-to-use calculator."
+        },
+        "form": {
+            "nameRequired": "Subject name is required",
+            "ectsInvalid": "Please enter a valid number of ECTS credits",
+            "gradeInvalid": "Please enter a valid grade",
+            "dialogTitle": "Add Subject",
+            "dialogDescription": "Provide subject name, ECTS value and grade.",
+            "nameLabel": "Name",
+            "ectsLabel": "ECTS Value",
+            "gradeLabel": "Grade",
+            "namePlaceholder": "e.g. Mathematics",
+            "ectsPlaceholder": "e.g. 6",
+            "gradePlaceholder": "e.g. 4",
+            "cancelButton": "Cancel",
+            "confirmButton": "Confirm",
+            "deleteSelectedButton": "Delete selected",
+            "averageGrade": "Average grade",
+            "totalEcts": "Number of ECTS points",
+            "weightedAverage": "ECTS weighted average grade",
+            "emptyState": "No subjects added yet. Click the + button to add your first subject.",
+            "tableHeaderName": "Name",
+            "tableHeaderEcts": "ECTS Value",
+            "tableHeaderGrade": "Grade",
+            "ectsLabelShort": "ECTS:",
+            "gradeLabelShort": "Grade:"
+        }
+    },
+    "settings": {
+        "metadata": {
+            "title": "Settings | PKWMTT",
+            "description": "Customize your PKWMTT experience and manage your preferences."
+        }
     },
     "errors": {
         "actions": {

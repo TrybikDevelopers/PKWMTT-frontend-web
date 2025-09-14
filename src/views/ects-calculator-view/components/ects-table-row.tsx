@@ -2,11 +2,11 @@
 
 import { useTranslations } from "next-intl";
 
-type EctsTableRowProps = {
+type Props = {
     name: string;
     ects: number | string;
-    grade: number;
-    checked?: boolean;
+    grade: string;
+    checked: boolean;
     onToggle?: () => void;
 };
 
@@ -14,24 +14,62 @@ export default function EctsTableRow({
     name,
     ects,
     grade,
-    checked = false,
+    checked,
     onToggle,
-}: EctsTableRowProps) {
-    const t = useTranslations("ectsCalculator");
+}: Props) {
+    const t = useTranslations("ectsCalculator.form");
+
     return (
-        <div className="bg-button mt-4 flex min-h-12 items-center rounded-2xl p-1">
-            <div className="w-12 px-4 py-2 text-center">
-                <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={onToggle}
-                    className="size-4 align-middle accent-current"
-                    aria-label={t("table.selectItem", { name })}
-                />
+        <div className="bg-button xs:p-1 mt-4 rounded-2xl p-3">
+            {/* Mobile */}
+            <div className="xs:hidden block">
+                <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 pt-1">
+                        <input
+                            className="size-4 align-middle accent-current"
+                            type="checkbox"
+                            checked={checked}
+                            onChange={onToggle}
+                            aria-label={`Select ${name}`}
+                        />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                        <div className="text-foreground mb-2 text-sm font-medium break-words">
+                            {name}
+                        </div>
+                        <div className="text-muted-foreground flex flex-wrap gap-x-4 gap-y-1 text-xs">
+                            <div className="flex items-center gap-1">
+                                <span className="font-medium">
+                                    {t("ectsLabelShort")}
+                                </span>
+                                <span>{ects}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                                <span className="font-medium">
+                                    {t("gradeLabelShort")}
+                                </span>
+                                <span>{grade}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="flex-1 px-4 py-2 text-center">{name}</div>
-            <div className="flex-1 px-4 py-2 text-center">{ects}</div>
-            <div className="flex-1 px-4 py-2 text-center">{grade}</div>
+
+            {/* Desktop */}
+            <div className="xs:flex xs:min-h-10 xs:items-center hidden">
+                <div className="w-12 px-2 py-2 text-center">
+                    <input
+                        className="size-4 align-middle accent-current"
+                        type="checkbox"
+                        checked={checked}
+                        onChange={onToggle}
+                        aria-label={`Select ${name}`}
+                    />
+                </div>
+                <div className="flex-1 px-4 py-2 text-center">{name}</div>
+                <div className="flex-1 px-4 py-2 text-center">{ects}</div>
+                <div className="flex-1 px-4 py-2 text-center">{grade}</div>
+            </div>
         </div>
     );
 }

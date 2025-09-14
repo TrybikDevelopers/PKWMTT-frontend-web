@@ -14,7 +14,7 @@ export default function EctsTableHeader({
     someSelected,
     onToggleAll,
 }: EctsTableHeaderProps) {
-    const t = useTranslations("ectsCalculator");
+    const t = useTranslations("ectsCalculator.form");
     const checkboxRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -32,17 +32,17 @@ export default function EctsTableHeader({
                     checked={allSelected}
                     onChange={onToggleAll}
                     className="size-4 align-middle accent-current"
-                    aria-label={t("table.selectAll")}
+                    aria-label={t("selectAll")}
                 />
             </div>
-            <div className="flex-1 px-4 py-2 text-center">
-                {t("table.name")}
+            <div className="xs:text-base flex-1 px-2 py-2 text-center text-sm sm:px-4">
+                {t("tableHeaderName")}
             </div>
-            <div className="flex-1 px-4 py-2 text-center">
-                {t("table.ectsValue")}
+            <div className="xs:text-base flex-1 px-2 py-2 text-center text-sm sm:px-4">
+                {t("tableHeaderEcts")}
             </div>
-            <div className="flex-1 px-4 py-2 text-center">
-                {t("table.grade")}
+            <div className="xs:text-base flex-1 px-2 py-2 text-center text-sm sm:px-4">
+                {t("tableHeaderGrade")}
             </div>
         </div>
     );
