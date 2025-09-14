@@ -88,7 +88,8 @@
             "tableHeaderEcts": "ECTS Value",
             "tableHeaderGrade": "Grade",
             "ectsLabelShort": "ECTS:",
-            "gradeLabelShort": "Grade:"
+            "gradeLabelShort": "Grade:",
+            "selectAll": "Select all"
         }
     },
     "settings": {
@@ -100,45 +101,6 @@
     "errors": {
         "actions": {
             "unknown": "An unknown error occurred. Please try again later."
-        }
-    },
-    "ectsCalculator": {
-        "metadata": {
-            "title": "ECTS Calculator"
-        },
-        "table": {
-            "selectAll": "Select all",
-            "name": "Name",
-            "ectsValue": "ECTS Value",
-            "grade": "Grade",
-            "selectItem": "Select {name}"
-        },
-        "summary": {
-            "averageGrade": "Average Grade",
-            "totalEcts": "Total ECTS Points",
-            "weightedAverage": "ECTS Weighted Average"
-        },
-        "form": {
-            "addSubject": "Add Subject",
-            "addSubjectDescription": "Enter the subject name, ECTS value and grade.",
-            "name": "Name",
-            "namePlaceholder": "e.g. Mathematics",
-            "nameRequired": "Name is required",
-            "ectsValue": "ECTS Value",
-            "ectsPlaceholder": "e.g. 6",
-            "ectsRequired": "Enter ECTS number",
-            "ectsMustBeNumber": "ECTS must be a number",
-            "ectsCannotBeNegative": "ECTS cannot be negative",
-            "ectsMustBeInteger": "ECTS cannot be decimal",
-            "grade": "Grade",
-            "gradePlaceholder": "e.g. 2.5",
-            "gradeRequired": "Enter grade",
-            "gradeMustBeNumber": "Grade must be a number",
-            "gradeRange": "Grade must be between 2.0 - 5.0",
-            "gradeDecimals": "Only one decimal place allowed",
-            "cancel": "Cancel",
-            "confirm": "Confirm",
-            "deleteSelected": "Delete selected"
         }
     }
 }
