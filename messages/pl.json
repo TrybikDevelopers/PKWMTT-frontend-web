@@ -47,7 +47,24 @@
             "required": "To pole jest wymagane"
         }
     },
-    "ects": {
+    "navigation": {
+        "navigation": "Nawigacja",
+        "timetable": "Rozkład zajęć",
+        "calendar": "Kalendarz",
+        "ectsCalculator": "Kalkulator ECTS",
+        "settings": "Ustawienia"
+    },
+    "calendar": {
+        "metadata": {
+            "title": "Kalendarz | PKWMTT",
+            "description": "Kalendarz akademicki z ważnymi datami i wydarzeniami dla Twojego harmonogramu uniwersyteckiego."
+        }
+    },
+    "ectsCalculator": {
+        "metadata": {
+            "title": "Kalkulator ECTS | PKWMTT",
+            "description": "Oblicz swoje punkty ECTS i śledź postępy akademickie za pomocą naszego łatwego w użyciu kalkulatora."
+        },
         "form": {
             "nameRequired": "Nazwa przedmiotu jest wymagana",
             "ectsInvalid": "Podaj prawidłową liczbę punktów ECTS",
@@ -73,25 +90,6 @@
             "ectsLabelShort": "ECTS:",
             "gradeLabelShort": "Ocena:",
             "selectAll": "Zaznacz wszystkie"
-        }
-    },
-    "navigation": {
-        "navigation": "Nawigacja",
-        "timetable": "Rozkład zajęć",
-        "calendar": "Kalendarz",
-        "ectsCalculator": "Kalkulator ECTS",
-        "settings": "Ustawienia"
-    },
-    "calendar": {
-        "metadata": {
-            "title": "Kalendarz | PKWMTT",
-            "description": "Kalendarz akademicki z ważnymi datami i wydarzeniami dla Twojego harmonogramu uniwersyteckiego."
-        }
-    },
-    "ectsCalculator": {
-        "metadata": {
-            "title": "Kalkulator ECTS | PKWMTT",
-            "description": "Oblicz swoje punkty ECTS i śledź postępy akademickie za pomocą naszego łatwego w użyciu kalkulatora."
         }
     },
     "settings": {
