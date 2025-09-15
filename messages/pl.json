@@ -43,11 +43,31 @@
             "noGeneralGroupFound": "Nie znaleziono oddziału",
             "group": "Grupa - {group}",
             "selectGroup": "Wybierz grupę",
-            "submit": "Szukaj",
-            "required": "To pole jest wymagane"
+            "submit": "Szukaj"
         }
     },
-    "ects": {
+    "timetableForm": {
+        "required": "To pole jest wymagane",
+        "groupsSaved": "Grupy zostały zapisane"
+    },
+    "navigation": {
+        "navigation": "Nawigacja",
+        "timetable": "Rozkład zajęć",
+        "calendar": "Kalendarz",
+        "ectsCalculator": "Kalkulator ECTS",
+        "settings": "Ustawienia"
+    },
+    "calendar": {
+        "metadata": {
+            "title": "Kalendarz | PKWMTT",
+            "description": "Kalendarz akademicki z ważnymi datami i wydarzeniami dla Twojego harmonogramu uniwersyteckiego."
+        }
+    },
+    "ectsCalculator": {
+        "metadata": {
+            "title": "Kalkulator ECTS | PKWMTT",
+            "description": "Oblicz swoje punkty ECTS i śledź postępy akademickie za pomocą naszego łatwego w użyciu kalkulatora."
+        },
         "form": {
             "nameRequired": "Nazwa przedmiotu jest wymagana",
             "ectsInvalid": "Podaj prawidłową liczbę punktów ECTS",
@@ -71,32 +91,30 @@
             "tableHeaderEcts": "Wartość ECTS",
             "tableHeaderGrade": "Ocena",
             "ectsLabelShort": "ECTS:",
-            "gradeLabelShort": "Ocena:"
-        }
-    },
-    "navigation": {
-        "navigation": "Nawigacja",
-        "timetable": "Rozkład zajęć",
-        "calendar": "Kalendarz",
-        "ectsCalculator": "Kalkulator ECTS",
-        "settings": "Ustawienia"
-    },
-    "calendar": {
-        "metadata": {
-            "title": "Kalendarz | PKWMTT",
-            "description": "Kalendarz akademicki z ważnymi datami i wydarzeniami dla Twojego harmonogramu uniwersyteckiego."
-        }
-    },
-    "ectsCalculator": {
-        "metadata": {
-            "title": "Kalkulator ECTS | PKWMTT",
-            "description": "Oblicz swoje punkty ECTS i śledź postępy akademickie za pomocą naszego łatwego w użyciu kalkulatora."
+            "gradeLabelShort": "Ocena:",
+            "selectAll": "Zaznacz wszystkie"
         }
     },
     "settings": {
         "metadata": {
             "title": "Ustawienia | PKWMTT",
             "description": "Dostosuj swoje doświadczenie PKWMTT i zarządzaj swoimi preferencjami."
+        },
+        "studentGroups": {
+            "text": "Grupy Studenckie",
+            "select": "Wybierz",
+            "search": "Szukaj",
+            "generalGroup": "Dziekańska",
+            "labGruop": "Laboratoryjna",
+            "kompLabGruop": "Komputerowa",
+            "projGruop": "Projektowa"
+        },
+        "applicationAppearance": {
+            "text": "Wygląd Aplikacji",
+            "darkMode": "Tryb ciemny",
+            "language": "Język",
+            "polish": "Polski",
+            "english": "Angielski"
         }
     },
     "errors": {

@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: "Next.js App", // TODO: Update this to app name
-        short_name: "Next.js App",
-        description: "Next.js App",
+        name: "PKWMTT App", // TODO: Update this to app name
+        short_name: "PWKMTT App",
+        description: "PKWMTT App",
         start_url: "/",
         display: "standalone",
         background_color: "#191919",

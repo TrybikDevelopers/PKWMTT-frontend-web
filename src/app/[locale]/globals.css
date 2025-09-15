@@ -4,22 +4,16 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-    /* our app colors */
-    --background: #191919;
-    --background-darker: #1e1e1e;
-    --background-lighter: #00000040;
-    --button: #313131;
+    /* our app colors - light mode */
+    --background: #ffffff;
+    --background-darker: #f5f5f5;
+    --background-lighter: #ffffff40;
+    --button: #f0f0f0;
     --accent: #727dff;
     --accent-light: #daddff;
-    /* Copilot proposed */
-    /* --background: oklch(1 0 0);
-    --background-darker: oklch(0.95 0 0);
-    --background-lighter: oklch(0.98 0 0); */
-    /* end */
 
-    /* Shadcn vars */
+    /* Shadcn vars - light mode */
     --radius: 0.625rem;
-    /* --background: oklch(1 0 0); */
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
@@ -31,7 +25,6 @@
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.556 0 0);
-    /* --accent: oklch(0.97 0 0); */
     --accent-foreground: oklch(0.205 0 0);
     --destructive: oklch(0.577 0.245 27.325);
     --border: oklch(0.922 0 0);
