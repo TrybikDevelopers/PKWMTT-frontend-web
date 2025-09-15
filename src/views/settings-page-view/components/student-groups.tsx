@@ -1,3 +1,5 @@
+"use client";
+
 import { Form } from "@/components/ui/form";
 import type { TimetableSettingsSchema } from "@/schema/timetable-settings-schema";
 import { FlaskConical, FolderOpen, Monitor, Users } from "lucide-react";
@@ -94,9 +96,9 @@ export default function StudentGroups({ timetableSettings }: Props) {
     return (
         <Form {...form}>
             <form onSubmit={(e) => e.preventDefault()}>
-                <h1 className="text-foreground mb-6 text-3xl font-bold">
+                <h2 className="text-foreground mb-6 text-3xl font-bold">
                     {t("text")}
-                </h1>
+                </h2>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     <GroupCard
                         title={t("generalGroup")}

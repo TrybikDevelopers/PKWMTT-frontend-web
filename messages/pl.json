@@ -108,6 +108,13 @@
             "labGruop": "Laboratoryjna",
             "kompLabGruop": "Komputerowa",
             "projGruop": "Projektowa"
+        },
+        "applicationAppearance": {
+            "text": "Wygląd Aplikacji",
+            "darkMode": "Tryb ciemny",
+            "language": "Język",
+            "polish": "Polski",
+            "english": "Angielski"
         }
     },
     "errors": {

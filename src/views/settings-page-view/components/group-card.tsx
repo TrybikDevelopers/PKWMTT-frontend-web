@@ -20,17 +20,19 @@ export default function GroupCard({
     return (
         <Card
             className={cn(
-                `bg-card border-border transition-colors`,
+                `bg-card border-border flex items-center transition-colors`,
                 valueRequired && "border-red-400",
             )}
         >
-            <CardContent className="p-4">
+            <CardContent className="w-full p-4">
                 <div className="flex items-center gap-3">
                     <div className={cn("rounded-lg p-2", iconColor)}>
                         <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
-                        <h3 className="text-foreground font-medium">{title}</h3>
+                        <h3 className="text-foreground xs:text-nowrap font-medium text-wrap md:text-wrap lg:text-nowrap">
+                            {title}
+                        </h3>
                     </div>
                     {children}
                 </div>
