@@ -16,21 +16,21 @@ import { type Locale, useLocale, useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 export default function ApplicationAppearance() {
+    const t = useTranslations("settings.applicationAppearance");
+
     const locale = useLocale();
     const router = useRouter();
 
     const { setTheme, theme } = useTheme();
     const { isFirstRender } = useFirstRender();
 
-    const t = useTranslations("settings.applicationAppearance");
-
     return (
         <div>
-            <h2 className="text-foreground mb-6 text-3xl font-bold">
+            <h2 className="text-foreground xs:text-2xl mb-6 text-xl font-bold md:text-3xl">
                 {t("text")}
             </h2>
             <Card className="bg-card border-border">
-                <CardContent className="space-y-2 p-6">
+                <CardContent className="xs:px-6 xs:py-4 space-y-2 px-4 py-2">
                     <SettingsToggle
                         title={t("darkMode")}
                         icon={Moon}

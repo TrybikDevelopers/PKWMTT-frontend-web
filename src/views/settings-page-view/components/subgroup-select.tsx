@@ -39,11 +39,13 @@ export default function SubgroupSelect({ index, label, subGroups }: Props) {
                         value={field.value ?? ""}
                     >
                         <FormControl>
-                            <SelectTrigger className="ml-auto h-8! w-full max-w-32 cursor-pointer">
+                            <SelectTrigger className="xs:max-w-32 xxs:max-w-28 ml-auto h-8! w-full max-w-24 cursor-pointer transition-all duration-150">
                                 <SelectValue placeholder={t("select")} />
                             </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
+                        <SelectContent
+                        // className="max-h-[var(--radix-select-content-available-height)] w-[var(--radix-select-trigger-width)]"
+                        >
                             {subGroups.map((group) => (
                                 <SelectItem key={group} value={group}>
                                     {group}

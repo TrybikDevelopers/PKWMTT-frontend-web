@@ -25,7 +25,10 @@ export default function StudentGroups({ timetableSettings }: Props) {
     const kompLabGroup = subGroups?.find((group) => group.firstLetter === "K");
     const projGroup = subGroups?.find((group) => group.firstLetter === "P");
 
-    const groupsRequired = useWatch({ control: form.control, name: "groups" });
+    const [generalGroup, groupsRequired] = useWatch({
+        control: form.control,
+        name: ["generalGroup", "groups"],
+    });
 
     const groupsToRender: React.ReactNode[] = [];
 
@@ -96,7 +99,7 @@ export default function StudentGroups({ timetableSettings }: Props) {
     return (
         <Form {...form}>
             <form onSubmit={(e) => e.preventDefault()}>
-                <h2 className="text-foreground mb-6 text-3xl font-bold">
+                <h2 className="text-foreground xs:text-2xl mb-6 text-xl font-bold md:text-3xl">
                     {t("text")}
                 </h2>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -104,7 +107,7 @@ export default function StudentGroups({ timetableSettings }: Props) {
                         title={t("generalGroup")}
                         icon={Users}
                         iconColor="bg-teal-500"
-                        valueRequired={false}
+                        valueRequired={generalGroup.length === 0}
                     >
                         <GeneralGroupCombobox generalGroups={generalGroups} />
                     </GroupCard>

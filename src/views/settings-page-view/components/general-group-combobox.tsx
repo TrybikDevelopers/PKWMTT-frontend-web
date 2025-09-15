@@ -54,7 +54,7 @@ export default function GeneralGroupCombobox({ generalGroups }: Props) {
                                     variant="outline"
                                     role="combobox"
                                     className={cn(
-                                        "ml-auto h-8 w-full max-w-32 cursor-pointer justify-between font-normal duration-150",
+                                        "xs:max-w-32 xxs:max-w-28 ml-auto h-8 w-full max-w-24 cursor-pointer justify-between font-normal duration-150",
                                         !field.value && "text-muted-foreground",
                                     )}
                                 >

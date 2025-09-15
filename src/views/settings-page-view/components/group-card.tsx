@@ -30,7 +30,7 @@ export default function GroupCard({
                         <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
-                        <h3 className="text-foreground xs:text-nowrap font-medium text-wrap md:text-wrap lg:text-nowrap">
+                        <h3 className="text-foreground xs:text-nowrap xs:text-base text-sm font-medium text-wrap md:text-wrap lg:text-nowrap">
                             {title}
                         </h3>
                     </div>
