@@ -43,9 +43,12 @@
             "noGeneralGroupFound": "No General Group found",
             "group": "Group - {group}",
             "selectGroup": "Select Group",
-            "submit": "Search",
-            "required": "This field is required"
+            "submit": "Search"
         }
+    },
+    "timetableForm": {
+        "required": "This field is required",
+        "groupsSaved": "Groups have been saved"
     },
     "navigation": {
         "navigation": "Navigation",
@@ -96,6 +99,15 @@
         "metadata": {
             "title": "Settings | PKWMTT",
             "description": "Customize your PKWMTT experience and manage your preferences."
+        },
+        "studentGroups": {
+            "text": "Student Groups",
+            "select": "Select",
+            "search": "Search",
+            "generalGroup": "General Group",
+            "labGruop": "Laboratory",
+            "kompLabGruop": "Computer Laboratory",
+            "projGruop": "Project"
         }
     },
     "errors": {

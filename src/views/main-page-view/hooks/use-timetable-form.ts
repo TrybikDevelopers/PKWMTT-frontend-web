@@ -13,7 +13,7 @@ import { toast } from "sonner";
 const useTimetableForm = () => {
     const [subGroupsPlaceholdersLength, setSubGroupsPlaceholdersLength] =
         useState<number>(2);
-    const t = useTranslations("home.timetableForm");
+    const t = useTranslations("timetableForm");
     const tErrors = useTranslations("errors");
 
     const router = useRouter();
@@ -52,6 +52,7 @@ const useTimetableForm = () => {
         },
     );
 
+    // reset form when general group changes
     useEffect(() => {
         if (prevGeneralGroup.current !== generalGroup) {
             form.reset({

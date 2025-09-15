@@ -1,3 +1,5 @@
+import { getTimetableSettings } from "@/server/cookies";
+import { api } from "@/trpc/server";
 import SettingsPageView from "@/views/settings-page-view/settings-page-view";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -11,6 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default function SettingsPage() {
-    return <SettingsPageView />;
+export default async function SettingsPage() {
+    const timetableSettings = await getTimetableSettings();
+
+    void api.timetable.getGeneralGroups.prefetch();
+
+    return <SettingsPageView timetableSettings={timetableSettings} />;
 }
