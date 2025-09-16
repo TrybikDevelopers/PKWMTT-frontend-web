@@ -21,7 +21,6 @@ export default function EctsTableRow({
 
     return (
         <div className="bg-button xs:p-1 mt-4 rounded-2xl p-3">
-            {/* Mobile */}
             <div className="xs:hidden block">
                 <div className="flex items-start gap-3">
                     <div className="flex-shrink-0 pt-1">
@@ -55,7 +54,6 @@ export default function EctsTableRow({
                 </div>
             </div>
 
-            {/* Desktop */}
             <div className="xs:flex xs:min-h-10 xs:items-center hidden">
                 <div className="w-12 px-2 py-2 text-center">
                     <input

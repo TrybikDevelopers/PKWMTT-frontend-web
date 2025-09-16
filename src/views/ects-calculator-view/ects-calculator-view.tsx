@@ -1,7 +1,8 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import EctsDialog from "./components/ects-dialog";
+import EctsForm from "./components/ects-form";
 import EctsTableHeader from "./components/ects-table-header";
 import EctsTableRow from "./components/ects-table-row";
 import useEctsCalculatorPage from "./hooks/use-ects-calculator-page";
@@ -12,7 +13,6 @@ export default function ECTSCalculatorView() {
     const {
         rows,
         isFirstRender,
-        open,
         selected,
         allSelected,
         someSelected,
@@ -23,13 +23,58 @@ export default function ECTSCalculatorView() {
         toggleOne,
         deleteSelected,
         onSubmit,
-        handleDialogOpenChange,
         form,
     } = useEctsCalculatorPage();
 
     return (
         <div className="w-full p-4">
-            <div className="w-full">
+            <div className="grid w-full gap-4 md:grid-cols-3">
+                <div className="md:col-span-1">
+                    <EctsForm form={form} onSubmit={onSubmit} />
+                </div>
+                <div className="md:col-span-2 md:flex md:w-full md:justify-center">
+                    <div className="grid grid-cols-1 gap-4 md:h-full md:w-1/2 md:items-center">
+                        <div className="rounded-2xl border p-4 text-center">
+                            <div className="text-muted-foreground text-sm">
+                                {t("averageGrade")}
+                            </div>
+                            <div className="text-xl font-semibold">
+                                {avgGrade.toFixed(2)}
+                            </div>
+                        </div>
+                        <div className="rounded-2xl border p-4 text-center">
+                            <div className="text-muted-foreground text-sm">
+                                {t("totalEcts")}
+                            </div>
+                            <div className="text-xl font-semibold">
+                                {totalEcts}
+                            </div>
+                        </div>
+                        <div className="rounded-2xl border p-4 text-center">
+                            <div className="text-muted-foreground text-sm">
+                                {t("weightedAverage")}
+                            </div>
+                            <div className="text-xl font-semibold">
+                                {weightedAvg.toFixed(2)}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="mt-6 w-full">
+                {selected.size > 0 && (
+                    <div className="mb-2 flex justify-end">
+                        <Button
+                            type="button"
+                            variant="destructive"
+                            className="cursor-pointer"
+                            onClick={deleteSelected}
+                        >
+                            {t("deleteSelectedButton")}
+                        </Button>
+                    </div>
+                )}
                 <EctsTableHeader
                     allSelected={allSelected}
                     someSelected={someSelected}
@@ -54,51 +99,7 @@ export default function ECTSCalculatorView() {
                         />
                     ))
                 )}
-
-                {!isFirstRender && rows.length > 0 && (
-                    <div className="mt-10 flex min-h-12 grid-cols-3 flex-wrap gap-y-2 rounded-2xl border p-1 sm:grid sm:gap-y-0">
-                        <div className="min-w-40 flex-1 px-4 py-2">
-                            <div className="flex h-full flex-col items-center justify-center text-center">
-                                <div className="text-muted-foreground text-sm">
-                                    {t("averageGrade")}
-                                </div>
-                                <div className="text-xl font-semibold">
-                                    {avgGrade.toFixed(2)}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="min-w-40 flex-1 px-4 py-2">
-                            <div className="flex h-full flex-col items-center justify-center text-center">
-                                <div className="text-muted-foreground text-sm">
-                                    {t("totalEcts")}
-                                </div>
-                                <div className="text-xl font-semibold">
-                                    {totalEcts}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="min-w-40 flex-1 px-4 py-2">
-                            <div className="flex h-full flex-col items-center justify-center text-center">
-                                <div className="text-muted-foreground text-sm">
-                                    {t("weightedAverage")}
-                                </div>
-                                <div className="text-xl font-semibold">
-                                    {weightedAvg.toFixed(2)}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
-
-            <EctsDialog
-                open={open}
-                selectedCount={selected.size}
-                form={form}
-                onSubmit={onSubmit}
-                onOpenChange={handleDialogOpenChange}
-                onDeleteSelected={deleteSelected}
-            />
         </div>
     );
 }
