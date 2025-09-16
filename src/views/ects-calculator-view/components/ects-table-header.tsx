@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 
-type EctsTableHeaderProps = {
+type Props = {
     allSelected: boolean;
     someSelected: boolean;
     onToggleAll: () => void;
@@ -13,7 +13,7 @@ export default function EctsTableHeader({
     allSelected,
     someSelected,
     onToggleAll,
-}: EctsTableHeaderProps) {
+}: Props) {
     const t = useTranslations("ectsCalculator.form");
     const checkboxRef = useRef<HTMLInputElement>(null);
 
@@ -32,7 +32,7 @@ export default function EctsTableHeader({
                     checked={allSelected}
                     onChange={onToggleAll}
                     className="size-4 align-middle accent-current"
-                    aria-label="Select all"
+                    aria-label={t("selectAll")}
                 />
             </div>
             <div className="xs:text-base flex-1 px-2 py-2 text-center text-sm sm:px-4">

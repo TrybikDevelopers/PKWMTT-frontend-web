@@ -1,7 +1,7 @@
 import type { TFunction } from "@/types/i18n";
 import * as z from "zod/mini";
 
-export const getTimetableFormSchema = (t: TFunction<"home.timetableForm">) => {
+export const getTimetableFormSchema = (t: TFunction<"timetableForm">) => {
     const timetableFormSchema = z.object({
         generalGroup: z.string().check(z.minLength(1, t("required"))),
         groups: z

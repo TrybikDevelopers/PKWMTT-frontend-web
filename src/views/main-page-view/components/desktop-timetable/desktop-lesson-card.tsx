@@ -15,6 +15,7 @@ export default function DesktopLessonCard({
     weekDayIndex,
 }: Props) {
     const t = useTranslations("home.common");
+
     const { badge, isCurrentLessonActive } = useLessonCard(
         lesson?.type ?? null,
         hour,

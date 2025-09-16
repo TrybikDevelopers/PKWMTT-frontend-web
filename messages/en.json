@@ -43,9 +43,12 @@
             "noGeneralGroupFound": "No General Group found",
             "group": "Group - {group}",
             "selectGroup": "Select Group",
-            "submit": "Search",
-            "required": "This field is required"
+            "submit": "Search"
         }
+    },
+    "timetableForm": {
+        "required": "This field is required",
+        "groupsSaved": "Groups have been saved"
     },
     "navigation": {
         "navigation": "Navigation",
@@ -111,13 +114,30 @@
             "tableHeaderEcts": "ECTS Value",
             "tableHeaderGrade": "Grade",
             "ectsLabelShort": "ECTS:",
-            "gradeLabelShort": "Grade:"
+            "gradeLabelShort": "Grade:",
+            "selectAll": "Select all"
         }
     },
     "settings": {
         "metadata": {
             "title": "Settings | PKWMTT",
             "description": "Customize your PKWMTT experience and manage your preferences."
+        },
+        "studentGroups": {
+            "text": "Student Groups",
+            "select": "Select",
+            "search": "Search",
+            "generalGroup": "General Group",
+            "labGruop": "Laboratory",
+            "kompLabGruop": "Computer Laboratory",
+            "projGruop": "Project"
+        },
+        "applicationAppearance": {
+            "text": "Application Appearance",
+            "darkMode": "Dark Mode",
+            "language": "Language",
+            "polish": "Polish",
+            "english": "English"
         }
     },
     "errors": {

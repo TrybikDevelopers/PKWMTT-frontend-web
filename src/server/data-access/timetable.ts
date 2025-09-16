@@ -1,5 +1,6 @@
 import "server-only";
 
+import { env } from "@/env";
 import type {
     AcademicHours,
     FetchAcademicHoursResult,
@@ -12,12 +13,21 @@ import type {
 } from "@/types/data-access/timetable";
 import { generateFetchUrl } from ".";
 
+const getGenericHeaders = () => {
+    return new Headers({
+        "x-api-key": env.API_KEY,
+    });
+};
+
 export const fetchGeneralGroups =
     async (): Promise<FetchGeneralGroupsResult> => {
-        const url = generateFetchUrl("/groups/general");
+        const headers = getGenericHeaders();
+
+        const url = generateFetchUrl("/timetables/groups/general");
 
         const response = await fetch(url, {
             method: "GET",
+            headers,
         });
 
         if (!response.ok) {
@@ -40,10 +50,13 @@ export const fetchGeneralGroups =
 export const fetchSubGroupsForGeneralGroup = async (
     generalGroupLabel: string,
 ): Promise<FetchSubGroupsResult> => {
-    const url = generateFetchUrl(`/groups/${generalGroupLabel}`);
+    const url = generateFetchUrl(`/timetables/groups/${generalGroupLabel}`);
+
+    const headers = getGenericHeaders();
 
     const response = await fetch(url, {
         method: "GET",
+        headers,
     });
 
     if (!response.ok) {
@@ -65,10 +78,13 @@ export const fetchSubGroupsForGeneralGroup = async (
 
 export const fetchAcademicHours =
     async (): Promise<FetchAcademicHoursResult> => {
-        const url = generateFetchUrl("/hours");
+        const url = generateFetchUrl("/timetables/hours");
+
+        const headers = getGenericHeaders();
 
         const response = await fetch(url, {
             method: "GET",
+            headers,
         });
 
         if (!response.ok) {
@@ -91,13 +107,18 @@ export const fetchTimetable = async (
     generalGroup: string,
     subGroups: string[],
 ): Promise<FetchTimetableResult> => {
-    const url = generateFetchUrl(`/${generalGroup}`);
+    const url = generateFetchUrl(`/timetables/${generalGroup}`);
+
+    const headers = getGenericHeaders();
 
     subGroups.forEach((subGroup) => {
         url.searchParams.append("sub", subGroup);
     });
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+        method: "GET",
+        headers,
+    });
 
     if (!response.ok) {
         console.log(await response.text());

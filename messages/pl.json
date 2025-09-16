@@ -43,9 +43,12 @@
             "noGeneralGroupFound": "Nie znaleziono oddziału",
             "group": "Grupa - {group}",
             "selectGroup": "Wybierz grupę",
-            "submit": "Szukaj",
-            "required": "To pole jest wymagane"
+            "submit": "Szukaj"
         }
+    },
+    "timetableForm": {
+        "required": "To pole jest wymagane",
+        "groupsSaved": "Grupy zostały zapisane"
     },
     "navigation": {
         "navigation": "Nawigacja",
@@ -111,13 +114,30 @@
             "tableHeaderEcts": "Wartość ECTS",
             "tableHeaderGrade": "Ocena",
             "ectsLabelShort": "ECTS:",
-            "gradeLabelShort": "Ocena:"
+            "gradeLabelShort": "Ocena:",
+            "selectAll": "Zaznacz wszystkie"
         }
     },
     "settings": {
         "metadata": {
             "title": "Ustawienia | PKWMTT",
             "description": "Dostosuj swoje doświadczenie PKWMTT i zarządzaj swoimi preferencjami."
+        },
+        "studentGroups": {
+            "text": "Grupy Studenckie",
+            "select": "Wybierz",
+            "search": "Szukaj",
+            "generalGroup": "Dziekańska",
+            "labGruop": "Laboratoryjna",
+            "kompLabGruop": "Komputerowa",
+            "projGruop": "Projektowa"
+        },
+        "applicationAppearance": {
+            "text": "Wygląd Aplikacji",
+            "darkMode": "Tryb ciemny",
+            "language": "Język",
+            "polish": "Polski",
+            "english": "Angielski"
         }
     },
     "errors": {
