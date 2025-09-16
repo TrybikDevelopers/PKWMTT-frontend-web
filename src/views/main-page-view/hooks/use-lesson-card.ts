@@ -58,33 +58,83 @@ const useLessonCard = (
         }
     }, [type, t]);
 
-    const sanitizedHour = hour.replace(/\s+/g, "");
+    const { sanitizedHour, isCurrentLessonActive } = useMemo(() => {
+        try {
+            const sanitized = hour.replace(/\s+/g, "");
 
-    const lessonStart = sanitizedHour.split("-")[0];
-    const lessonEnd = sanitizedHour.split("-")[1];
+            // Validate format: should be HH:MM-HH:MM
+            const timeRegex = /^(\d{1,2}):(\d{2})-(\d{1,2}):(\d{2})$/;
+            const match = sanitized.match(timeRegex);
 
-    const now = new Date();
-    const currentWeekDay = now.getDay() === 0 ? 6 : now.getDay() - 1;
+            if (!match) {
+                console.warn(`Invalid hour format: ${hour}`);
+                return {
+                    sanitizedHour: sanitized,
+                    isCurrentLessonActive: false,
+                };
+            }
 
-    const lessonStartDate = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-        parseInt(lessonStart.split(":")[0], 10),
-        parseInt(lessonStart.split(":")[1], 10),
-    );
-    const lessonEndDate = new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate(),
-        parseInt(lessonEnd.split(":")[0], 10),
-        parseInt(lessonEnd.split(":")[1], 10),
-    );
+            const [, startHour, startMin, endHour, endMin] = match;
 
-    const isCurrentLessonActive =
-        currentWeekDay === weekDayIndex &&
-        now >= lessonStartDate &&
-        now <= lessonEndDate;
+            // Validate time ranges
+            const startH = parseInt(startHour, 10);
+            const startM = parseInt(startMin, 10);
+            const endH = parseInt(endHour, 10);
+            const endM = parseInt(endMin, 10);
+
+            if (startH > 23 || startM > 59 || endH > 23 || endM > 59) {
+                console.warn(`Invalid time values in: ${hour}`);
+                return {
+                    sanitizedHour: sanitized,
+                    isCurrentLessonActive: false,
+                };
+            }
+
+            const now = new Date();
+            const currentWeekDay = now.getDay() === 0 ? 6 : now.getDay() - 1;
+
+            if (currentWeekDay !== weekDayIndex) {
+                return {
+                    sanitizedHour: sanitized,
+                    isCurrentLessonActive: false,
+                };
+            }
+
+            const lessonStartDate = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+                startH,
+                startM,
+            );
+
+            const lessonEndDate = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+                endH,
+                endM,
+            );
+
+            // Handle midnight-spanning lessons
+            if (endH < startH) {
+                lessonEndDate.setDate(lessonEndDate.getDate() + 1);
+            }
+
+            const isActive = now >= lessonStartDate && now <= lessonEndDate;
+
+            return {
+                sanitizedHour: sanitized,
+                isCurrentLessonActive: isActive,
+            };
+        } catch (error) {
+            console.error(`Error parsing lesson time: ${hour}`, error);
+            return {
+                sanitizedHour: hour.replace(/\s+/g, ""),
+                isCurrentLessonActive: false,
+            };
+        }
+    }, [hour, weekDayIndex]);
 
     return {
         badge,
