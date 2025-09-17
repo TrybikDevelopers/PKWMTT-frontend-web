@@ -11,6 +11,10 @@
     --button: #f0f0f0;
     --accent: #727dff;
     --accent-light: #daddff;
+    --activity-1: #e35d23;
+    --activity-2: #83d32e;
+    --activity-3: #3b82f6;
+    --activity-4: #f59e0b;
 
     /* Shadcn vars - light mode */
     --radius: 0.625rem;
@@ -53,6 +57,10 @@
     --button: #313131;
     --accent: #727dff;
     --accent-light: #daddff;
+    --activity-1: #e35d23;
+    --activity-2: #83d32e;
+    --activity-3: #3b82f6;
+    --activity-4: #f59e0b;
     /* end */
 
     /* Shadcn vars */
@@ -100,6 +108,10 @@
     --color-button: var(--button);
     --color-accent: var(--accent);
     --color-accent-light: var(--accent-light);
+    --color-activity-1: var(--activity-1);
+    --color-activity-2: var(--activity-2);
+    --color-activity-3: var(--activity-3);
+    --color-activity-4: var(--activity-4);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);

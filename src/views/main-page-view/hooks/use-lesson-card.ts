@@ -1,5 +1,5 @@
 import type { ClassEntry } from "@/types/data-access/timetable";
-import { useTranslations } from "next-intl";
+import { useNow, useTranslations } from "next-intl";
 import { useMemo } from "react";
 
 type Badge = {
@@ -13,6 +13,10 @@ const useLessonCard = (
     weekDayIndex: number,
 ) => {
     const t = useTranslations("home.lessonType");
+
+    const now = useNow({
+        updateInterval: 1000 * 15, // 15 seconds
+    });
 
     const badge = useMemo((): Badge | null => {
         if (!type) {
@@ -67,7 +71,8 @@ const useLessonCard = (
             const match = sanitized.match(timeRegex);
 
             if (!match) {
-                console.warn(`Invalid hour format: ${hour}`);
+                console.log(`Invalid hour format: ${hour}`);
+
                 return {
                     sanitizedHour: sanitized,
                     isCurrentLessonActive: false,
@@ -83,14 +88,14 @@ const useLessonCard = (
             const endM = parseInt(endMin, 10);
 
             if (startH > 23 || startM > 59 || endH > 23 || endM > 59) {
-                console.warn(`Invalid time values in: ${hour}`);
+                console.log(`Invalid time values in: ${hour}`);
+
                 return {
                     sanitizedHour: sanitized,
                     isCurrentLessonActive: false,
                 };
             }
 
-            const now = new Date();
             const currentWeekDay = now.getDay() === 0 ? 6 : now.getDay() - 1;
 
             if (currentWeekDay !== weekDayIndex) {
@@ -128,13 +133,14 @@ const useLessonCard = (
                 isCurrentLessonActive: isActive,
             };
         } catch (error) {
-            console.error(`Error parsing lesson time: ${hour}`, error);
+            console.log(`Error parsing lesson time: ${hour}`, error);
+
             return {
                 sanitizedHour: hour.replace(/\s+/g, ""),
                 isCurrentLessonActive: false,
             };
         }
-    }, [hour, weekDayIndex]);
+    }, [hour, weekDayIndex, now]);
 
     return {
         badge,
