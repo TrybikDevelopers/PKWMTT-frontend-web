@@ -10,3 +10,9 @@ export const generateFetchUrl = (pathname: string): URL => {
     const url = new URL(processedPathname, env.API_BASE_URL);
     return url;
 };
+
+export const getGenericHeaders = () => {
+    return new Headers({
+        "x-api-key": env.API_KEY,
+    });
+};

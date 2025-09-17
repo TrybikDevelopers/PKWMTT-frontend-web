@@ -1,11 +1,19 @@
 "use client";
 
+import type { CalendarPageData } from "@/server/fetchers/calendar-page";
+import { use } from "react";
 import DaysGrid from "./components/days-grid";
 import MonthSelect from "./components/month-select";
 import WeekdaysHeader from "./components/weekdays-header";
 import { useCalendar } from "./hooks/use-calendar";
 
-export default function CalendarPageView() {
+type Props = {
+    calendarDataPromise: Promise<CalendarPageData>;
+};
+
+export default function CalendarPageView({ calendarDataPromise }: Props) {
+    const { calendarExams } = use(calendarDataPromise);
+
     const {
         month,
         updateMonth,
@@ -28,7 +36,7 @@ export default function CalendarPageView() {
 
             <div className="grid grid-cols-7 gap-2 md:gap-3 lg:gap-4 xl:gap-5">
                 <WeekdaysHeader weekdayHeaders={weekdayHeaders} />
-                <DaysGrid cells={cells} />
+                <DaysGrid cells={cells} calendarExams={calendarExams ?? []} />
             </div>
         </div>
     );

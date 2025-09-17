@@ -84,6 +84,9 @@
             "october": "Październik",
             "november": "Listopad",
             "december": "Grudzień"
+        },
+        "academicActivities": {
+            "noItems": "Brak aktywności akademickich zaplanowanych na ten dzień."
         }
     },
     "ectsCalculator": {

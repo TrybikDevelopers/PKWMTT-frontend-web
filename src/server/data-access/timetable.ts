@@ -1,6 +1,5 @@
 import "server-only";
 
-import { env } from "@/env";
 import type {
     AcademicHours,
     FetchAcademicHoursResult,
@@ -11,13 +10,7 @@ import type {
     SubGroups,
     Timetable,
 } from "@/types/data-access/timetable";
-import { generateFetchUrl } from ".";
-
-const getGenericHeaders = () => {
-    return new Headers({
-        "x-api-key": env.API_KEY,
-    });
-};
+import { generateFetchUrl, getGenericHeaders } from ".";
 
 export const fetchGeneralGroups =
     async (): Promise<FetchGeneralGroupsResult> => {

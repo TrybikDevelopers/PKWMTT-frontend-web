@@ -1,6 +1,6 @@
-import z from "zod";
+import * as z from "zod/mini";
 
 export const getTimetableSchema = z.object({
-    generalGroup: z.string().min(1, "Group label is required"),
-    groups: z.array(z.string().min(1)),
+    generalGroup: z.string().check(z.minLength(1, "Group label is required")),
+    groups: z.array(z.string().check(z.minLength(1))),
 });

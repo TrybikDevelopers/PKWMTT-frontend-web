@@ -5,28 +5,57 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
+import type { CalendarExam } from "@/types/data-access/calendar";
+import { useFormatter, useTranslations } from "next-intl";
+import DetailsItem from "./details-item";
 
 type Props = {
     open: boolean;
     setOpen: (open: boolean) => void;
-    mockedInfo: string[];
+    date: Date;
+    items: CalendarExam[];
 };
 
-export default function DayDetailsDialog({ open, setOpen, mockedInfo }: Props) {
+export default function DayDetailsDialog({
+    open,
+    setOpen,
+    date,
+    items,
+}: Props) {
+    const format = useFormatter();
+    const t = useTranslations("calendar.academicActivities");
+
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[475px]">
                 <DialogHeader>
-                    <DialogTitle>Edit profile</DialogTitle>
-                    <DialogDescription>
-                        Make changes to your profile here. Click save when
-                        you&apos;re done.
+                    <DialogTitle className="text-accent text-3xl">
+                        {format.dateTime(date, {
+                            day: "numeric",
+                            month: "numeric",
+                        })}
+                    </DialogTitle>
+                    <DialogDescription className="sr-only">
+                        {format.dateTime(date, {
+                            day: "numeric",
+                            month: "numeric",
+                        })}
                     </DialogDescription>
                 </DialogHeader>
-                <div>
-                    {mockedInfo.map((info) => (
-                        <div key={info}>{info}</div>
-                    ))}
+                <div className="mt-2 flex flex-col gap-3">
+                    {items.length > 0 &&
+                        items.map((info, index) => (
+                            <DetailsItem
+                                key={`${date.toString()}-${index}-desktop`}
+                                info={info}
+                                index={index}
+                            />
+                        ))}
+                    {items.length === 0 && (
+                        <p className="text-muted-foreground my-2 px-6 text-center">
+                            {t("noItems")}
+                        </p>
+                    )}
                 </div>
             </DialogContent>
         </Dialog>

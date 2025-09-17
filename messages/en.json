@@ -84,6 +84,9 @@
             "october": "October",
             "november": "November",
             "december": "December"
+        },
+        "academicActivities": {
+            "noItems": "No academic activities scheduled for this day."
         }
     },
     "ectsCalculator": {

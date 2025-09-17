@@ -1,3 +1,4 @@
+import { fetchCalendarPageData } from "@/server/fetchers/calendar-page";
 import CalendarPageView from "@/views/calendar-page-view/calendar-page-view";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -12,5 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function CalendarPage() {
-    return <CalendarPageView />;
+    const calendarDataPromise = fetchCalendarPageData();
+
+    return <CalendarPageView calendarDataPromise={calendarDataPromise} />;
 }
