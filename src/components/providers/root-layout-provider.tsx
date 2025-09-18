@@ -14,7 +14,7 @@ export default function RootLayoutProvider({
             enableSystem
             disableTransitionOnChange
         >
-            <NextIntlClientProvider>
+            <NextIntlClientProvider timeZone="Europe/Warsaw">
                 <TRPCReactProvider>{children}</TRPCReactProvider>
             </NextIntlClientProvider>
         </ThemeProvider>
