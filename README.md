@@ -16,14 +16,13 @@ A modern web application for university students to manage their academic schedu
 
 ### Frontend
 
-- **Framework**: Next.js 15.5.2 with App Router
-- **Language**: TypeScript 5
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
 - **Styling**: Tailwind CSS v4
-- **UI Components**: Radix UI primitives
+- **UI Components**: Shadcn UI
 - **Forms**: React Hook Form with Zod validation
 - **Internationalization**: Next-intl
-- **State Management**: TanStack Query (React Query)
-- **API**: tRPC for type-safe API calls
+- **API**: tRPC for type-safe API calls, TanStack Query
 - **Icons**: Lucide React
 - **Theme**: next-themes for dark mode support
 
@@ -35,14 +34,14 @@ A modern web application for university students to manage their academic schedu
 
 ### Runtime
 
-- **Node.js**: Version 24 (Alpine Linux)
+- **Node.js**: Version 20 or newer
 - **React**: Version 19
 
 ## Prerequisites
 
 Before running this project, make sure you have the following installed:
 
-- **Node.js 24** or later
+- **Node.js 20** or newer
 - **PNPM** package manager
 - **Docker** (optional, for containerized deployment)
 
@@ -121,8 +120,6 @@ The application supports the following configuration:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-Copyright (c) 2025 Dominik Koniarz
 
 ## Screenshots
 
