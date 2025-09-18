@@ -44,7 +44,7 @@ export default function DesktopTimetableGrid({
                     {hours.map((hour, index) => (
                         <div
                             key={`time-${index}`}
-                            className="flex min-h-20 items-center justify-center border-b border-[#5A5B5C] text-sm font-normal text-white first:border-t"
+                            className="border-border-muted text-foreground flex min-h-20 items-center justify-center border-b text-sm font-normal first:border-t"
                         >
                             {hour.replace(/\s+/g, "")}
                         </div>
@@ -60,7 +60,7 @@ export default function DesktopTimetableGrid({
                         {hours.map((hour, hourIndex) => (
                             <div
                                 key={`cell-${dayIndex}-${hourIndex}`}
-                                className="min-h-20 border-b border-[#5A5B5C] p-1 first:border-t"
+                                className="border-border-muted min-h-20 border-b p-1 first:border-t"
                             >
                                 <DesktopLessonCard
                                     lesson={getLesson(dayIndex, hourIndex)}

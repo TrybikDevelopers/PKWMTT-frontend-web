@@ -39,7 +39,7 @@ export default function LessonsCards({
     const { getLesson } = useLessonsCards(currentDayData, weekParity);
 
     return (
-        <div className="xxs:mt-6 mt-4 flex flex-col px-2 pb-10 *:border-b-1 *:border-[#5A5B5C] *:first:border-t-1 *:first:border-t-[#5A5B5C]">
+        <div className="xxs:mt-6 *:border-border-muted *:first:border-t-border-muted mt-4 flex flex-col px-2 pb-10 *:border-b-1 *:first:border-t-1">
             {hours.map((hour, index) => (
                 <LessonCard
                     key={`timetable-lesson-${index}`}

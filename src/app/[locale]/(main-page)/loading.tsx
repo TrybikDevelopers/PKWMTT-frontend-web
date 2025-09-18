@@ -38,7 +38,7 @@ export default function MainPageLoading() {
                     </div>
                     <div className="bg-button h-9 w-10 rounded-xl"></div>
                 </div>
-                <div className="xxs:mt-6 mt-4 flex flex-col px-2 pb-10 *:border-b-1 *:border-[#5A5B5C] *:first:border-t-1 *:first:border-t-[#5A5B5C]">
+                <div className="xxs:mt-6 *:border-border-muted *:first:border-t-border-muted mt-4 flex flex-col px-2 pb-10 *:border-b-1 *:first:border-t-1">
                     {Array.from({ length: 6 }).map((_, index) => (
                         <MobileLessonCard key={`mobile-lesson-card-${index}`} />
                     ))}
@@ -70,7 +70,7 @@ export default function MainPageLoading() {
                             {Array.from({ length: 6 }).map((_, index) => (
                                 <div
                                     key={`time-skeleton-${index}`}
-                                    className="flex min-h-20 items-center justify-center border-b border-[#5A5B5C] first:border-t"
+                                    className="border-border-muted flex min-h-20 items-center justify-center border-b first:border-t"
                                 >
                                     <div className="bg-button h-4 w-16 rounded-sm"></div>
                                 </div>
@@ -87,7 +87,7 @@ export default function MainPageLoading() {
                                     (_, hourIndex) => (
                                         <div
                                             key={`cell-skeleton-${dayIndex}-${hourIndex}`}
-                                            className="min-h-20 border-b border-[#5A5B5C] p-1 first:border-t"
+                                            className="border-border-muted min-h-20 border-b p-1 first:border-t"
                                         >
                                             {/* Randomly show skeleton cards to simulate some lessons */}
                                             {Math.random() > 0.6 && (

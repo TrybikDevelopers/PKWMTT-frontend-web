@@ -1,9 +1,14 @@
+"use client";
+
 import { Link } from "@/i18n/navigation";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import DesktopNav from "./desktop-nav/desktop-nav";
 import MobileNavSheet from "./mobile-nav-sheet/mobile-nav-sheet";
 
 export default function Header() {
+    const { theme } = useTheme();
+
     return (
         <header className="bg-background-darker flex h-18 w-full shrink-0 items-center">
             <Link
@@ -11,7 +16,7 @@ export default function Header() {
                 className="grid aspect-square h-full w-auto shrink-0 p-2.5"
             >
                 <Image
-                    src={"/logo.png"}
+                    src={theme === "dark" ? "/logo.png" : "/logo-light.png"}
                     width={1024}
                     height={1024}
                     alt="logo"

@@ -24,7 +24,7 @@ export default function EctsTableHeader({
     }, [allSelected, someSelected]);
 
     return (
-        <div className="flex min-h-12 items-center rounded-2xl bg-[#161415] p-1">
+        <div className="bg-table-header flex min-h-12 items-center rounded-2xl p-1">
             <div className="w-12 px-4 py-2 text-center">
                 <input
                     ref={checkboxRef}

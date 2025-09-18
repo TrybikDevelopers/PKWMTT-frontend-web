@@ -8,13 +8,27 @@
     --background: #ffffff;
     --background-darker: #f5f5f5;
     --background-lighter: #ffffff40;
-    --button: #f0f0f0;
+    --button: #e5e7eb;
     --accent: #727dff;
     --accent-light: #daddff;
     --activity-1: #e35d23;
     --activity-2: #83d32e;
     --activity-3: #3b82f6;
     --activity-4: #f59e0b;
+
+    /* Additional colors for light mode */
+    --text-muted: #6b7280;
+    --text-accent: #374151;
+    --border-muted: #e5e7eb;
+    --indicator-neutral: #d1d5db;
+    --table-header: #f9fafb;
+
+    /* Lesson type colors */
+    --lesson-seminar: #cf2eef;
+    --lesson-lecture: #e35d23;
+    --lesson-laboratory: #3bbfe4;
+    --lesson-exercises: #83d32e;
+    --lesson-project: #d32e2e;
 
     /* Shadcn vars - light mode */
     --radius: 0.625rem;
@@ -61,6 +75,20 @@
     --activity-2: #83d32e;
     --activity-3: #3b82f6;
     --activity-4: #f59e0b;
+
+    /* Additional colors for dark mode */
+    --text-muted: #afafaf;
+    --text-accent: #daddff;
+    --border-muted: #5a5b5c;
+    --indicator-neutral: #d2d4d3;
+    --table-header: #161415;
+
+    /* Lesson type colors - same for both modes */
+    --lesson-seminar: #cf2eef;
+    --lesson-lecture: #e35d23;
+    --lesson-laboratory: #3bbfe4;
+    --lesson-exercises: #83d32e;
+    --lesson-project: #d32e2e;
     /* end */
 
     /* Shadcn vars */
@@ -98,8 +126,10 @@
 }
 
 @theme inline {
-    --breakpoint-xxs: 26.25rem; /* 420px */
-    --breakpoint-xs: 31.25rem; /* 500px */
+    --breakpoint-xxs: 26.25rem;
+    /* 420px */
+    --breakpoint-xs: 31.25rem;
+    /* 500px */
 
     --color-background: var(--background);
     --color-background-darker: var(--background-darker);
@@ -112,6 +142,16 @@
     --color-activity-2: var(--activity-2);
     --color-activity-3: var(--activity-3);
     --color-activity-4: var(--activity-4);
+    --color-text-muted: var(--text-muted);
+    --color-text-accent: var(--text-accent);
+    --color-border-muted: var(--border-muted);
+    --color-indicator-neutral: var(--indicator-neutral);
+    --color-table-header: var(--table-header);
+    --color-lesson-seminar: var(--lesson-seminar);
+    --color-lesson-lecture: var(--lesson-lecture);
+    --color-lesson-laboratory: var(--lesson-laboratory);
+    --color-lesson-exercises: var(--lesson-exercises);
+    --color-lesson-project: var(--lesson-project);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);

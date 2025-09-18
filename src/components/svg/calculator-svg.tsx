@@ -7,7 +7,7 @@ type Props = {
 export default function CalculatorSVG({ className }: Props) {
     return (
         <svg
-            className={cn("size-6 fill-white", className)}
+            className={cn("size-6 fill-current", className)}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 -960 960 960"
         >

@@ -27,34 +27,34 @@ const useLessonCard = (
             case "SEMINAR":
                 return {
                     letter: t("short.seminar"),
-                    className: "bg-[#CF2EEF]",
+                    className: "bg-lesson-seminar",
                 };
             case "LECTURE":
                 return {
                     letter: t("short.lecture"),
-                    className: "bg-[#E35D23]",
+                    className: "bg-lesson-lecture",
                 };
             case "LABORATORY":
                 return {
                     letter: t("short.laboratory"),
-                    className: "bg-[#3BBFE4]",
+                    className: "bg-lesson-laboratory",
                 };
             case "COMPUTER_LABORATORY":
                 return {
                     // letter: t("short.computerLaboratory"),
                     // className: "bg-yellow-600",
                     letter: t("short.laboratory"),
-                    className: "bg-[#3BBFE4]",
+                    className: "bg-lesson-laboratory",
                 };
             case "EXERCISES":
                 return {
                     letter: t("short.exercises"),
-                    className: "bg-[#83D32E]",
+                    className: "bg-lesson-exercises",
                 };
             case "PROJECT":
                 return {
                     letter: t("short.project"),
-                    className: "bg-[#D32E2E]",
+                    className: "bg-lesson-project",
                 };
             default:
                 return { letter: t("short.other"), className: "bg-gray-600" };

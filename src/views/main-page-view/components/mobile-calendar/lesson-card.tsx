@@ -22,13 +22,13 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
         <div className="bg-background flex min-h-25 shrink-0 flex-row overflow-hidden py-2.5">
             <div
                 className={cn(
-                    "flex h-full w-1.5 shrink-0 bg-[#D2D4D3]",
+                    "bg-indicator-neutral flex h-full w-1.5 shrink-0",
                     isCurrentLessonActive && "bg-accent",
                 )}
             ></div>
             <div className="flex w-full flex-col justify-between gap-5 p-1.25 px-2">
                 <div className="flex items-center">
-                    <span className="xs:text-base w-fit text-sm font-normal text-white">
+                    <span className="xs:text-base text-foreground w-fit text-sm font-normal">
                         {sanitizedHour}
                     </span>
                     {lesson && (
@@ -43,14 +43,14 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                                     {badge.letter}
                                 </span>
                             )}
-                            <span className="xs:text-base text-sm text-white">
+                            <span className="xs:text-base text-foreground text-sm">
                                 {t("classRoom")}: {lesson.classroom}
                             </span>
                         </span>
                     )}
                 </div>
                 {lesson && (
-                    <div className="xs:text-base text-sm font-normal text-white">
+                    <div className="xs:text-base text-foreground text-sm font-normal">
                         {lesson.name}
                     </div>
                 )}

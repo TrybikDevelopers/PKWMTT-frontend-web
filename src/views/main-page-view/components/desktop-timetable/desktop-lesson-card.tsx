@@ -37,7 +37,7 @@ export default function DesktopLessonCard({
                         "flex-1 truncate text-xs font-medium",
                         isCurrentLessonActive
                             ? "text-accent-light"
-                            : "text-white",
+                            : "text-foreground",
                     )}
                 >
                     {lesson.name}
@@ -58,7 +58,7 @@ export default function DesktopLessonCard({
                     "truncate text-xs",
                     isCurrentLessonActive
                         ? "text-accent-light/80"
-                        : "text-[#AFAFAF]",
+                        : "text-text-muted",
                 )}
             >
                 {t("classRoom")}: {lesson.classroom}
