@@ -84,7 +84,11 @@ export default function EctsForm({ form, onSubmit }: Props) {
                     />
 
                     <div className="flex justify-end">
-                        <Button type="submit" className="cursor-pointer">
+                        <Button
+                            type="submit"
+                            variant="secondary"
+                            className="cursor-pointer"
+                        >
                             {t("confirmButton")}
                         </Button>
                     </div>
