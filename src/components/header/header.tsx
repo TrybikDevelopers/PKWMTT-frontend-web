@@ -3,13 +3,17 @@
 import { Link } from "@/i18n/navigation";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import DesktopNav from "./desktop-nav/desktop-nav";
 import MobileNavSheet from "./mobile-nav-sheet/mobile-nav-sheet";
 
 export default function Header() {
-    const { theme } = useTheme();
+    const { resolvedTheme } = useTheme();
+    const [logoSrc, setLogoSrc] = useState("/logo-light.png");
 
-    console.log(theme);
+    useEffect(() => {
+        setLogoSrc(resolvedTheme === "dark" ? "/logo.png" : "/logo-light.png");
+    }, [resolvedTheme]);
 
     return (
         <header className="bg-background-darker flex h-18 w-full shrink-0 items-center">
@@ -18,7 +22,7 @@ export default function Header() {
                 className="grid aspect-square h-full w-auto shrink-0 p-2.5"
             >
                 <Image
-                    src={theme === "dark" ? "/logo.png" : "/logo-light.png"}
+                    src={logoSrc}
                     width={1024}
                     height={1024}
                     alt="logo"
