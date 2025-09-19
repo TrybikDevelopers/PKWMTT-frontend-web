@@ -1,3 +1,8 @@
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type { ClassEntry } from "@/types/data-access/timetable";
 import { useTranslations } from "next-intl";
@@ -32,21 +37,32 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                         {sanitizedHour}
                     </span>
                     {lesson && (
-                        <span className="xs:text-base ml-auto flex items-center gap-1 rounded-full text-sm">
+                        <Tooltip>
+                            <div className="flex w-full justify-end">
+                                <TooltipTrigger>
+                                    <span className="xs:text-base ml-auto flex items-center gap-1 rounded-full text-sm">
+                                        {badge && (
+                                            <span
+                                                className={cn(
+                                                    "flex size-4.5 shrink-0 items-center justify-center rounded-full bg-transparent p-2 text-xs font-semibold text-white uppercase",
+                                                    badge.className,
+                                                )}
+                                            >
+                                                {badge.letter}
+                                            </span>
+                                        )}
+                                        <span className="xs:text-base text-foreground text-sm">
+                                            {t("classRoom")}: {lesson.classroom}
+                                        </span>
+                                    </span>
+                                </TooltipTrigger>
+                            </div>
                             {badge && (
-                                <span
-                                    className={cn(
-                                        "flex size-4.5 shrink-0 items-center justify-center rounded-full bg-transparent p-0.5 text-xs font-semibold text-white uppercase",
-                                        badge.className,
-                                    )}
-                                >
-                                    {badge.letter}
-                                </span>
+                                <TooltipContent>
+                                    <p>{badge.word}</p>
+                                </TooltipContent>
                             )}
-                            <span className="xs:text-base text-foreground text-sm">
-                                {t("classRoom")}: {lesson.classroom}
-                            </span>
-                        </span>
+                        </Tooltip>
                     )}
                 </div>
                 {lesson && (

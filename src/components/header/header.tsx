@@ -9,6 +9,8 @@ import MobileNavSheet from "./mobile-nav-sheet/mobile-nav-sheet";
 export default function Header() {
     const { theme } = useTheme();
 
+    console.log(theme);
+
     return (
         <header className="bg-background-darker flex h-18 w-full shrink-0 items-center">
             <Link
