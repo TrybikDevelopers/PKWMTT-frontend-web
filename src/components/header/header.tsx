@@ -1,20 +1,9 @@
-"use client";
-
 import { Link } from "@/i18n/navigation";
-import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import DesktopNav from "./desktop-nav/desktop-nav";
 import MobileNavSheet from "./mobile-nav-sheet/mobile-nav-sheet";
 
 export default function Header() {
-    const { resolvedTheme } = useTheme();
-    const [logoSrc, setLogoSrc] = useState("/logo-light.png");
-
-    useEffect(() => {
-        setLogoSrc(resolvedTheme === "dark" ? "/logo.png" : "/logo-light.png");
-    }, [resolvedTheme]);
-
     return (
         <header className="bg-background-darker flex h-18 w-full shrink-0 items-center">
             <Link
@@ -22,11 +11,19 @@ export default function Header() {
                 className="grid aspect-square h-full w-auto shrink-0 p-2.5"
             >
                 <Image
-                    src={logoSrc}
+                    src={"/logo-light.png"}
                     width={1024}
                     height={1024}
                     alt="logo"
-                    className="object-cover"
+                    className="block object-cover dark:hidden"
+                    priority
+                />
+                <Image
+                    src={"/logo.png"}
+                    width={1024}
+                    height={1024}
+                    alt="logo"
+                    className="hidden object-cover dark:block"
                     priority
                 />
             </Link>
