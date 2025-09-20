@@ -26,11 +26,11 @@ export default function DesktopTimetableHeader({
             <div className="flex items-center justify-center">
                 <Button
                     type="button"
-                    className="group flex h-fit w-fit cursor-pointer flex-row items-center gap-1 rounded-md bg-transparent p-2 transition-colors hover:bg-white/10"
+                    className="group hover:bg-foreground/10 flex h-fit w-fit cursor-pointer flex-row items-center gap-1 rounded-md bg-transparent p-2 transition-colors"
                     onClick={toggleWeekParity}
                 >
-                    <RefreshCcw className="size-4" />
-                    <div className="h-fit w-fit text-sm text-white">
+                    <RefreshCcw className="text-foreground size-4" />
+                    <div className="text-foreground h-fit w-fit text-sm">
                         {weekParity === "EVEN"
                             ? t("common.even")
                             : t("common.odd")}
@@ -40,7 +40,7 @@ export default function DesktopTimetableHeader({
             {days.map((day, index) => (
                 <div
                     key={`day-header-${index}`}
-                    className="py-4 text-center text-xl font-bold text-[#DADDFF]"
+                    className="text-foreground py-4 text-center text-xl font-bold"
                 >
                     {day}
                 </div>

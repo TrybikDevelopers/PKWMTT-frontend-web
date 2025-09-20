@@ -1,3 +1,8 @@
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type { ClassEntry } from "@/types/data-access/timetable";
 import { useTranslations } from "next-intl";
@@ -37,28 +42,37 @@ export default function DesktopLessonCard({
                         "flex-1 truncate text-xs font-medium",
                         isCurrentLessonActive
                             ? "text-accent-light"
-                            : "text-white",
+                            : "text-foreground",
                     )}
                 >
                     {lesson.name}
                 </div>
-                {badge && (
-                    <span
-                        className={cn(
-                            "flex size-4 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white uppercase",
-                            badge.className,
-                        )}
-                    >
-                        {badge.letter}
-                    </span>
-                )}
+                <Tooltip>
+                    {badge && (
+                        <TooltipTrigger>
+                            <span
+                                className={cn(
+                                    "flex size-4 shrink-0 items-center justify-center rounded-full p-3 text-xs font-semibold text-white uppercase",
+                                    badge.className,
+                                )}
+                            >
+                                {badge.letter}
+                            </span>
+                        </TooltipTrigger>
+                    )}
+                    {badge && (
+                        <TooltipContent>
+                            <p>{badge.word}</p>
+                        </TooltipContent>
+                    )}
+                </Tooltip>
             </div>
             <div
                 className={cn(
                     "truncate text-xs",
                     isCurrentLessonActive
                         ? "text-accent-light/80"
-                        : "text-[#AFAFAF]",
+                        : "text-text-muted",
                 )}
             >
                 {t("classRoom")}: {lesson.classroom}

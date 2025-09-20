@@ -27,11 +27,13 @@ export default function DetailsItem({ info, index }: Props) {
                         hour: "numeric",
                     })}
                 </span>
-                <span className="rounded bg-white/20 px-2 py-0.5 text-xs font-semibold text-white">
+                <span className="rounded bg-black/10 px-2 py-0.5 text-xs font-semibold text-black dark:bg-white/20 dark:text-white">
                     {info.examType}
                 </span>
             </div>
-            <span className="font-bold text-white">{info.title}</span>
+            <span className="font-bold text-black dark:text-white">
+                {info.title}
+            </span>
         </div>
     );
 }

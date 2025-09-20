@@ -4,6 +4,7 @@ import { useNow, useTranslations } from "next-intl";
 import { useMemo } from "react";
 
 type Badge = {
+    word: string;
     letter: string;
     className: string;
 };
@@ -28,38 +29,48 @@ const useLessonCard = (
         switch (type) {
             case "SEMINAR":
                 return {
+                    word: t("seminar"),
                     letter: t("short.seminar"),
-                    className: "bg-[#CF2EEF]",
+                    className: "bg-lesson-seminar",
                 };
             case "LECTURE":
                 return {
+                    word: t("lecture"),
                     letter: t("short.lecture"),
-                    className: "bg-[#E35D23]",
+                    className: "bg-lesson-lecture",
                 };
             case "LABORATORY":
                 return {
+                    word: t("laboratory"),
                     letter: t("short.laboratory"),
-                    className: "bg-[#3BBFE4]",
+                    className: "bg-lesson-laboratory",
                 };
             case "COMPUTER_LABORATORY":
                 return {
                     // letter: t("short.computerLaboratory"),
                     // className: "bg-yellow-600",
+                    word: t("laboratory"),
                     letter: t("short.laboratory"),
-                    className: "bg-[#3BBFE4]",
+                    className: "bg-lesson-laboratory",
                 };
             case "EXERCISES":
                 return {
+                    word: t("exercises"),
                     letter: t("short.exercises"),
-                    className: "bg-[#83D32E]",
+                    className: "bg-lesson-exercises",
                 };
             case "PROJECT":
                 return {
+                    word: t("project"),
                     letter: t("short.project"),
-                    className: "bg-[#D32E2E]",
+                    className: "bg-lesson-project",
                 };
             default:
-                return { letter: t("short.other"), className: "bg-gray-600" };
+                return {
+                    word: t("other"),
+                    letter: t("short.other"),
+                    className: "bg-gray-600",
+                };
             // return null;
         }
     }, [type, t]);

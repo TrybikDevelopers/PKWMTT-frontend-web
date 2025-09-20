@@ -7,7 +7,7 @@ type Props = {
 export default function CalendarSVG({ className }: Props) {
     return (
         <svg
-            className={cn("size-6 fill-white", className)}
+            className={cn("size-6 fill-current", className)}
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
         >

@@ -15,7 +15,15 @@ export default function Header() {
                     width={1024}
                     height={1024}
                     alt="logo"
-                    className="object-cover"
+                    className="block object-cover dark:hidden"
+                    priority
+                />
+                <Image
+                    src={"/logo-dark.png"}
+                    width={1024}
+                    height={1024}
+                    alt="logo"
+                    className="hidden object-cover dark:block"
                     priority
                 />
             </Link>

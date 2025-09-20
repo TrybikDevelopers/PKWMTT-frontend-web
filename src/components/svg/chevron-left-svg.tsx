@@ -9,7 +9,7 @@ export default function ChevronLeftSVG({ className }: Props) {
         <svg
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
-            className={cn("text-[#AFAFAF]", className)}
+            className={cn("text-text-muted", className)}
         >
             <g>
                 <line
