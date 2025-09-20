@@ -43,7 +43,7 @@ export default function CalendarDayMobile({
         <div className="md:hidden">
             <Button
                 className={cn(
-                    "flex aspect-square h-full w-full cursor-pointer items-center justify-center rounded-md bg-transparent p-0 hover:bg-transparent",
+                    "flex aspect-square h-full w-full cursor-pointer items-center justify-center rounded-md border-none bg-transparent p-0 shadow-none outline-none hover:bg-transparent",
                     isMuted && "text-muted-foreground/70",
                 )}
                 type="button"
@@ -54,7 +54,8 @@ export default function CalendarDayMobile({
                     <span
                         className={cn(
                             "flex h-full w-full items-center justify-center rounded-full text-lg font-light",
-                            isToday && "bg-accent text-accent-foreground",
+                            isToday &&
+                                "bg-accent dark:text-accent-foreground text-white",
                         )}
                     >
                         {day.date.getDate()}
