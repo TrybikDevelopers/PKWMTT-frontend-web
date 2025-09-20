@@ -11,7 +11,7 @@ export default function Header() {
                 className="grid aspect-square h-full w-auto shrink-0 p-2.5"
             >
                 <Image
-                    src={"/logo-light.png"}
+                    src={"/logo.png"}
                     width={1024}
                     height={1024}
                     alt="logo"
@@ -19,7 +19,7 @@ export default function Header() {
                     priority
                 />
                 <Image
-                    src={"/logo.png"}
+                    src={"/logo-dark.png"}
                     width={1024}
                     height={1024}
                     alt="logo"
