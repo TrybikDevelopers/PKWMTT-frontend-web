@@ -1,4 +1,4 @@
-import { getTimetableSettings } from "@/server/cookies";
+import { getValidTimetableSettings } from "@/server/data-access/timetable";
 import { api, HydrateClient } from "@/trpc/server";
 import TimetableForm from "@/views/main-page-view/components/timetable-form/timetable-form";
 import MainPageView from "@/views/main-page-view/main-page-view";
@@ -15,7 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-    const timetableSettings = await getTimetableSettings();
+    const { timetableSettings } = await getValidTimetableSettings();
 
     if (!timetableSettings) {
         void api.timetable.getGeneralGroups.prefetch();

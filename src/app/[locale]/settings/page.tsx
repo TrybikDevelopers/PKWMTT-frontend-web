@@ -1,4 +1,4 @@
-import { getTimetableSettings } from "@/server/cookies";
+import { getValidTimetableSettings } from "@/server/data-access/timetable";
 import { api } from "@/trpc/server";
 import SettingsPageView from "@/views/settings-page-view/settings-page-view";
 import type { Metadata } from "next";
@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function SettingsPage() {
-    const timetableSettings = await getTimetableSettings();
+    const { timetableSettings } = await getValidTimetableSettings();
 
     void api.timetable.getGeneralGroups.prefetch();
 

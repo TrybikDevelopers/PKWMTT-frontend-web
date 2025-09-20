@@ -1,5 +1,6 @@
 import "server-only";
 
+import { TimetableSettingsSchema } from "@/schema/timetable-settings-schema";
 import type {
     AcademicHours,
     FetchAcademicHoursResult,
@@ -11,6 +12,7 @@ import type {
     Timetable,
 } from "@/types/data-access/timetable";
 import { generateFetchUrl, getGenericHeaders } from ".";
+import { getTimetableSettings } from "../cookies";
 
 export const fetchGeneralGroups =
     async (): Promise<FetchGeneralGroupsResult> => {
@@ -128,4 +130,36 @@ export const fetchTimetable = async (
         timetable: data,
         error: null,
     };
+};
+
+/**
+ * Validates the timetable settings by checking if the general group and subgroups exist in the API.
+ * @param timetableSettings - The timetable settings to validate.
+ * @returns The timetable settings if valid, null otherwise.
+ */
+
+export const getValidTimetableSettings = async (): Promise<{
+    timetableSettings: TimetableSettingsSchema | null;
+}> => {
+    const timetableSettings = await getTimetableSettings();
+
+    if (!timetableSettings) {
+        return { timetableSettings: null };
+    }
+
+    const subGroupsFromApi = await fetchSubGroupsForGeneralGroup(
+        timetableSettings.generalGroup,
+    );
+
+    if (subGroupsFromApi.error) {
+        return { timetableSettings: null };
+    }
+
+    for (const group of timetableSettings.groups) {
+        if (!subGroupsFromApi.subGroups.includes(group)) {
+            return { timetableSettings: null };
+        }
+    }
+
+    return { timetableSettings };
 };
