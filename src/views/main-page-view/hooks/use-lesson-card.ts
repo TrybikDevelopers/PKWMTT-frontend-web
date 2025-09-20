@@ -1,4 +1,5 @@
 import type { ClassEntry } from "@/types/data-access/timetable";
+import { toZonedTime } from "date-fns-tz";
 import { useNow, useTranslations } from "next-intl";
 import { useMemo } from "react";
 
@@ -14,9 +15,10 @@ const useLessonCard = (
 ) => {
     const t = useTranslations("home.lessonType");
 
-    const now = useNow({
+    const currentTime = useNow({
         updateInterval: 1000 * 15, // 15 seconds
     });
+    const now = toZonedTime(currentTime, "Europe/Warsaw");
 
     const badge = useMemo((): Badge | null => {
         if (!type) {
@@ -105,6 +107,8 @@ const useLessonCard = (
                 };
             }
 
+            // Create lesson start and end times in Europe/Warsaw timezone
+            // Since now is already in Warsaw timezone, we can work with the same date
             const lessonStartDate = new Date(
                 now.getFullYear(),
                 now.getMonth(),
@@ -126,6 +130,7 @@ const useLessonCard = (
                 lessonEndDate.setDate(lessonEndDate.getDate() + 1);
             }
 
+            // All dates are now in Europe/Warsaw timezone context
             const isActive = now >= lessonStartDate && now <= lessonEndDate;
 
             return {
