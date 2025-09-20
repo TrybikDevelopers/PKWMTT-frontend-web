@@ -46,14 +46,14 @@ export function GroupCardSkeleton() {
         <Card className="bg-card border-border min-h-18 animate-pulse transition-colors">
             <CardContent className="p-4">
                 <div className="flex items-center gap-3">
-                    <div className="rounded-lg bg-white/25 p-2">
+                    <div className="rounded-lg bg-black/25 p-2 dark:bg-white/25">
                         <div className="size-6"></div>
                     </div>
                     <div className="flex-1">
-                        <div className="h-6 w-22 rounded-sm bg-white/25" />
+                        <div className="h-6 w-22 rounded-sm bg-black/25 dark:bg-white/25" />
                     </div>
                     <div>
-                        <div className="h-6 w-28 rounded-sm bg-white/25" />
+                        <div className="h-6 w-28 rounded-sm bg-black/25 dark:bg-white/25" />
                     </div>
                 </div>
             </CardContent>

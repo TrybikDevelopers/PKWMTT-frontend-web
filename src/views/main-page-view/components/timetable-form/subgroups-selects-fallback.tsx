@@ -10,7 +10,7 @@ export default function SubGroupsSelectsFallback({ fallbacksLength }: Props) {
                     className="flex w-full flex-col gap-1.5"
                     key={`fallback-${index}`}
                 >
-                    <div className="h-3.5 w-24 animate-pulse rounded-sm bg-white/25" />
+                    <div className="h-3.5 w-24 animate-pulse rounded-sm bg-black/25 dark:bg-white/25" />
                     <div className="border-input bg-input/30 h-12 w-full animate-pulse rounded-md border" />
                 </div>
             ))}
