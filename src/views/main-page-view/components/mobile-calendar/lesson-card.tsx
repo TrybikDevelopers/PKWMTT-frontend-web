@@ -30,10 +30,10 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                     "bg-indicator-neutral flex h-full w-1.5 shrink-0",
                     isCurrentLessonActive && "bg-accent",
                 )}
-            ></div>
+            />
             <div className="flex w-full flex-col justify-between gap-5 p-1.25 px-2">
                 <div className="flex items-center">
-                    <span className="xs:text-base text-foreground w-fit text-sm font-normal">
+                    <span className="xs:text-base text-foreground w-fit text-sm font-normal text-nowrap">
                         {sanitizedHour}
                     </span>
                     {lesson && (

@@ -25,7 +25,7 @@ function DesktopLessonCardSkeleton() {
     );
 }
 
-export default function MainPageLoading() {
+export default function MainPageSkeleton() {
     return (
         <div className="h-full w-full animate-pulse">
             {/* Mobile */}

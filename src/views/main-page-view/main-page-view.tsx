@@ -1,17 +1,35 @@
-import type { TimetableSettingsSchema } from "@/schema/timetable-settings-schema";
+import { getValidTimetableSettings } from "@/server/data-access/timetable";
+import { api, HydrateClient } from "@/trpc/server";
 import DesktopTimetable from "./components/desktop-timetable/desktop-timetable";
 import MobileTimetable from "./components/mobile-calendar/mobile-timetable";
+import TimetableForm from "./components/timetable-form/timetable-form";
 
-type Props = {
-    timetableSettings: TimetableSettingsSchema;
-};
+export default async function MainPageView() {
+    const { timetableSettings } = await getValidTimetableSettings();
 
-export default function MainPageView({ timetableSettings }: Props) {
+    if (!timetableSettings) {
+        void api.timetable.getGeneralGroups.prefetch();
+
+        return (
+            <HydrateClient>
+                <TimetableForm />
+            </HydrateClient>
+        );
+    }
+
+    void api.timetable.getTimetable.prefetch({
+        generalGroup: timetableSettings.generalGroup,
+        groups: timetableSettings.groups,
+    });
+    void api.timetable.getAcademicHours.prefetch();
+
     return (
-        <div className="text-foreground flex h-full w-full flex-col">
-            <MobileTimetable timetableSettings={timetableSettings} />
+        <HydrateClient>
+            <div className="text-foreground flex h-full w-full flex-col">
+                <MobileTimetable timetableSettings={timetableSettings} />
 
-            <DesktopTimetable timetableSettings={timetableSettings} />
-        </div>
+                <DesktopTimetable timetableSettings={timetableSettings} />
+            </div>
+        </HydrateClient>
     );
 }

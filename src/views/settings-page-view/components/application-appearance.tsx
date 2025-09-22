@@ -56,6 +56,12 @@ export default function ApplicationAppearance() {
                                 router.replace("/settings", {
                                     locale: newLocale,
                                 });
+
+                                router.prefetch({ pathname: "/" });
+                                router.prefetch({ pathname: "/calendar" });
+                                router.prefetch({
+                                    pathname: "/ects-calculator",
+                                });
                             }}
                         >
                             <SelectTrigger size="sm">
