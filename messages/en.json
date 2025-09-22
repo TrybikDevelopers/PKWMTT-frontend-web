@@ -1,7 +1,7 @@
 {
     "home": {
         "metadata": {
-            "title": "Timetable | PKWMTT",
+            "title": "Timetable | PKWM App",
             "description": "View your university timetable and manage your academic schedule with PKWMTT."
         },
         "days": {
@@ -59,7 +59,7 @@
     },
     "calendar": {
         "metadata": {
-            "title": "Calendar | PKWMTT",
+            "title": "Calendar | PKWM App",
             "description": "Academic calendar with important dates and events for your university schedule."
         },
         "weekdays": {
@@ -91,7 +91,7 @@
     },
     "ectsCalculator": {
         "metadata": {
-            "title": "ECTS Calculator | PKWMTT",
+            "title": "ECTS Calculator | PKWM App",
             "description": "Calculate your ECTS credits and track your academic progress with our easy-to-use calculator."
         },
         "form": {
@@ -123,7 +123,7 @@
     },
     "settings": {
         "metadata": {
-            "title": "Settings | PKWMTT",
+            "title": "Settings | PKWM App",
             "description": "Customize your PKWMTT experience and manage your preferences."
         },
         "studentGroups": {

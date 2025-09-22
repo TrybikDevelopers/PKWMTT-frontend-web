@@ -1,7 +1,7 @@
 {
     "home": {
         "metadata": {
-            "title": "Rozkład zajęć | PKWMTT",
+            "title": "Rozkład zajęć | PKWM App",
             "description": "Przeglądaj swój rozkład zajęć i zarządzaj harmonogramem akademickim z PKWMTT."
         },
         "days": {
@@ -59,7 +59,7 @@
     },
     "calendar": {
         "metadata": {
-            "title": "Kalendarz | PKWMTT",
+            "title": "Kalendarz | PKWM App",
             "description": "Kalendarz akademicki z ważnymi datami i wydarzeniami dla Twojego harmonogramu uniwersyteckiego."
         },
         "weekdays": {
@@ -91,7 +91,7 @@
     },
     "ectsCalculator": {
         "metadata": {
-            "title": "Kalkulator ECTS | PKWMTT",
+            "title": "Kalkulator ECTS | PKWM App",
             "description": "Oblicz swoje punkty ECTS i śledź postępy akademickie za pomocą naszego łatwego w użyciu kalkulatora."
         },
         "form": {
@@ -123,7 +123,7 @@
     },
     "settings": {
         "metadata": {
-            "title": "Ustawienia | PKWMTT",
+            "title": "Ustawienia | PKWM App",
             "description": "Dostosuj swoje doświadczenie PKWMTT i zarządzaj swoimi preferencjami."
         },
         "studentGroups": {
