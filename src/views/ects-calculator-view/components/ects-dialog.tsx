@@ -46,7 +46,7 @@ export default function EctsDialog({
         <Dialog open={open} onOpenChange={onOpenChange}>
             {selectedCount === 0 ? (
                 <DialogTrigger className="bg-accent hover:bg-accent/80 absolute bottom-12 left-1/2 flex h-fit w-fit -translate-x-1/2 cursor-pointer items-center justify-center rounded-full p-3">
-                    <Plus size={60} strokeWidth={3} className="text-white" />
+                    <Plus className="size-8 stroke-3 text-white sm:size-12 lg:size-15" />
                 </DialogTrigger>
             ) : (
                 <Button
