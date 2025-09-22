@@ -1,8 +1,8 @@
 import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import type { ClassEntry } from "@/types/data-access/timetable";
 import { useTranslations } from "next-intl";
@@ -37,9 +37,9 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                         {sanitizedHour}
                     </span>
                     {lesson && (
-                        <Tooltip>
+                        <Popover>
                             <div className="flex w-full justify-end">
-                                <TooltipTrigger>
+                                <PopoverTrigger>
                                     <span className="xs:text-base ml-auto flex items-center gap-1 rounded-full text-sm">
                                         {badge && (
                                             <span
@@ -55,14 +55,17 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                                             {t("classRoom")}: {lesson.classroom}
                                         </span>
                                     </span>
-                                </TooltipTrigger>
+                                </PopoverTrigger>
                             </div>
                             {badge && (
-                                <TooltipContent>
+                                <PopoverContent
+                                    side="top"
+                                    className="bg-primary text-primary-foreground animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 after:border-t-primary relative z-50 w-fit rounded-md px-3 py-1.5 text-sm text-balance after:absolute after:-bottom-1.5 after:left-1/2 after:block after:h-0 after:w-0 after:-translate-x-1/2 after:border-t-6 after:border-r-6 after:border-l-6 after:border-r-transparent after:border-l-transparent after:content-['']"
+                                >
                                     <p>{badge.word}</p>
-                                </TooltipContent>
+                                </PopoverContent>
                             )}
-                        </Tooltip>
+                        </Popover>
                     )}
                 </div>
                 {lesson && (
