@@ -2,7 +2,7 @@
     "home": {
         "metadata": {
             "title": "Timetable | PKWM App",
-            "description": "View your university timetable and manage your academic schedule with PKWMTT."
+            "description": "View your university timetable and manage your academic schedule with PKWM App."
         },
         "days": {
             "monday": "Monday",
@@ -35,7 +35,7 @@
             "classRoom": "Classroom"
         },
         "timetableForm": {
-            "welcomeFirstTime": "Welcome to PKWMTT!",
+            "welcomeFirstTime": "Welcome to PKWM App!",
             "selectGroupsToContinue": "Select your general group and subgroups to continue.",
             "generalGroup": "General Group",
             "selectGeneralGroup": "Select General Group",
@@ -124,7 +124,7 @@
     "settings": {
         "metadata": {
             "title": "Settings | PKWM App",
-            "description": "Customize your PKWMTT experience and manage your preferences."
+            "description": "Customize your PKWM App experience and manage your preferences."
         },
         "studentGroups": {
             "text": "Student Groups",

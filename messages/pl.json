@@ -2,7 +2,7 @@
     "home": {
         "metadata": {
             "title": "Rozkład zajęć | PKWM App",
-            "description": "Przeglądaj swój rozkład zajęć i zarządzaj harmonogramem akademickim z PKWMTT."
+            "description": "Przeglądaj swój rozkład zajęć i zarządzaj harmonogramem akademickim z PKWM App."
         },
         "days": {
             "monday": "Poniedziałek",
@@ -35,7 +35,7 @@
             "classRoom": "Sala"
         },
         "timetableForm": {
-            "welcomeFirstTime": "Witamy w PKWMTT!",
+            "welcomeFirstTime": "Witamy w PKWM App!",
             "selectGroupsToContinue": "Wybierz swój oddział i grupy, aby kontynuować.",
             "generalGroup": "Oddział",
             "selectGeneralGroup": "Wybierz oddział",
@@ -124,7 +124,7 @@
     "settings": {
         "metadata": {
             "title": "Ustawienia | PKWM App",
-            "description": "Dostosuj swoje doświadczenie PKWMTT i zarządzaj swoimi preferencjami."
+            "description": "Dostosuj swoje doświadczenie PKWM App i zarządzaj swoimi preferencjami."
         },
         "studentGroups": {
             "text": "Grupy Studenckie",
