@@ -114,8 +114,6 @@ export function useMobileAppDownload() {
 
             setStatus("error");
             toast.error(t("error"));
-        } finally {
-            setStatus("idle");
         }
     }, [t, setLastDownload, isRateLimited]);
 
