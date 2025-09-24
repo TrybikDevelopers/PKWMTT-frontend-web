@@ -141,11 +141,23 @@
             "language": "Language",
             "polish": "Polish",
             "english": "English"
+        },
+        "mobileApp": {
+            "text": "Mobile App",
+            "androidApk": "Android APK"
         }
     },
     "errors": {
         "actions": {
             "unknown": "An unknown error occurred. Please try again later."
         }
+    },
+    "downloadMobileApp": {
+        "title": "Mobile App Available",
+        "description": "Download our Android mobile app for a better experience on your phone.",
+        "downloadButton": "Download APK",
+        "settingsNote": "You can also download it later from the <mark>Settings</mark> tab.",
+        "success": "Downloaded!",
+        "error": "An error occurred while downloading the mobile app. Please try again later."
     }
 }

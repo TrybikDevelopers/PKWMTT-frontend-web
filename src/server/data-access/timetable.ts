@@ -1,6 +1,6 @@
 import "server-only";
 
-import { TimetableSettingsSchema } from "@/schema/timetable-settings-schema";
+import type { TimetableSettingsSchema } from "@/schema/timetable-settings-schema";
 import type {
     AcademicHours,
     FetchAcademicHoursResult,
@@ -11,8 +11,9 @@ import type {
     SubGroups,
     Timetable,
 } from "@/types/data-access/timetable";
-import { generateFetchUrl, getGenericHeaders } from ".";
 import { getTimetableSettings } from "../cookies";
+import { generateFetchUrl } from "./generate-fetch-url";
+import { getGenericHeaders } from "./get-generic-headers";
 
 export const fetchGeneralGroups =
     async (): Promise<FetchGeneralGroupsResult> => {

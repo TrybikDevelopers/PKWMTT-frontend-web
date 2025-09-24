@@ -1,7 +1,8 @@
 import "server-only";
 
 import type { CalendarExam } from "@/types/data-access/calendar";
-import { generateFetchUrl, getGenericHeaders } from ".";
+import { generateFetchUrl } from "./generate-fetch-url";
+import { getGenericHeaders } from "./get-generic-headers";
 
 export const fetchCalendarByGroups = async (
     generalGroup: string,
