@@ -7,6 +7,8 @@ import { z } from "zod/mini";
 
 const MOBILE_APP_DIALOG_LAST_SHOWN_KEY =
     "download-mobile-app-dialog-last-shown";
+const MOBILE_APP_DOWNLOAD_LAST_KEY = "last-mobile-app-download";
+const RATE_LIMIT_THRESHOLD_MS = 1000 * 60 * 5; // 5 minutes
 
 const dateSchema = z.iso.datetime();
 
@@ -22,7 +24,7 @@ const dateDeserializer = (value: string): Date | null => {
 export function useMobileAppDialog() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const { status, handleDownload } = useMobileAppDownload();
+    const { status, handleDownload, isRateLimited } = useMobileAppDownload();
 
     const [lastShown, setLastShown] = useLocalStorage<Date | null>(
         MOBILE_APP_DIALOG_LAST_SHOWN_KEY,
@@ -41,7 +43,8 @@ export function useMobileAppDialog() {
     );
 
     useEffect(() => {
-        const shouldShowDialog: boolean = !(lastShown instanceof Date);
+        const shouldShowDialog: boolean =
+            !(lastShown instanceof Date) && !isRateLimited;
 
         if (shouldShowDialog) {
             const timer = setTimeout(() => {
@@ -51,7 +54,7 @@ export function useMobileAppDialog() {
 
             return () => clearTimeout(timer);
         }
-    }, [lastShown, updateOpen, setLastShown]);
+    }, [lastShown, isRateLimited, updateOpen, setLastShown]);
 
     return {
         isOpen,
@@ -62,13 +65,30 @@ export function useMobileAppDialog() {
 }
 
 export function useMobileAppDownload() {
+    const [lastDownload, setLastDownload] = useLocalStorage<Date | null>(
+        MOBILE_APP_DOWNLOAD_LAST_KEY,
+        null,
+        {
+            serializer: dateSerializer,
+            deserializer: dateDeserializer,
+        },
+    );
+
     const [status, setStatus] = useState<
         "idle" | "loading" | "success" | "error"
     >("idle");
 
     const t = useTranslations("downloadMobileApp");
 
+    const isRateLimited: boolean = lastDownload
+        ? Date.now() - lastDownload.getTime() < RATE_LIMIT_THRESHOLD_MS
+        : false;
+
     const handleDownload = useCallback(async () => {
+        if (isRateLimited) {
+            return;
+        }
+
         try {
             setStatus("loading");
             const result = await fetchMobileApk();
@@ -88,6 +108,7 @@ export function useMobileAppDownload() {
             URL.revokeObjectURL(url);
 
             setStatus("success");
+            setLastDownload(new Date());
         } catch (error) {
             console.error(error);
 
@@ -96,10 +117,11 @@ export function useMobileAppDownload() {
         } finally {
             setStatus("idle");
         }
-    }, [t]);
+    }, [t, setLastDownload, isRateLimited]);
 
     return {
         status,
         handleDownload,
+        isRateLimited,
     };
 }

@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import useFirstRender from "@/hooks/use-first-render";
 import { useMobileAppDownload } from "@/hooks/use-mobile-app";
 import { cn } from "@/lib/utils";
 import { Check, Download, LoaderCircle, Smartphone } from "lucide-react";
@@ -11,7 +12,12 @@ export default function MobileAppDownload() {
     const tDownload = useTranslations("downloadMobileApp");
     const tSettings = useTranslations("settings.mobileApp");
 
-    const { status, handleDownload } = useMobileAppDownload();
+    const { isFirstRender } = useFirstRender();
+
+    const { status, handleDownload, isRateLimited } = useMobileAppDownload();
+
+    const disabled =
+        status === "loading" || status === "success" || isRateLimited;
 
     return (
         <div>
@@ -27,38 +33,43 @@ export default function MobileAppDownload() {
                                 {tSettings("androidApk")}
                             </span>
                         </div>
-                        <Button
-                            onClick={handleDownload}
-                            disabled={
-                                status === "loading" || status === "success"
-                            }
-                            className="relative cursor-pointer gap-3"
-                        >
-                            <LoaderCircle
-                                className={cn(
-                                    "absolute top-1/2 left-1/2 hidden size-5 -translate-x-1/2 -translate-y-1/2 animate-spin",
-                                    status === "loading" && "block",
-                                )}
-                            />
-                            <span
-                                className={cn(
-                                    "mx-auto flex h-fit w-fit flex-row items-center justify-center gap-2 opacity-100",
-                                    status === "loading" && "opacity-0",
-                                )}
+                        {isFirstRender && (
+                            <div className="bg-button/85 h-9 w-[132px] animate-pulse rounded-md px-4 py-2">
+                                <p className="text-foreground h-full w-full"></p>
+                            </div>
+                        )}
+                        {!isFirstRender && (
+                            <Button
+                                onClick={handleDownload}
+                                disabled={disabled}
+                                className="relative cursor-pointer gap-3"
                             >
-                                {status === "success" ? (
-                                    <>
-                                        <Check className="size-4 text-green-600" />
-                                        {tDownload("success")}
-                                    </>
-                                ) : (
-                                    <>
-                                        <Download className="size-4" />
-                                        {tDownload("downloadButton")}
-                                    </>
-                                )}
-                            </span>
-                        </Button>
+                                <LoaderCircle
+                                    className={cn(
+                                        "absolute top-1/2 left-1/2 hidden size-5 -translate-x-1/2 -translate-y-1/2 animate-spin",
+                                        status === "loading" && "block",
+                                    )}
+                                />
+                                <span
+                                    className={cn(
+                                        "mx-auto flex h-fit w-fit flex-row items-center justify-center gap-2 opacity-100",
+                                        status === "loading" && "opacity-0",
+                                    )}
+                                >
+                                    {status === "success" || isRateLimited ? (
+                                        <>
+                                            <Check className="size-4 text-green-600" />
+                                            {tDownload("success")}
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Download className="size-4" />
+                                            {tDownload("downloadButton")}
+                                        </>
+                                    )}
+                                </span>
+                            </Button>
+                        )}
                     </div>
                 </CardContent>
             </Card>
