@@ -1,10 +1,18 @@
-import { generateFetchUrl } from "./generate-fetch-url";
+import { env } from "@/env";
+
+export const getDownloadUrl = (): URL => {
+    const url = new URL(
+        "/pkwmtt/api/v1/apk/download",
+        env.NEXT_PUBLIC_APK_DOWNLOAD_BASE_URL,
+    );
+    return url;
+};
 
 export const fetchMobileApk = async (): Promise<
     | { success: true; file: Blob; fileName: string }
     | { success: false; error: "UnknownError" }
 > => {
-    const url = generateFetchUrl("/apk/download");
+    const url = getDownloadUrl();
 
     const response = await fetch(url);
 
