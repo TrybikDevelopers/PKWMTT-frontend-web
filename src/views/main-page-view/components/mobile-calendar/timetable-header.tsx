@@ -32,7 +32,7 @@ export default function TimetableHeader({
     const dayName = days[selectedDayIndex];
 
     return (
-        <header className="flex items-center justify-between p-4">
+        <header className="sticky top-0 z-10 flex items-center justify-between p-4">
             <ChangeDayButton onClick={decrementDayIndex}>
                 <ChevronLeftSVG />
             </ChangeDayButton>
