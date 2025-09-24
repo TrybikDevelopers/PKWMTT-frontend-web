@@ -69,6 +69,12 @@ export default function EctsTableRow({
                 <div className="flex-1 px-4 py-2 text-center">{name}</div>
                 <div className="flex-1 px-4 py-2 text-center">{ects}</div>
                 <div className="flex-1 px-4 py-2 text-center">{grade}</div>
+                <div className="w-12 px-2 py-2 text-center">
+                    <button
+                        className="size-4 align-middle accent-current"
+                        type="submit"
+                    />
+                </div>
             </div>
         </div>
     );
