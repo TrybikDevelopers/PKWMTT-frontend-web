@@ -1,5 +1,6 @@
 import type { TimetableSettingsSchema } from "@/schema/timetable-settings-schema";
 import ApplicationAppearance from "./components/application-appearance";
+import MobileAppDownload from "./components/mobile-app-download";
 import StudentGroups from "./components/student-groups";
 
 type Props = {
@@ -13,6 +14,8 @@ export default function SettingsPageView({ timetableSettings }: Props) {
                 <StudentGroups timetableSettings={timetableSettings} />
 
                 <ApplicationAppearance />
+
+                <MobileAppDownload />
             </div>
         </div>
     );

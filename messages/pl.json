@@ -141,11 +141,23 @@
             "language": "Język",
             "polish": "Polski",
             "english": "Angielski"
+        },
+        "mobileApp": {
+            "text": "Aplikacja mobilna",
+            "androidApk": "Android APK"
         }
     },
     "errors": {
         "actions": {
             "unknown": "Wystąpił nieznany błąd. Proszę spróbować ponownie później."
         }
+    },
+    "downloadMobileApp": {
+        "title": "Aplikacja mobilna dostępna",
+        "description": "Pobierz naszą aplikację mobilną na Androida dla lepszego doświadczenia na telefonie.",
+        "downloadButton": "Pobierz APK",
+        "settingsNote": "Możesz ją również pobrać później z zakładki <mark>Ustawienia</mark>.",
+        "success": "Pobrano!",
+        "error": "Wystąpił błąd podczas pobierania aplikacji mobilnej. Proszę spróbować ponownie później."
     }
 }
