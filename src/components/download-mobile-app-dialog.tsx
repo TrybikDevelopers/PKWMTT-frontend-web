@@ -67,6 +67,9 @@ export default function DownloadMobileAppDialog() {
                                 <Link
                                     href="/settings"
                                     className="text-accent font-bold"
+                                    onNavigate={() =>
+                                        setTimeout(() => updateOpen(false), 150)
+                                    }
                                 >
                                     {chunks}
                                 </Link>
