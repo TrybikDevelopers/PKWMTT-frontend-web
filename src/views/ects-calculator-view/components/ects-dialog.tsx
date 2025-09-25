@@ -26,6 +26,7 @@ import type { UseFormReturn } from "react-hook-form";
 type Props = {
     open: boolean;
     selectedCount: number;
+    editingIndex: number | null;
     form: UseFormReturn<EctsEntrySchema>;
     onSubmit: (values: EctsEntrySchema) => void;
     onOpenChange: (open: boolean) => void;
@@ -35,6 +36,7 @@ type Props = {
 export default function EctsDialog({
     open,
     selectedCount,
+    editingIndex,
     form,
     onSubmit,
     onOpenChange,
@@ -60,9 +62,15 @@ export default function EctsDialog({
             )}
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>{t("dialogTitle")}</DialogTitle>
+                    <DialogTitle>
+                        {editingIndex !== null
+                            ? t("editDialogTitle")
+                            : t("dialogTitle")}
+                    </DialogTitle>
                     <DialogDescription>
-                        {t("dialogDescription")}
+                        {editingIndex !== null
+                            ? t("editDialogDescription")
+                            : t("dialogDescription")}
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
@@ -136,7 +144,9 @@ export default function EctsDialog({
                                 variant="default"
                                 className="cursor-pointer"
                             >
-                                {t("confirmButton")}
+                                {editingIndex !== null
+                                    ? t("updateButton")
+                                    : t("confirmButton")}
                             </Button>
                         </DialogFooter>
                     </form>

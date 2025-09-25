@@ -8,6 +8,7 @@ type Props = {
     grade: string;
     checked: boolean;
     onToggle?: () => void;
+    onEdit?: () => void;
 };
 
 export default function EctsTableRow({
@@ -16,6 +17,7 @@ export default function EctsTableRow({
     grade,
     checked,
     onToggle,
+    onEdit,
 }: Props) {
     const t = useTranslations("ectsCalculator.form");
 
@@ -52,6 +54,15 @@ export default function EctsTableRow({
                             </div>
                         </div>
                     </div>
+                    <div className="flex h-full min-h-11 flex-shrink-0 items-center justify-center">
+                        <button
+                            className="text-primary cursor-pointer text-sm font-medium uppercase hover:underline"
+                            type="button"
+                            onClick={onEdit}
+                        >
+                            {t("editButton")}
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -66,14 +77,23 @@ export default function EctsTableRow({
                         aria-label={`Select ${name}`}
                     />
                 </div>
-                <div className="flex-1 px-4 py-2 text-center">{name}</div>
-                <div className="flex-1 px-4 py-2 text-center">{ects}</div>
-                <div className="flex-1 px-4 py-2 text-center">{grade}</div>
+                <div className="xs:text-base flex-1 px-2 py-1 text-center text-sm sm:px-4">
+                    {name}
+                </div>
+                <div className="xs:text-base flex-1 px-2 py-1 text-center text-sm sm:px-4">
+                    {ects}
+                </div>
+                <div className="xs:text-base flex-1 px-2 py-1 text-center text-sm sm:px-4">
+                    {grade}
+                </div>
                 <div className="w-12 px-2 py-2 text-center">
                     <button
-                        className="size-4 align-middle accent-current"
-                        type="submit"
-                    />
+                        className="text-primary cursor-pointer text-sm font-medium uppercase hover:underline"
+                        type="button"
+                        onClick={onEdit}
+                    >
+                        {t("editButton")}
+                    </button>
                 </div>
             </div>
         </div>

@@ -16,12 +16,14 @@ export default function ECTSCalculatorView() {
         selected,
         allSelected,
         someSelected,
+        editingIndex,
         avgGrade,
         totalEcts,
         weightedAvg,
         toggleAll,
         toggleOne,
         deleteSelected,
+        editEntry,
         onSubmit,
         handleDialogOpenChange,
         form,
@@ -51,6 +53,7 @@ export default function ECTSCalculatorView() {
                             grade={r.grade.toString()}
                             checked={selected.has(idx)}
                             onToggle={() => toggleOne(idx)}
+                            onEdit={() => editEntry(idx)}
                         />
                     ))
                 )}
@@ -94,6 +97,7 @@ export default function ECTSCalculatorView() {
             <EctsDialog
                 open={open}
                 selectedCount={selected.size}
+                editingIndex={editingIndex}
                 form={form}
                 onSubmit={onSubmit}
                 onOpenChange={handleDialogOpenChange}

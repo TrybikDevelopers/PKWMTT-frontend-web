@@ -118,7 +118,11 @@
             "tableHeaderGrade": "Grade",
             "ectsLabelShort": "ECTS:",
             "gradeLabelShort": "Grade:",
-            "selectAll": "Select all"
+            "selectAll": "Select all",
+            "editButton": "Edit",
+            "editDialogTitle": "Edit Subject",
+            "editDialogDescription": "Modify the details of your subject.",
+            "updateButton": "Update"
         }
     },
     "settings": {

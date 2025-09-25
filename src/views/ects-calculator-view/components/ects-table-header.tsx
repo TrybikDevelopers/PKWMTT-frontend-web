@@ -44,6 +44,9 @@ export default function EctsTableHeader({
             <div className="xs:text-base flex-1 px-2 py-2 text-center text-sm sm:px-4">
                 {t("tableHeaderGrade")}
             </div>
+            <div className="w-12 px-2 py-2 text-center">
+                {/* Empty space for edit button column alignment */}
+            </div>
         </div>
     );
 }
