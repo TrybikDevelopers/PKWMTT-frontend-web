@@ -32,7 +32,6 @@ export default function useEctsCalculatorPage() {
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     const [open, setOpen] = useState(false);
-    const [editingIndex, setEditingIndex] = useState<number | null>(null);
     const [selected, setSelected] = useState<Set<number>>(new Set());
 
     const allSelected = rows.length > 0 && selected.size === rows.length;
@@ -69,24 +68,10 @@ export default function useEctsCalculatorPage() {
     });
 
     const onSubmit = (values: EctsEntrySchema) => {
-        if (editingIndex !== null) {
-            setRows((prev) =>
-                prev.map((row, idx) =>
-                    idx === editingIndex
-                        ? {
-                              name: values.name,
-                              ects: values.ects,
-                              grade: values.grade,
-                          }
-                        : row,
-                ),
-            );
-        } else {
-            setRows((prev) => [
-                ...prev,
-                { name: values.name, ects: values.ects, grade: values.grade },
-            ]);
-        }
+        setRows((prev) => [
+            ...prev,
+            { name: values.name, ects: values.ects, grade: values.grade },
+        ]);
 
         form.reset({
             name: "",
@@ -95,7 +80,12 @@ export default function useEctsCalculatorPage() {
         });
 
         setOpen(false);
-        setEditingIndex(null);
+    };
+
+    const editEntry = (value: EctsEntrySchema, index: number) => {
+        setRows((prev) =>
+            prev.map((row, idx) => (idx === index ? value : row)),
+        );
     };
 
     const { avgGrade, totalEcts, weightedAvg } = useMemo(() => {
@@ -112,19 +102,6 @@ export default function useEctsCalculatorPage() {
         return { avgGrade: avg, totalEcts: ectsSum, weightedAvg: wAvg };
     }, [rows]);
 
-    const editEntry = (index: number) => {
-        const entry = rows[index];
-        if (entry) {
-            form.reset({
-                name: entry.name,
-                ects: entry.ects,
-                grade: entry.grade,
-            });
-            setEditingIndex(index);
-            setOpen(true);
-        }
-    };
-
     const handleDialogOpenChange = (state: boolean) => {
         setOpen(state);
 
@@ -134,9 +111,6 @@ export default function useEctsCalculatorPage() {
                 ects: "",
                 grade: "",
             });
-            setEditingIndex(null);
-        } else {
-            setEditingIndex(null);
         }
     };
 
@@ -154,7 +128,6 @@ export default function useEctsCalculatorPage() {
         selected,
         allSelected,
         someSelected,
-        editingIndex,
 
         avgGrade,
         totalEcts,
@@ -163,8 +136,8 @@ export default function useEctsCalculatorPage() {
         toggleAll,
         toggleOne,
         deleteSelected,
-        editEntry,
         onSubmit,
+        editEntry,
         handleDialogOpenChange,
 
         form,

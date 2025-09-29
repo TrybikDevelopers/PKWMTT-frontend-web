@@ -1,26 +1,33 @@
 "use client";
 
+import type { EctsEntrySchema } from "@/schema/forms/ects-form-schema";
 import { Pencil } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import EditEntryDialog from "./edit-entry-dialog";
 
 type Props = {
-    name: string;
-    ects: number | string;
-    grade: string;
+    entry: EctsEntrySchema;
+    index: number;
     checked: boolean;
-    onToggle?: () => void;
-    onEdit?: () => void;
+    onToggle: () => void;
+    onEdit: (value: EctsEntrySchema, index: number) => void;
 };
 
 export default function EctsTableRow({
-    name,
-    ects,
-    grade,
+    entry,
+    index,
     checked,
     onToggle,
     onEdit,
 }: Props) {
     const t = useTranslations("ectsCalculator.form");
+
+    const [open, setOpen] = useState(false);
+
+    const updateOpen = (state: boolean) => {
+        setOpen(state);
+    };
 
     return (
         <div className="bg-button xs:p-1 mt-4 rounded-2xl p-3">
@@ -38,20 +45,20 @@ export default function EctsTableRow({
                     </div>
                     <div className="min-w-0 flex-1">
                         <div className="text-foreground mb-2 text-sm font-medium break-words">
-                            {name}
+                            {entry.name}
                         </div>
                         <div className="text-muted-foreground flex flex-wrap gap-x-4 gap-y-1 text-xs">
                             <div className="flex items-center gap-1">
                                 <span className="font-medium">
                                     {t("ectsLabelShort")}
                                 </span>
-                                <span>{ects}</span>
+                                <span>{entry.ects}</span>
                             </div>
                             <div className="flex items-center gap-1">
                                 <span className="font-medium">
                                     {t("gradeLabelShort")}
                                 </span>
-                                <span>{grade}</span>
+                                <span>{entry.grade}</span>
                             </div>
                         </div>
                     </div>
@@ -59,7 +66,7 @@ export default function EctsTableRow({
                         <button
                             className="text-primary inline-flex cursor-pointer items-center justify-center"
                             type="button"
-                            onClick={onEdit}
+                            onClick={() => updateOpen(true)}
                             aria-label={t("editButton")}
                             title={t("editButton")}
                         >
@@ -77,23 +84,23 @@ export default function EctsTableRow({
                         type="checkbox"
                         checked={checked}
                         onChange={onToggle}
-                        aria-label={`Select ${name}`}
+                        aria-label={`Select ${entry.name}`}
                     />
                 </div>
                 <div className="xs:text-base flex-1 px-2 py-1 text-center text-sm sm:px-4">
-                    {name}
+                    {entry.name}
                 </div>
                 <div className="xs:text-base flex-1 px-2 py-1 text-center text-sm sm:px-4">
-                    {ects}
+                    {entry.ects}
                 </div>
                 <div className="xs:text-base flex-1 px-2 py-1 text-center text-sm sm:px-4">
-                    {grade}
+                    {entry.grade}
                 </div>
                 <div className="flex w-12 flex-shrink-0 items-center justify-center px-2 py-2">
                     <button
                         className="text-primary inline-flex cursor-pointer items-center justify-center"
                         type="button"
-                        onClick={onEdit}
+                        onClick={() => updateOpen(true)}
                         aria-label={t("editButton")}
                         title={t("editButton")}
                     >
@@ -101,6 +108,14 @@ export default function EctsTableRow({
                     </button>
                 </div>
             </div>
+
+            <EditEntryDialog
+                open={open}
+                entry={entry}
+                index={index}
+                editEntry={onEdit}
+                onOpenChange={setOpen}
+            />
         </div>
     );
 }
