@@ -15,7 +15,6 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import {
     Form,
@@ -37,10 +36,11 @@ import {
     type EctsEntrySchema,
 } from "@/schema/forms/ects-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, ChevronsUpDown, Plus, Trash2 } from "lucide-react";
+import { Check, ChevronsUpDown } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+
 type Props = {
     open: boolean;
     entry: EctsEntrySchema;
@@ -71,9 +71,16 @@ export default function EditEntryDialog({
         reValidateMode: "onChange",
     });
 
-    const [openECTS, setOpenECTS] = useState(false);
-
     const name = form.watch("name");
+
+    const [comboboxOpen, setComboboxOpen] = useState(false);
+    const [showCombobox, setShowCombobox] = useState(subjects.includes(name));
+
+    useEffect(() => {
+        if (subjects.length > 0 && name.length == 0 && !showCombobox) {
+            setShowCombobox(true);
+        }
+    }, [subjects, showCombobox, name]);
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -88,12 +95,11 @@ export default function EditEntryDialog({
                     <form
                         onSubmit={form.handleSubmit((data) => {
                             editEntry(data, index);
+                            onOpenChange(false);
                         })}
                         className="grid gap-4"
                     >
-                        {subjects.length > 0 &&
-                        name.length == 0 &&
-                        !subjects.includes(name) ? (
+                        {showCombobox ? (
                             <FormField
                                 control={form.control}
                                 name="name"
@@ -103,8 +109,8 @@ export default function EditEntryDialog({
                                             {t("nameLabel")}
                                         </FormLabel>
                                         <Popover
-                                            open={openECTS}
-                                            onOpenChange={setOpenECTS}
+                                            open={comboboxOpen}
+                                            onOpenChange={setComboboxOpen}
                                             modal={true}
                                         >
                                             <PopoverTrigger asChild>
@@ -159,7 +165,7 @@ export default function EditEntryDialog({
                                                                                 subject,
                                                                             );
 
-                                                                            setOpenECTS(
+                                                                            setComboboxOpen(
                                                                                 false,
                                                                             );
                                                                         }}

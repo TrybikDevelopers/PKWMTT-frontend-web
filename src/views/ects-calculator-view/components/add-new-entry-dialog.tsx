@@ -59,7 +59,7 @@ export default function AddNewEntryDialog({
 }: Props) {
     const t = useTranslations("ectsCalculator.form");
 
-    const [openECTS, setOpenECTS] = useState(false);
+    const [comboboxOpen, setComboboxOpen] = useState(false);
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -99,8 +99,8 @@ export default function AddNewEntryDialog({
                                             {t("nameLabel")}
                                         </FormLabel>
                                         <Popover
-                                            open={openECTS}
-                                            onOpenChange={setOpenECTS}
+                                            open={comboboxOpen}
+                                            onOpenChange={setComboboxOpen}
                                             modal={true}
                                         >
                                             <PopoverTrigger asChild>
@@ -155,7 +155,7 @@ export default function AddNewEntryDialog({
                                                                                 subject,
                                                                             );
 
-                                                                            setOpenECTS(
+                                                                            setComboboxOpen(
                                                                                 false,
                                                                             );
                                                                         }}

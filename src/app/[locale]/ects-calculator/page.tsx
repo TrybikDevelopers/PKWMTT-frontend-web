@@ -2,7 +2,6 @@ import {
     fetchSubjectsForGeneralGroup,
     getValidTimetableSettings,
 } from "@/server/data-access/timetable";
-import { api } from "@/trpc/server";
 import ECTSCalculatorView from "@/views/ects-calculator-view/ects-calculator-view";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
