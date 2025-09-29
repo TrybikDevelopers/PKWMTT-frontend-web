@@ -6,6 +6,7 @@ import type {
     FetchAcademicHoursResult,
     FetchGeneralGroupsResult,
     FetchSubGroupsResult,
+    FetchSubjectsForGeneralGroupResult,
     FetchTimetableResult,
     GeneralGroups,
     SubGroups,
@@ -41,6 +42,34 @@ export const fetchGeneralGroups =
             error: null,
         };
     };
+
+export const fetchSubjectsForGeneralGroup = async (
+    generalGroupLabel: string,
+): Promise<FetchSubjectsForGeneralGroupResult> => {
+    const url = generateFetchUrl(`/timetables/${generalGroupLabel}/list`);
+
+    const headers = getGenericHeaders();
+
+    const response = await fetch(url, {
+        method: "GET",
+        headers,
+    });
+
+    if (!response.ok) {
+        console.log(await response.text());
+        return {
+            subjects: null,
+            error: "UnknownError",
+        };
+    }
+
+    const data = (await response.json()) as string[];
+
+    return {
+        subjects: data,
+        error: null,
+    };
+};
 
 export const fetchSubGroupsForGeneralGroup = async (
     generalGroupLabel: string,

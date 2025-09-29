@@ -6,7 +6,11 @@ import EctsTableHeader from "./components/ects-table-header";
 import EctsTableRow from "./components/ects-table-row";
 import useEctsCalculatorPage from "./hooks/use-ects-calculator-page";
 
-export default function ECTSCalculatorView() {
+type Props = {
+    subjects: string[];
+};
+
+export default function ECTSCalculatorView({ subjects }: Props) {
     const t = useTranslations("ectsCalculator.form");
 
     const {
