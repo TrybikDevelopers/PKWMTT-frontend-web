@@ -56,6 +56,7 @@ export default function ECTSCalculatorView({ subjects }: Props) {
                             checked={selected.has(idx)}
                             onToggle={() => toggleOne(idx)}
                             onEdit={editEntry}
+                            subjects={subjects}
                         />
                     ))
                 )}
@@ -103,6 +104,7 @@ export default function ECTSCalculatorView({ subjects }: Props) {
                 onSubmit={onSubmit}
                 onOpenChange={handleDialogOpenChange}
                 onDeleteSelected={deleteSelected}
+                subjects={subjects}
             />
         </div>
     );

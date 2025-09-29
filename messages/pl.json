@@ -122,7 +122,10 @@
             "editButton": "Edytuj",
             "editDialogTitle": "Edytuj przedmiot",
             "editDialogDescription": "Zmodyfikuj szczegóły swojego przedmiotu.",
-            "updateButton": "Aktualizuj"
+            "updateButton": "Aktualizuj",
+            "select": "Wybierz",
+            "search": "Wyszukaj przedmiot",
+            "noSubjectFound": "Nie znaleziono przedmiotu"
         }
     },
     "settings": {

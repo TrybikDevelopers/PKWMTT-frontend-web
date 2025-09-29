@@ -12,12 +12,14 @@ type Props = {
     checked: boolean;
     onToggle: () => void;
     onEdit: (value: EctsEntrySchema, index: number) => void;
+    subjects: string[];
 };
 
 export default function EctsTableRow({
     entry,
     index,
     checked,
+    subjects,
     onToggle,
     onEdit,
 }: Props) {
@@ -115,6 +117,7 @@ export default function EctsTableRow({
                 index={index}
                 editEntry={onEdit}
                 onOpenChange={setOpen}
+                subjects={subjects}
             />
         </div>
     );

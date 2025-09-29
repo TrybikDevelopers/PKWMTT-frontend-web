@@ -122,7 +122,10 @@
             "editButton": "Edit",
             "editDialogTitle": "Edit Subject",
             "editDialogDescription": "Modify the details of your subject.",
-            "updateButton": "Update"
+            "updateButton": "Update",
+            "select": "Select",
+            "search": "Search subject",
+            "noSubjectFound": "No subject found"
         }
     },
     "settings": {
