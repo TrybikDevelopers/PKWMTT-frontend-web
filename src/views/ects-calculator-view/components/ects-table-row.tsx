@@ -40,7 +40,7 @@ export default function EctsTableRow({
                             type="checkbox"
                             checked={checked}
                             onChange={onToggle}
-                            aria-label={`Select ${name}`}
+                            aria-label={`Select ${entry.name}`}
                         />
                     </div>
                     <div className="min-w-0 flex-1">
