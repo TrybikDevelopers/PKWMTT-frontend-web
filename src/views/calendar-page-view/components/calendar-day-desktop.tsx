@@ -44,7 +44,7 @@ export default function CalendarDayDesktop({
                 disabled={items.length === 0}
                 onClick={items.length > 0 ? () => updateOpen(true) : undefined}
                 className={cn(
-                    "bg-card mx-auto flex min-h-32 w-full max-w-32 cursor-pointer flex-col items-center justify-start rounded-xl border p-3 shadow-sm transition-all disabled:opacity-100 lg:min-h-36 lg:max-w-40 lg:p-4 xl:min-h-44 xl:p-5 2xl:min-h-44",
+                    "bg-card mx-auto flex min-h-32 w-full max-w-32 cursor-pointer flex-col items-center justify-start rounded-xl border p-3 shadow-sm transition-all disabled:opacity-100 lg:min-h-36 lg:max-w-38 lg:p-4 xl:min-h-40 xl:p-5",
                     isMuted && "text-muted-foreground/70 opacity-60",
                     isToday &&
                         "border-primary bg-accent/5 ring-primary/20 shadow-md ring-1",
