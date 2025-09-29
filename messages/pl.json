@@ -118,7 +118,14 @@
             "tableHeaderGrade": "Ocena",
             "ectsLabelShort": "ECTS:",
             "gradeLabelShort": "Ocena:",
-            "selectAll": "Zaznacz wszystkie"
+            "selectAll": "Zaznacz wszystkie",
+            "editButton": "Edytuj",
+            "editDialogTitle": "Edytuj przedmiot",
+            "editDialogDescription": "Zmodyfikuj szczegóły swojego przedmiotu.",
+            "updateButton": "Aktualizuj",
+            "select": "Wybierz",
+            "search": "Wyszukaj przedmiot",
+            "noSubjectFound": "Nie znaleziono przedmiotu"
         }
     },
     "settings": {

@@ -82,6 +82,12 @@ export default function useEctsCalculatorPage() {
         setOpen(false);
     };
 
+    const editEntry = (value: EctsEntrySchema, index: number) => {
+        setRows((prev) =>
+            prev.map((row, idx) => (idx === index ? value : row)),
+        );
+    };
+
     const { avgGrade, totalEcts, weightedAvg } = useMemo(() => {
         const count = rows.length;
         const totalGrades = rows.reduce((acc, r) => acc + Number(r.grade), 0);
@@ -131,6 +137,7 @@ export default function useEctsCalculatorPage() {
         toggleOne,
         deleteSelected,
         onSubmit,
+        editEntry,
         handleDialogOpenChange,
 
         form,

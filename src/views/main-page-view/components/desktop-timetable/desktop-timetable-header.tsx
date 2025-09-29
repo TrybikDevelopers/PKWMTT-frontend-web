@@ -22,7 +22,7 @@ export default function DesktopTimetableHeader({
     ];
 
     return (
-        <div className="mb-6 grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] gap-4">
+        <div className="bg-background sticky top-0 z-10 mb-6 grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] gap-4">
             <div className="flex items-center justify-center">
                 <Button
                     type="button"

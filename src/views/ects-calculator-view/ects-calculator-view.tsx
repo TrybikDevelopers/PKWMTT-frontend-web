@@ -1,12 +1,16 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import EctsDialog from "./components/ects-dialog";
+import AddNewEntryDialog from "./components/add-new-entry-dialog";
 import EctsTableHeader from "./components/ects-table-header";
 import EctsTableRow from "./components/ects-table-row";
 import useEctsCalculatorPage from "./hooks/use-ects-calculator-page";
 
-export default function ECTSCalculatorView() {
+type Props = {
+    subjects: string[];
+};
+
+export default function ECTSCalculatorView({ subjects }: Props) {
     const t = useTranslations("ectsCalculator.form");
 
     const {
@@ -24,6 +28,7 @@ export default function ECTSCalculatorView() {
         deleteSelected,
         onSubmit,
         handleDialogOpenChange,
+        editEntry,
         form,
     } = useEctsCalculatorPage();
 
@@ -46,11 +51,12 @@ export default function ECTSCalculatorView() {
                     rows.map((r, idx) => (
                         <EctsTableRow
                             key={`${r.name}-${idx}`}
-                            name={r.name}
-                            ects={r.ects}
-                            grade={r.grade.toString()}
+                            entry={r}
+                            index={idx}
                             checked={selected.has(idx)}
                             onToggle={() => toggleOne(idx)}
+                            onEdit={editEntry}
+                            subjects={subjects}
                         />
                     ))
                 )}
@@ -91,13 +97,14 @@ export default function ECTSCalculatorView() {
                 )}
             </div>
 
-            <EctsDialog
+            <AddNewEntryDialog
                 open={open}
                 selectedCount={selected.size}
                 form={form}
                 onSubmit={onSubmit}
                 onOpenChange={handleDialogOpenChange}
                 onDeleteSelected={deleteSelected}
+                subjects={subjects}
             />
         </div>
     );

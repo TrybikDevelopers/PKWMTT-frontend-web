@@ -35,6 +35,16 @@ export type FetchGeneralGroupsResult =
           error: null;
       };
 
+export type FetchSubjectsForGeneralGroupResult =
+    | {
+          subjects: null;
+          error: "UnknownError";
+      }
+    | {
+          subjects: string[];
+          error: null;
+      };
+
 export type FetchSubGroupsResult =
     | {
           subGroups: null;
