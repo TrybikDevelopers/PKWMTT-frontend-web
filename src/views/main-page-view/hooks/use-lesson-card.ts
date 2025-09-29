@@ -47,11 +47,9 @@ const useLessonCard = (
                 };
             case "COMPUTER_LABORATORY":
                 return {
-                    // letter: t("short.computerLaboratory"),
-                    // className: "bg-yellow-600",
-                    word: t("laboratory"),
-                    letter: t("short.laboratory"),
-                    className: "bg-lesson-laboratory",
+                    word: t("computerLaboratory"),
+                    letter: t("short.computerLaboratory"),
+                    className: "bg-lesson-computerLaboratory",
                 };
             case "EXERCISES":
                 return {

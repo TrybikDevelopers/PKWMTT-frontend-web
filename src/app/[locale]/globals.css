@@ -29,6 +29,7 @@
     --lesson-laboratory: #3bbfe4;
     --lesson-exercises: #83d32e;
     --lesson-project: #d32e2e;
+    --lesson-computerLaboratory: #edcd2e;
 
     /* Shadcn vars - light mode */
     --radius: 0.625rem;
@@ -89,6 +90,7 @@
     --lesson-laboratory: #3bbfe4;
     --lesson-exercises: #83d32e;
     --lesson-project: #d32e2e;
+    --lesson-computerLaboratory: #edcd2e;
     /* end */
 
     /* Shadcn vars */
@@ -150,6 +152,7 @@
     --color-lesson-seminar: var(--lesson-seminar);
     --color-lesson-lecture: var(--lesson-lecture);
     --color-lesson-laboratory: var(--lesson-laboratory);
+    --color-lesson-computerLaboratory: var(--lesson-computerLaboratory);
     --color-lesson-exercises: var(--lesson-exercises);
     --color-lesson-project: var(--lesson-project);
     --color-sidebar-ring: var(--sidebar-ring);
