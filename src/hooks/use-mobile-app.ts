@@ -5,9 +5,8 @@ import { toast } from "sonner";
 import { useLocalStorage } from "usehooks-ts";
 import { z } from "zod/mini";
 
-const MOBILE_APP_DIALOG_LAST_SHOWN_KEY =
-    "download-mobile-app-dialog-last-shown";
-const MOBILE_APP_DOWNLOAD_LAST_KEY = "last-mobile-app-download";
+const MOBILE_APP_DIALOG_LAST_SHOWN_KEY = "mobile-app-dialog-last-shown";
+const MOBILE_APP_DOWNLOAD_LAST_KEY = "mobile-app-last-download";
 const RATE_LIMIT_THRESHOLD_MS = 1000 * 60 * 5; // 5 minutes
 
 const dateSchema = z.iso.datetime();
@@ -46,14 +45,14 @@ export function useMobileAppDialog() {
         const shouldShowDialog: boolean =
             !(lastShown instanceof Date) && !isRateLimited;
 
-        if (shouldShowDialog) {
-            const timer = setTimeout(() => {
+        const timer = setTimeout(() => {
+            if (shouldShowDialog) {
                 updateOpen(true);
                 setLastShown(new Date());
-            }, 5000);
+            }
+        }, 3000);
 
-            return () => clearTimeout(timer);
-        }
+        return () => clearTimeout(timer);
     }, [lastShown, isRateLimited, updateOpen, setLastShown]);
 
     return {
