@@ -1,5 +1,4 @@
 import type { CalendarExam } from "@/types/data-access/calendar";
-import { useCallback } from "react";
 import CalendarDay from "./calendar-day";
 
 type Props = {
@@ -12,20 +11,17 @@ type Props = {
 };
 
 export default function DaysGrid({ cells, calendarExams }: Props) {
-    const getItemsForDay = useCallback(
-        (day: Date) => {
-            return calendarExams.filter((exam) => {
-                const examDate = new Date(exam.date);
+    const getItemsForDay = (day: Date) => {
+        return calendarExams.filter((exam) => {
+            const examDate = new Date(exam.date);
 
-                return (
-                    examDate.getDate() === day.getDate() &&
-                    examDate.getMonth() === day.getMonth() &&
-                    examDate.getFullYear() === day.getFullYear()
-                );
-            });
-        },
-        [calendarExams],
-    );
+            return (
+                examDate.getDate() === day.getDate() &&
+                examDate.getMonth() === day.getMonth() &&
+                examDate.getFullYear() === day.getFullYear()
+            );
+        });
+    };
 
     return (
         <>

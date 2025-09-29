@@ -25,8 +25,7 @@ export default function CalendarPageView({ calendarDataPromise }: Props) {
     } = useCalendar();
 
     return (
-        <div className="mx-auto w-full max-w-3xl space-y-4 px-4 md:max-w-6xl lg:max-w-7xl xl:max-w-[1920px] 2xl:px-8">
-            {/* TODO: make cards smaller on desktop */}
+        <div className="mx-auto w-full max-w-3xl space-y-4 px-4 md:max-w-6xl lg:max-w-7xl xl:max-w-[1440px] 2xl:px-8">
             <MonthSelect
                 month={month}
                 monthNames={monthNames}
