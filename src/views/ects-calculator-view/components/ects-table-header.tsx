@@ -25,7 +25,7 @@ export default function EctsTableHeader({
 
     return (
         <div className="bg-table-header flex min-h-12 items-center rounded-2xl p-1">
-            <div className="w-12 px-4 py-2 text-center">
+            <div className="w-12 flex-shrink-0 px-2 py-2 text-center">
                 <input
                     ref={checkboxRef}
                     type="checkbox"
@@ -44,9 +44,7 @@ export default function EctsTableHeader({
             <div className="xs:text-base flex-1 px-2 py-2 text-center text-sm sm:px-4">
                 {t("tableHeaderGrade")}
             </div>
-            <div className="w-12 px-2 py-2 text-center">
-                {/* Empty space for edit button column alignment */}
-            </div>
+            <div className="w-12 flex-shrink-0 px-2 py-2 text-center"></div>
         </div>
     );
 }

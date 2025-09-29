@@ -1,5 +1,6 @@
 "use client";
 
+import { Pencil } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 type Props = {
@@ -25,7 +26,7 @@ export default function EctsTableRow({
         <div className="bg-button xs:p-1 mt-4 rounded-2xl p-3">
             {/* Mobile */}
             <div className="xs:hidden block">
-                <div className="flex items-start gap-3">
+                <div className="flex items-center gap-3">
                     <div className="flex-shrink-0 pt-1">
                         <input
                             className="size-4 align-middle accent-current"
@@ -54,13 +55,15 @@ export default function EctsTableRow({
                             </div>
                         </div>
                     </div>
-                    <div className="flex h-full min-h-11 flex-shrink-0 items-center justify-center">
+                    <div className="flex min-h-11 w-12 flex-shrink-0 items-center justify-center px-2 py-2">
                         <button
-                            className="text-primary cursor-pointer text-sm font-medium uppercase hover:underline"
+                            className="text-primary inline-flex cursor-pointer items-center justify-center"
                             type="button"
                             onClick={onEdit}
+                            aria-label={t("editButton")}
+                            title={t("editButton")}
                         >
-                            {t("editButton")}
+                            <Pencil className="size-4" />
                         </button>
                     </div>
                 </div>
@@ -68,7 +71,7 @@ export default function EctsTableRow({
 
             {/* Desktop */}
             <div className="xs:flex xs:min-h-10 xs:items-center hidden">
-                <div className="w-12 px-2 py-2 text-center">
+                <div className="w-12 flex-shrink-0 px-2 py-2 text-center">
                     <input
                         className="size-4 align-middle accent-current"
                         type="checkbox"
@@ -86,13 +89,15 @@ export default function EctsTableRow({
                 <div className="xs:text-base flex-1 px-2 py-1 text-center text-sm sm:px-4">
                     {grade}
                 </div>
-                <div className="w-12 px-2 py-2 text-center">
+                <div className="flex w-12 flex-shrink-0 items-center justify-center px-2 py-2">
                     <button
-                        className="text-primary cursor-pointer text-sm font-medium uppercase hover:underline"
+                        className="text-primary inline-flex cursor-pointer items-center justify-center"
                         type="button"
                         onClick={onEdit}
+                        aria-label={t("editButton")}
+                        title={t("editButton")}
                     >
-                        {t("editButton")}
+                        <Pencil className="size-4" />
                     </button>
                 </div>
             </div>
