@@ -39,10 +39,7 @@ export default function DesktopLessonCard({
             <div className="flex items-start justify-between gap-2">
                 <div
                     className={cn(
-                        "flex-1 truncate text-xs font-medium",
-                        isCurrentLessonActive
-                            ? "text-accent-light"
-                            : "text-foreground",
+                        "text-foreground flex-1 truncate text-xs font-medium",
                     )}
                 >
                     {lesson.name}
@@ -71,7 +68,7 @@ export default function DesktopLessonCard({
                 className={cn(
                     "truncate text-xs",
                     isCurrentLessonActive
-                        ? "text-accent-light/80"
+                        ? "text-foreground"
                         : "text-text-muted",
                 )}
             >
