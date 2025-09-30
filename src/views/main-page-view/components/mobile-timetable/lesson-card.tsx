@@ -44,11 +44,13 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                                         {badge && (
                                             <span
                                                 className={cn(
-                                                    "flex size-4.5 shrink-0 items-center justify-center rounded-full bg-transparent p-2 text-xs font-semibold text-white uppercase",
+                                                    "flex size-6 shrink-0 items-center justify-center rounded-full bg-transparent p-1.5 text-xs font-semibold text-white uppercase",
                                                     badge.className,
                                                 )}
                                             >
-                                                {badge.letter}
+                                                {badge.icon && (
+                                                    <badge.icon size={16} />
+                                                )}
                                             </span>
                                         )}
                                         <span className="xs:text-base text-foreground text-sm">
