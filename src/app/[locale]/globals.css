@@ -24,13 +24,13 @@
     --table-header: #f9fafb;
 
     /* Lesson type colors */
-    --lesson-seminar: #c23ae5;
-    --lesson-lecture: #f47c24;
-    --lesson-laboratory: #2fa9cc;
-    --lesson-exercises: #76c823;
-    --lesson-project: #b81e2e;
-    --lesson-computerLaboratory: #d4b91f;
-    --lesson-other: #5c6bc0;
+    --lesson-seminar: #8a1fbf;
+    --lesson-lecture: #c45f0d;
+    --lesson-laboratory: #1d7693;
+    --lesson-exercises: #4a9211;
+    --lesson-project: #8f1722;
+    --lesson-computerLaboratory: #8a6b00;
+    --lesson-other: #3a49a3;
 
     /* Shadcn vars - light mode */
     --radius: 0.625rem;
@@ -85,14 +85,14 @@
     --indicator-neutral: #d2d4d3;
     --table-header: #161415;
 
-    /* Lesson type colors - same for both modes */
-    --lesson-seminar: #c23ae5;
-    --lesson-lecture: #f47c24;
-    --lesson-laboratory: #2fa9cc;
-    --lesson-exercises: #76c823;
-    --lesson-project: #b81e2e;
-    --lesson-computerLaboratory: #d4b91f;
-    --lesson-other: #5c6bc0;
+    /* Lesson type colors */
+    --lesson-seminar: #8a1fbf;
+    --lesson-lecture: #c45f0d;
+    --lesson-laboratory: #1d7693;
+    --lesson-exercises: #4a9211;
+    --lesson-project: #8f1722;
+    --lesson-computerLaboratory: #8a6b00;
+    --lesson-other: #3a49a3;
 
     /* end */
 

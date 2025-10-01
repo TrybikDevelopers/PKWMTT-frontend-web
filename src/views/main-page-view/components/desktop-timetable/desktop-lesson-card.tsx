@@ -49,11 +49,11 @@ export default function DesktopLessonCard({
                         <TooltipTrigger>
                             <span
                                 className={cn(
-                                    "flex size-6 shrink-0 items-center justify-center rounded-full p-1.5 text-xs font-semibold text-white uppercase",
+                                    "flex size-7 shrink-0 items-center justify-center rounded-full p-1.5 text-xs font-semibold text-white uppercase",
                                     badge.className,
                                 )}
                             >
-                                {badge.icon && <badge.icon size={16} />}
+                                {badge.icon && <badge.icon size={22} />}
                             </span>
                         </TooltipTrigger>
                     )}
