@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useStickyHeader } from "@/hooks/use-sticky-header";
+import { cn } from "@/lib/utils";
 import { RefreshCcw } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -13,7 +14,8 @@ export default function DesktopTimetableHeader({
     toggleWeekParity,
 }: Props) {
     const t = useTranslations("home");
-    const { headerRef, placeholderRef, isSticky } = useStickyHeader();
+    const { headerRef, placeholderRef, isSticky, headerHeight } =
+        useStickyHeader();
 
     const days = [
         t("days.monday"),
@@ -25,12 +27,20 @@ export default function DesktopTimetableHeader({
 
     return (
         <>
-            <div ref={placeholderRef} className="mb-6" />
+            <div
+                ref={placeholderRef}
+                className="w-full shrink-0"
+                style={{
+                    height: isSticky ? headerHeight : 0,
+                }}
+            />
             <div
                 ref={headerRef}
-                className={`bg-background mb-6 grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] gap-4 ${
-                    isSticky ? "fixed top-0 right-0 left-0 z-50" : "relative"
-                }`}
+                className={cn(
+                    "bg-background grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] gap-4",
+                    isSticky &&
+                        "fixed top-0 right-0 left-0 z-50 mx-4 shadow-md",
+                )}
             >
                 <div className="flex items-center justify-center">
                     <Button

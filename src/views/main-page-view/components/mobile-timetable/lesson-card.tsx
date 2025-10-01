@@ -32,7 +32,7 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                 )}
             />
             <div className="flex w-full flex-col justify-between gap-5 p-1.25 px-2">
-                <div className="flex items-center">
+                <div className="flex items-start">
                     <span className="xs:text-base text-foreground w-fit text-sm font-normal text-nowrap">
                         {sanitizedHour}
                     </span>

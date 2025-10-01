@@ -9,42 +9,34 @@ export function useStickyHeader() {
     const placeholderRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const header = headerRef.current;
         const placeholder = placeholderRef.current;
+        const header = headerRef.current;
 
-        if (!header || !placeholder) return;
+        if (!placeholder || !header) return;
 
-        const updateHeaderHeight = () => {
-            const height = header.offsetHeight;
-            setHeaderHeight(height);
-        };
-
-        const handleScroll = () => {
-            const rect = header.getBoundingClientRect();
+        const handleScrollOrResize = () => {
+            const rect = placeholder.getBoundingClientRect();
             const shouldBeSticky = rect.top <= 0;
 
-            if (shouldBeSticky !== isSticky) {
-                setIsSticky(shouldBeSticky);
-            }
+            setIsSticky(shouldBeSticky);
+            setHeaderHeight(header.offsetHeight);
         };
 
-        updateHeaderHeight();
+        handleScrollOrResize();
 
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        window.addEventListener("resize", updateHeaderHeight, {
-            passive: true,
-        });
+        window.addEventListener("scroll", handleScrollOrResize);
+        window.addEventListener("resize", handleScrollOrResize);
 
         return () => {
-            window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("resize", updateHeaderHeight);
+            window.removeEventListener("scroll", handleScrollOrResize);
+            window.removeEventListener("resize", handleScrollOrResize);
         };
-    }, [isSticky]);
+    }, []);
 
     return {
-        headerRef,
         placeholderRef,
         isSticky,
+        headerRef,
         headerHeight,
     };
 }
