@@ -5,10 +5,10 @@ import {
     BookOpen,
     FlaskConical,
     Hammer,
-    MessageSquare,
     Monitor,
-    Presentation,
+    Projector,
     Puzzle,
+    Users,
 } from "lucide-react";
 import { useNow, useTranslations } from "next-intl";
 import { useMemo } from "react";
@@ -40,13 +40,13 @@ const useLessonCard = (
             case "SEMINAR":
                 return {
                     word: t("seminar"),
-                    icon: MessageSquare,
+                    icon: Users,
                     className: "bg-lesson-seminar",
                 };
             case "LECTURE":
                 return {
                     word: t("lecture"),
-                    icon: Presentation,
+                    icon: Projector,
                     className: "bg-lesson-lecture",
                 };
             case "LABORATORY":
