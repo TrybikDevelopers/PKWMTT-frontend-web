@@ -25,7 +25,7 @@ export default function CalendarPageView({ calendarDataPromise }: Props) {
     } = useCalendar();
 
     return (
-        <div className="mx-auto w-full max-w-3xl space-y-4 px-4 md:max-w-6xl lg:max-w-7xl xl:max-w-[1440px] 2xl:px-8">
+        <div className="mx-auto w-full max-w-3xl space-y-4 px-4 md:max-w-6xl lg:max-w-7xl xl:max-w-[1152px] 2xl:px-8">
             <MonthSelect
                 month={month}
                 monthNames={monthNames}
@@ -34,7 +34,7 @@ export default function CalendarPageView({ calendarDataPromise }: Props) {
                 decrementMonth={decrementMonth}
             />
 
-            <div className="grid grid-cols-7 gap-2 md:gap-3 lg:gap-4 xl:gap-5">
+            <div className="mb-10 grid grid-cols-7 gap-2 md:gap-3 lg:gap-4 xl:gap-5">
                 <WeekdaysHeader weekdayHeaders={weekdayHeaders} />
                 <DaysGrid cells={cells} calendarExams={calendarExams ?? []} />
             </div>
