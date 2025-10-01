@@ -1,7 +1,7 @@
 import { getValidTimetableSettings } from "@/server/data-access/timetable";
 import { api, HydrateClient } from "@/trpc/server";
 import DesktopTimetable from "./components/desktop-timetable/desktop-timetable";
-import MobileTimetable from "./components/mobile-calendar/mobile-timetable";
+import MobileTimetable from "./components/mobile-timetable/mobile-timetable";
 import TimetableForm from "./components/timetable-form/timetable-form";
 
 export default async function MainPageView() {

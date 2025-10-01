@@ -39,10 +39,7 @@ export default function DesktopLessonCard({
             <div className="flex items-start justify-between gap-2">
                 <div
                     className={cn(
-                        "flex-1 truncate text-xs font-medium",
-                        isCurrentLessonActive
-                            ? "text-accent-light"
-                            : "text-foreground",
+                        "text-foreground flex-1 truncate text-xs font-medium",
                     )}
                 >
                     {lesson.name}
@@ -52,11 +49,11 @@ export default function DesktopLessonCard({
                         <TooltipTrigger>
                             <span
                                 className={cn(
-                                    "flex size-4 shrink-0 items-center justify-center rounded-full p-3 text-xs font-semibold text-white uppercase",
+                                    "flex size-7 shrink-0 items-center justify-center rounded-full p-1.5 text-xs font-semibold text-white uppercase",
                                     badge.className,
                                 )}
                             >
-                                {badge.letter}
+                                {badge.icon && <badge.icon size={22} />}
                             </span>
                         </TooltipTrigger>
                     )}
@@ -71,7 +68,7 @@ export default function DesktopLessonCard({
                 className={cn(
                     "truncate text-xs",
                     isCurrentLessonActive
-                        ? "text-accent-light/80"
+                        ? "text-foreground"
                         : "text-text-muted",
                 )}
             >

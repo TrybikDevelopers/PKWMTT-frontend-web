@@ -32,7 +32,7 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                 )}
             />
             <div className="flex w-full flex-col justify-between gap-5 p-1.25 px-2">
-                <div className="flex items-center">
+                <div className="flex items-start">
                     <span className="xs:text-base text-foreground w-fit text-sm font-normal text-nowrap">
                         {sanitizedHour}
                     </span>
@@ -44,11 +44,13 @@ export default function LessonCard({ lesson, hour, weekDayIndex }: Props) {
                                         {badge && (
                                             <span
                                                 className={cn(
-                                                    "flex size-4.5 shrink-0 items-center justify-center rounded-full bg-transparent p-2 text-xs font-semibold text-white uppercase",
+                                                    "flex size-7 shrink-0 items-center justify-center rounded-full bg-transparent p-1.5 text-xs font-semibold text-white uppercase",
                                                     badge.className,
                                                 )}
                                             >
-                                                {badge.letter}
+                                                {badge.icon && (
+                                                    <badge.icon size={22} />
+                                                )}
                                             </span>
                                         )}
                                         <span className="xs:text-base text-foreground text-sm">

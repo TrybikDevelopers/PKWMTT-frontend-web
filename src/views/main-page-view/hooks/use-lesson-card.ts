@@ -1,11 +1,21 @@
 import type { ClassEntry } from "@/types/data-access/timetable";
 import { toZonedTime } from "date-fns-tz";
+import type { LucideIcon } from "lucide-react";
+import {
+    BookOpen,
+    FlaskConical,
+    Hammer,
+    Monitor,
+    Projector,
+    Puzzle,
+    Users,
+} from "lucide-react";
 import { useNow, useTranslations } from "next-intl";
 import { useMemo } from "react";
 
 type Badge = {
     word: string;
-    letter: string;
+    icon: LucideIcon;
     className: string;
 };
 
@@ -30,48 +40,45 @@ const useLessonCard = (
             case "SEMINAR":
                 return {
                     word: t("seminar"),
-                    letter: t("short.seminar"),
+                    icon: Users,
                     className: "bg-lesson-seminar",
                 };
             case "LECTURE":
                 return {
                     word: t("lecture"),
-                    letter: t("short.lecture"),
+                    icon: Projector,
                     className: "bg-lesson-lecture",
                 };
             case "LABORATORY":
                 return {
                     word: t("laboratory"),
-                    letter: t("short.laboratory"),
+                    icon: FlaskConical,
                     className: "bg-lesson-laboratory",
                 };
             case "COMPUTER_LABORATORY":
                 return {
-                    // letter: t("short.computerLaboratory"),
-                    // className: "bg-yellow-600",
-                    word: t("laboratory"),
-                    letter: t("short.laboratory"),
-                    className: "bg-lesson-laboratory",
+                    word: t("computerLaboratory"),
+                    icon: Monitor,
+                    className: "bg-lesson-computerLaboratory",
                 };
             case "EXERCISES":
                 return {
                     word: t("exercises"),
-                    letter: t("short.exercises"),
+                    icon: BookOpen,
                     className: "bg-lesson-exercises",
                 };
             case "PROJECT":
                 return {
                     word: t("project"),
-                    letter: t("short.project"),
+                    icon: Hammer,
                     className: "bg-lesson-project",
                 };
             default:
                 return {
                     word: t("other"),
-                    letter: t("short.other"),
+                    icon: Puzzle,
                     className: "bg-gray-600",
                 };
-            // return null;
         }
     }, [type, t]);
 
