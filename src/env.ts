@@ -19,6 +19,8 @@ export const env = createEnv({
             const url = new URL(val);
             return url.origin;
         }),
+        NEXT_PUBLIC_POSTHOG_KEY: z.string().check(z.minLength(1)),
+        NEXT_PUBLIC_POSTHOG_HOST: z.string().check(z.minLength(1)),
     },
     // If you're using Next.js < 13.4.4, you'll need to specify the runtimeEnv manually
     runtimeEnv: {
@@ -29,5 +31,7 @@ export const env = createEnv({
         NEXT_PUBLIC_IS_PROD: process.env.NODE_ENV === "production",
         NEXT_PUBLIC_IS_DEV: process.env.NODE_ENV === "development",
         NEXT_PUBLIC_IS_TEST: process.env.NODE_ENV === "test",
+        NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
+        NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
     },
 });
