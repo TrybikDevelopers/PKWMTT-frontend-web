@@ -1,6 +1,6 @@
 import type { Timetable } from "@/types/data-access/timetable";
 import { useCallback } from "react";
-import DesktopLessonCard from "./desktop-lesson-card";
+import DesktopLessonsCard from "./desktop-lessons-card";
 
 type Props = {
     hours: string[];
@@ -12,21 +12,25 @@ const useDesktopTimetableGrid = (
     timetableData: Timetable["data"],
     weekParity: "EVEN" | "ODD",
 ) => {
-    const getLesson = useCallback(
+    const getLessons = useCallback(
         (dayIndex: number, hourIndex: number) => {
             const dayData = timetableData[dayIndex];
-            if (!dayData) return null;
+            if (!dayData) return [];
 
             const classData =
                 weekParity === "EVEN" ? dayData.even : dayData.odd;
 
-            const lesson = classData.find((l) => l.rowId === hourIndex) || null;
-            return lesson;
+            // filter and sort (to make sure that the lessons are in the same order)
+            const lessons = classData
+                .filter((l) => l.rowId === hourIndex)
+                .sort((a, b) => a.name.localeCompare(b.name));
+
+            return lessons;
         },
         [timetableData, weekParity],
     );
 
-    return { getLesson };
+    return { getLessons };
 };
 
 export default function DesktopTimetableGrid({
@@ -34,7 +38,7 @@ export default function DesktopTimetableGrid({
     timetableData,
     weekParity,
 }: Props) {
-    const { getLesson } = useDesktopTimetableGrid(timetableData, weekParity);
+    const { getLessons } = useDesktopTimetableGrid(timetableData, weekParity);
 
     return (
         <div className="flex-1 pb-4">
@@ -62,8 +66,8 @@ export default function DesktopTimetableGrid({
                                 key={`cell-${dayIndex}-${hourIndex}`}
                                 className="border-border-muted min-h-20 border-b p-1 first:border-t"
                             >
-                                <DesktopLessonCard
-                                    lesson={getLesson(dayIndex, hourIndex)}
+                                <DesktopLessonsCard
+                                    lessons={getLessons(dayIndex, hourIndex)}
                                     hour={hour}
                                     weekDayIndex={dayIndex}
                                 />

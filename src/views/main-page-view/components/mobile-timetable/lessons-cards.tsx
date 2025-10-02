@@ -1,6 +1,6 @@
 import type { Timetable } from "@/types/data-access/timetable";
 import { useCallback } from "react";
-import LessonCard from "./lesson-card";
+import LessonsCard from "./lessons-card";
 
 type Props = {
     hours: string[];
@@ -13,21 +13,24 @@ const useLessonsCards = (
     currentDayData: Timetable["data"][number],
     weekParity: "EVEN" | "ODD",
 ) => {
-    const getLesson = useCallback(
+    const getLessons = useCallback(
         (index: number) => {
             const classData =
                 weekParity === "EVEN"
                     ? currentDayData.even
                     : currentDayData.odd;
 
-            const lesson = classData.find((l) => l.rowId === index) || null;
+            // filter and sort (to make sure that the lessons are in the same order)
+            const lessons = classData
+                .filter((l) => l.rowId === index)
+                .sort((a, b) => a.name.localeCompare(b.name));
 
-            return lesson;
+            return lessons;
         },
         [currentDayData, weekParity],
     );
 
-    return { getLesson };
+    return { getLessons };
 };
 
 export default function LessonsCards({
@@ -36,14 +39,14 @@ export default function LessonsCards({
     weekDayIndex,
     weekParity,
 }: Props) {
-    const { getLesson } = useLessonsCards(currentDayData, weekParity);
+    const { getLessons } = useLessonsCards(currentDayData, weekParity);
 
     return (
         <div className="xxs:mt-6 *:border-border-muted *:first:border-t-border-muted mt-4 flex flex-col px-2 pb-10 *:border-b-1 *:first:border-t-1">
             {hours.map((hour, index) => (
-                <LessonCard
+                <LessonsCard
                     key={`timetable-lesson-${index}`}
-                    lesson={getLesson(index)}
+                    lessons={getLessons(index)}
                     hour={hour}
                     weekDayIndex={weekDayIndex}
                 />
