@@ -166,5 +166,29 @@
         "settingsNote": "You can also download it later from the <mark>Settings</mark> tab.",
         "success": "Downloaded!",
         "error": "An error occurred while downloading the mobile app. Please try again later."
+    },
+    "moderatorPanel": {
+        "title": "Moderator Panel",
+        "description": "Manage reports, users, and content moderation",
+        "language": "Language",
+        "polish": "Polish",
+        "english": "English",
+        "addModerator": "Add Moderator",
+        "addModeratorDialog": {
+            "title": "Add Moderator",
+            "description": "Enter the group and email address of the new moderator.",
+            "groupLabel": "Group",
+            "groupPlaceholder": "Select Group",
+            "emailLabel": "Email",
+            "emailPlaceholder": "moderator@example.com",
+            "cancelButton": "Cancel",
+            "confirmButton": "Add Moderator"
+        },
+
+        "table": {
+            "group": "Group",
+            "email": "Email",
+            "actions": "Actions"
+        }
     }
 }

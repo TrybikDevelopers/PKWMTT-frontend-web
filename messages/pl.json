@@ -166,5 +166,29 @@
         "settingsNote": "Możesz ją również pobrać później z zakładki <mark>Ustawienia</mark>.",
         "success": "Pobrano!",
         "error": "Wystąpił błąd podczas pobierania aplikacji mobilnej. Proszę spróbować ponownie później."
+    },
+    "moderatorPanel": {
+        "title": "Panel Moderatora",
+        "description": "Zarządzaj moderatorami grupy i ich adresami email",
+        "language": "Język",
+        "polish": "Polski",
+        "english": "Angielski",
+        "addModerator": "Dodaj Moderatora",
+        "addModeratorDialog": {
+            "title": "Dodaj Moderatora",
+            "description": "Wprowadź grupę i adres email nowego moderatora.",
+            "groupLabel": "Grupa",
+            "groupPlaceholder": "Wybierz Grupę",
+            "emailLabel": "Email",
+            "emailPlaceholder": "moderator@example.com",
+            "cancelButton": "Anuluj",
+            "confirmButton": "Dodaj Moderatora"
+        },
+
+        "table": {
+            "group": "Grupa",
+            "email": "Email",
+            "actions": "Akcje"
+        }
     }
 }

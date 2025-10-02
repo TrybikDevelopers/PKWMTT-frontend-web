@@ -26,6 +26,10 @@ export const routing = defineRouting({
             en: "/settings",
             pl: "/ustawienia",
         },
+        "/moderator-panel": {
+            en: "/moderator-panel",
+            pl: "/panel-moderatora",
+        },
         "/api/trpc": {
             en: "/api/trpc",
             pl: "/api/trpc",
