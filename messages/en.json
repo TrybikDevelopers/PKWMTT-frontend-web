@@ -174,7 +174,7 @@
         "polish": "Polish",
         "english": "English",
         "addModerator": "Add Moderator",
-        "addModeratorDialog": {
+        "ModeratorDialog": {
             "title": "Add Moderator",
             "description": "Enter the group and email address of the new moderator.",
             "groupLabel": "Group",
@@ -182,13 +182,17 @@
             "emailLabel": "Email",
             "emailPlaceholder": "moderator@example.com",
             "cancelButton": "Cancel",
-            "confirmButton": "Add Moderator"
+            "confirmButton": "Add Moderator",
+            "groupRequired": "Group is required",
+            "emailRequired": "Email is required",
+            "emailInvalid": "Please enter a valid email address"
         },
 
         "table": {
             "group": "Group",
             "email": "Email",
-            "actions": "Actions"
+            "actions": "Actions",
+            "noModeratorsFound": "No moderators found"
         }
     }
 }

@@ -174,7 +174,7 @@
         "polish": "Polski",
         "english": "Angielski",
         "addModerator": "Dodaj Moderatora",
-        "addModeratorDialog": {
+        "ModeratorDialog": {
             "title": "Dodaj Moderatora",
             "description": "Wprowadź grupę i adres email nowego moderatora.",
             "groupLabel": "Grupa",
@@ -182,13 +182,17 @@
             "emailLabel": "Email",
             "emailPlaceholder": "moderator@example.com",
             "cancelButton": "Anuluj",
-            "confirmButton": "Dodaj Moderatora"
+            "confirmButton": "Dodaj Moderatora",
+            "groupRequired": "Grupa jest wymagana",
+            "emailRequired": "Email jest wymagany",
+            "emailInvalid": "Proszę wprowadzić prawidłowy adres email"
         },
 
         "table": {
             "group": "Grupa",
             "email": "Email",
-            "actions": "Akcje"
+            "actions": "Akcje",
+            "noModeratorsFound": "Nie znaleziono moderatorów"
         }
     }
 }
