@@ -168,31 +168,38 @@
         "error": "An error occurred while downloading the mobile app. Please try again later."
     },
     "moderatorPanel": {
+        "metadata": {
+            "title": "Moderator Panel",
+            "description": "Add, Edit and Remove Representatives"
+        },
         "title": "Moderator Panel",
         "description": "Manage reports, users, and content moderation",
         "language": "Language",
         "polish": "Polish",
         "english": "English",
-        "addModerator": "Add Moderator",
+        "addModerator": "Add Representative",
         "ModeratorDialog": {
             "title": "Add Moderator",
-            "description": "Enter the group and email address of the new moderator.",
+            "description": "Enter the group and email address of the new representative.",
             "groupLabel": "Group",
             "groupPlaceholder": "Select Group",
             "emailLabel": "Email",
-            "emailPlaceholder": "moderator@example.com",
+            "emailPlaceholder": "representative@example.com",
             "cancelButton": "Cancel",
-            "confirmButton": "Add Moderator",
+            "confirmButton": "Add Representative",
             "groupRequired": "Group is required",
             "emailRequired": "Email is required",
-            "emailInvalid": "Please enter a valid email address"
+            "emailInvalid": "Please enter a valid email address",
+            "selectGroup": "Select Group",
+            "searchGroup": "Search Group",
+            "noGroupFound": "No group found"
         },
 
         "table": {
             "group": "Group",
             "email": "Email",
             "actions": "Actions",
-            "noModeratorsFound": "No moderators found"
+            "noModeratorsFound": "No representatives found"
         }
     }
 }

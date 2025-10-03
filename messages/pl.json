@@ -185,7 +185,10 @@
             "confirmButton": "Dodaj Moderatora",
             "groupRequired": "Grupa jest wymagana",
             "emailRequired": "Email jest wymagany",
-            "emailInvalid": "Proszę wprowadzić prawidłowy adres email"
+            "emailInvalid": "Proszę wprowadzić prawidłowy adres email",
+            "selectGroup": "Wybierz Grupę",
+            "searchGroup": "Szukaj Grupy",
+            "noGroupFound": "No group found"
         },
 
         "table": {

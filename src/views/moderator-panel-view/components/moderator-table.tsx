@@ -52,7 +52,7 @@ export default function ModeratorTable({ rows, onDelete, onSendAgain }: Props) {
                                         <td className="text-foreground px-6 py-4 text-sm font-medium">
                                             {moderator.group}
                                         </td>
-                                        <td className="text-muted-foreground px-6 py-4 text-sm">
+                                        <td className="text-foreground px-6 py-4 text-sm">
                                             {moderator.email}
                                         </td>
                                         <td className="px-6 py-4">

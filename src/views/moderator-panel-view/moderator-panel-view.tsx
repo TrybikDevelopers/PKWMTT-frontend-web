@@ -17,7 +17,15 @@ import AddModeratorDialog from "./components/add-moderator-dialog";
 import ModeratorTable from "./components/moderator-table";
 import useModeratorPanel from "./hooks/use-moderator-panel";
 
-export default function ModeratorPanelView() {
+type Props = {
+    data: string[];
+    selectedGeneralGroup?: string;
+};
+
+export default function ModeratorPanelView({
+    data,
+    selectedGeneralGroup,
+}: Props) {
     const t = useTranslations("moderatorPanel");
     const tSettings = useTranslations("settings.applicationAppearance");
 
@@ -54,7 +62,9 @@ export default function ModeratorPanelView() {
                     <AddModeratorDialog
                         open={open}
                         form={form}
-                        data={[]}
+                        data={data}
+                        addedGroups={rows.map((r) => r.group)}
+                        selectedGeneralGroup={selectedGeneralGroup}
                         onSubmit={onSubmit}
                         onOpenChange={handleDialogOpenChange}
                     />
