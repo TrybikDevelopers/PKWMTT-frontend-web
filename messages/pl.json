@@ -168,21 +168,25 @@
         "error": "Wystąpił błąd podczas pobierania aplikacji mobilnej. Proszę spróbować ponownie później."
     },
     "moderatorPanel": {
+        "metadata": {
+            "title": "Panel Moderatora | PKWM App",
+            "description": "Dodawaj, edytuj i usuwaj przedstawicieli"
+        },
         "title": "Panel Moderatora",
-        "description": "Zarządzaj moderatorami grupy i ich adresami email",
+        "description": "Zarządzaj starostami grup i ich adresami email",
         "language": "Język",
         "polish": "Polski",
         "english": "Angielski",
-        "addModerator": "Dodaj Moderatora",
+        "addModerator": "Dodaj Starostę",
         "ModeratorDialog": {
-            "title": "Dodaj Moderatora",
-            "description": "Wprowadź grupę i adres email nowego moderatora.",
+            "title": "Dodaj Starostę",
+            "description": "Wprowadź grupę i adres email nowego starosty.",
             "groupLabel": "Grupa",
             "groupPlaceholder": "Wybierz Grupę",
             "emailLabel": "Email",
-            "emailPlaceholder": "moderator@example.com",
+            "emailPlaceholder": "starosta@example.com",
             "cancelButton": "Anuluj",
-            "confirmButton": "Dodaj Moderatora",
+            "confirmButton": "Dodaj Starostę",
             "groupRequired": "Grupa jest wymagana",
             "emailRequired": "Email jest wymagany",
             "emailInvalid": "Proszę wprowadzić prawidłowy adres email",
@@ -195,7 +199,7 @@
             "group": "Grupa",
             "email": "Email",
             "actions": "Akcje",
-            "noModeratorsFound": "Nie znaleziono moderatorów"
+            "noModeratorsFound": "Nie znaleziono starostów"
         }
     }
 }

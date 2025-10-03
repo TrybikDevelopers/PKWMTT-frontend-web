@@ -58,7 +58,7 @@ export default function ModeratorTable({ rows, onDelete, onSendAgain }: Props) {
                                         <td className="px-6 py-4">
                                             <div className="flex justify-end gap-2">
                                                 <Button
-                                                    variant="outline"
+                                                    variant="ghost"
                                                     size="sm"
                                                     onClick={() =>
                                                         onSendAgain(index)

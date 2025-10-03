@@ -56,7 +56,6 @@ export default function AddModeratorDialog({
     form,
     data,
     addedGroups = [],
-    selectedGeneralGroup,
     onSubmit,
     onOpenChange,
 }: Props) {

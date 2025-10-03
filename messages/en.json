@@ -169,17 +169,17 @@
     },
     "moderatorPanel": {
         "metadata": {
-            "title": "Moderator Panel",
+            "title": "Moderator Panel | PKWM App",
             "description": "Add, Edit and Remove Representatives"
         },
         "title": "Moderator Panel",
-        "description": "Manage reports, users, and content moderation",
+        "description": "Manage reports, users, and content of groups representatives",
         "language": "Language",
         "polish": "Polish",
         "english": "English",
         "addModerator": "Add Representative",
         "ModeratorDialog": {
-            "title": "Add Moderator",
+            "title": "Add Representative",
             "description": "Enter the group and email address of the new representative.",
             "groupLabel": "Group",
             "groupPlaceholder": "Select Group",
