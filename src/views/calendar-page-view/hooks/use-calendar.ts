@@ -1,6 +1,5 @@
 "use client";
 
-import { toZonedTime } from "date-fns-tz";
 import { useTranslations } from "next-intl";
 import { useCallback, useMemo, useState } from "react";
 
@@ -14,15 +13,9 @@ function getMonthMatrix(
     year: number,
     monthIndexZeroBased: number,
 ): CalendarDay[] {
-    const today = toZonedTime(new Date(), "Europe/Warsaw");
-    const startOfMonth = toZonedTime(
-        new Date(year, monthIndexZeroBased, 1),
-        "Europe/Warsaw",
-    );
-    const endOfMonth = toZonedTime(
-        new Date(year, monthIndexZeroBased + 1, 0),
-        "Europe/Warsaw",
-    );
+    const today = new Date();
+    const startOfMonth = new Date(year, monthIndexZeroBased, 1);
+    const endOfMonth = new Date(year, monthIndexZeroBased + 1, 0);
 
     const startDay = startOfMonth.getDay();
     // JavaScript: 0 = Sunday ... 6 = Saturday
@@ -35,10 +28,7 @@ function getMonthMatrix(
 
     // Previous month's trailing days
     for (let i = startOffset; i > 0; i--) {
-        const date = toZonedTime(
-            new Date(year, monthIndexZeroBased, 1 - i),
-            "Europe/Warsaw",
-        );
+        const date = new Date(year, monthIndexZeroBased, 1 - i);
 
         cells.push({
             date,
@@ -52,10 +42,7 @@ function getMonthMatrix(
 
     // Current month days
     for (let d = 1; d <= daysInMonth; d++) {
-        const date = toZonedTime(
-            new Date(year, monthIndexZeroBased, d),
-            "Europe/Warsaw",
-        );
+        const date = new Date(year, monthIndexZeroBased, d);
         cells.push({
             date,
             inCurrentMonth: true,
@@ -69,9 +56,10 @@ function getMonthMatrix(
     // Next month's leading days to complete 6 rows (42 cells)
     while (cells.length % 7 !== 0) {
         const last = cells[cells.length - 1].date;
-        const date = toZonedTime(
-            new Date(last.getFullYear(), last.getMonth(), last.getDate() + 1),
-            "Europe/Warsaw",
+        const date = new Date(
+            last.getFullYear(),
+            last.getMonth(),
+            last.getDate() + 1,
         );
 
         cells.push({
@@ -87,10 +75,12 @@ function getMonthMatrix(
     // Ensure we always render 6 weeks for consistent layout
     while (cells.length < 42) {
         const last = cells[cells.length - 1].date;
-        const date = toZonedTime(
-            new Date(last.getFullYear(), last.getMonth(), last.getDate() + 1),
-            "Europe/Warsaw",
+        const date = new Date(
+            last.getFullYear(),
+            last.getMonth(),
+            last.getDate() + 1,
         );
+
         cells.push({
             date,
             inCurrentMonth: false,
@@ -152,7 +142,7 @@ export function useCalendar() {
     ); // Always Monday-first week
 
     const cells = useMemo(() => {
-        const today = toZonedTime(new Date(), "Europe/Warsaw");
+        const today = new Date();
         const baseYear = today.getFullYear();
 
         return getMonthMatrix(baseYear, month);

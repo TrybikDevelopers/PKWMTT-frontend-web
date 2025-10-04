@@ -26,14 +26,7 @@ export default function DayDetailsDrawer({
     const format = useFormatter();
 
     return (
-        <Drawer
-            open={open}
-            onOpenChange={(open) => {
-                console.log(date);
-
-                setOpen(open);
-            }}
-        >
+        <Drawer open={open} onOpenChange={setOpen}>
             <DrawerContent>
                 <DrawerHeader className="pb-2">
                     <DrawerTitle className="text-accent xs:text-4xl text-3xl">
