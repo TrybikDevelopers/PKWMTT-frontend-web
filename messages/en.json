@@ -32,8 +32,7 @@
         "common": {
             "even": "Even",
             "odd": "Odd",
-            "classRoom": "Location",
-            "additionalLessons": "Additional Lessons ({count})"
+            "classRoom": "Location"
         },
         "timetableForm": {
             "welcomeFirstTime": "Welcome to PKWM App!",

@@ -32,8 +32,7 @@
         "common": {
             "even": "Parzysty",
             "odd": "Nieparzysty",
-            "classRoom": "Sala",
-            "additionalLessons": "Dodatkowe zajęcia ({count})"
+            "classRoom": "Sala"
         },
         "timetableForm": {
             "welcomeFirstTime": "Witamy w PKWM App!",

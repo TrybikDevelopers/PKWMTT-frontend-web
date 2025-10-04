@@ -1,18 +1,88 @@
+import type { ClassEntry } from "@/types/data-access/timetable";
 import { toZonedTime } from "date-fns-tz";
-import { useNow } from "next-intl";
+import type { LucideIcon } from "lucide-react";
+import {
+    BookOpen,
+    FlaskConical,
+    Hammer,
+    Monitor,
+    Projector,
+    Puzzle,
+    Users,
+} from "lucide-react";
+import { useNow, useTranslations } from "next-intl";
 import { useMemo } from "react";
 
-const useLessonsCard = (hour: string, weekDayIndex: number) => {
+type Badge = {
+    word: string;
+    icon: LucideIcon;
+    className: string;
+};
+
+const useLessonCard = (
+    type: ClassEntry["type"] | null,
+    hour: string,
+    weekDayIndex: number,
+) => {
+    const t = useTranslations("home.lessonType");
+
     const currentTime = useNow({
         updateInterval: 1000 * 15, // 15 seconds
     });
-
     const now = toZonedTime(currentTime, "Europe/Warsaw");
 
-    const { sanitizedHour, isActive } = useMemo((): {
-        sanitizedHour: string;
-        isActive: boolean;
-    } => {
+    const badge = useMemo((): Badge | null => {
+        if (!type) {
+            return null;
+        }
+
+        switch (type) {
+            case "SEMINAR":
+                return {
+                    word: t("seminar"),
+                    icon: Users,
+                    className: "bg-lesson-seminar",
+                };
+            case "LECTURE":
+                return {
+                    word: t("lecture"),
+                    icon: Projector,
+                    className: "bg-lesson-lecture",
+                };
+            case "LABORATORY":
+                return {
+                    word: t("laboratory"),
+                    icon: FlaskConical,
+                    className: "bg-lesson-laboratory",
+                };
+            case "COMPUTER_LABORATORY":
+                return {
+                    word: t("computerLaboratory"),
+                    icon: Monitor,
+                    className: "bg-lesson-computerLaboratory",
+                };
+            case "EXERCISES":
+                return {
+                    word: t("exercises"),
+                    icon: BookOpen,
+                    className: "bg-lesson-exercises",
+                };
+            case "PROJECT":
+                return {
+                    word: t("project"),
+                    icon: Hammer,
+                    className: "bg-lesson-project",
+                };
+            default:
+                return {
+                    word: t("other"),
+                    icon: Puzzle,
+                    className: "bg-gray-600",
+                };
+        }
+    }, [type, t]);
+
+    const { sanitizedHour, isCurrentLessonActive } = useMemo(() => {
         try {
             const sanitized = hour.replace(/\s+/g, "");
 
@@ -25,7 +95,7 @@ const useLessonsCard = (hour: string, weekDayIndex: number) => {
 
                 return {
                     sanitizedHour: sanitized,
-                    isActive: false,
+                    isCurrentLessonActive: false,
                 };
             }
 
@@ -42,7 +112,7 @@ const useLessonsCard = (hour: string, weekDayIndex: number) => {
 
                 return {
                     sanitizedHour: sanitized,
-                    isActive: false,
+                    isCurrentLessonActive: false,
                 };
             }
 
@@ -51,7 +121,7 @@ const useLessonsCard = (hour: string, weekDayIndex: number) => {
             if (currentWeekDay !== weekDayIndex) {
                 return {
                     sanitizedHour: sanitized,
-                    isActive: false,
+                    isCurrentLessonActive: false,
                 };
             }
 
@@ -83,22 +153,23 @@ const useLessonsCard = (hour: string, weekDayIndex: number) => {
 
             return {
                 sanitizedHour: sanitized,
-                isActive: isActive,
+                isCurrentLessonActive: isActive,
             };
         } catch (error) {
             console.log(`Error parsing lesson time: ${hour}`, error);
 
             return {
                 sanitizedHour: hour.replace(/\s+/g, ""),
-                isActive: false,
+                isCurrentLessonActive: false,
             };
         }
     }, [hour, weekDayIndex, now]);
 
     return {
+        badge,
         sanitizedHour,
-        isActive,
+        isCurrentLessonActive,
     };
 };
 
-export default useLessonsCard;
+export default useLessonCard;
