@@ -35,7 +35,6 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { ModeratorPanelEntrySchema } from "@/schema/forms/moderator-panel-form-schema";
-
 import { Check, ChevronsUpDown, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -44,9 +43,8 @@ import type { UseFormReturn } from "react-hook-form";
 type Props = {
     open: boolean;
     form: UseFormReturn<ModeratorPanelEntrySchema>;
-    data: string[];
-    addedGroups?: string[];
-    selectedGeneralGroup?: string;
+    generalGroups: string[];
+    addedGroups: string[];
     onSubmit: (values: ModeratorPanelEntrySchema) => void;
     onOpenChange: (open: boolean) => void;
 };
@@ -54,13 +52,29 @@ type Props = {
 export default function AddModeratorDialog({
     open,
     form,
-    data,
-    addedGroups = [],
+    generalGroups,
+    addedGroups,
     onSubmit,
     onOpenChange,
 }: Props) {
-    const t = useTranslations("moderatorPanel.ModeratorDialog");
+    const t = useTranslations("moderatorPanel.moderatorDialog");
     const [comboboxOpen, setComboboxOpen] = useState(false);
+
+    const sanitizedGeneralGroups = Array.from(
+        new Set(
+            generalGroups.map((group) => {
+                const lastChar = group.slice(-1);
+
+                const isNumber = !isNaN(Number(lastChar));
+
+                if (isNumber) {
+                    return group.slice(0, -1);
+                }
+
+                return group;
+            }),
+        ),
+    );
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -80,7 +94,7 @@ export default function AddModeratorDialog({
                         onSubmit={form.handleSubmit(onSubmit)}
                         className="grid gap-4"
                     >
-                        {data.length > 0 ? (
+                        {sanitizedGeneralGroups.length > 0 ? (
                             <FormField
                                 control={form.control}
                                 name="group"
@@ -106,7 +120,7 @@ export default function AddModeratorDialog({
                                                         )}
                                                     >
                                                         {field.value
-                                                            ? data.find(
+                                                            ? sanitizedGeneralGroups.find(
                                                                   (dat) =>
                                                                       dat ===
                                                                       field.value,
@@ -129,7 +143,7 @@ export default function AddModeratorDialog({
                                                             {t("noGroupFound")}
                                                         </CommandEmpty>
                                                         <CommandGroup className="w-full">
-                                                            {data
+                                                            {sanitizedGeneralGroups
                                                                 .filter(
                                                                     (dat) =>
                                                                         !addedGroups.includes(

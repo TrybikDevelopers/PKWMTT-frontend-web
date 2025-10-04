@@ -1,20 +1,20 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-
+import useFirstRender from "@/hooks/use-first-render";
 import {
     getModeratorPanelFormSchema,
     ModeratorPanelEntrySchema,
 } from "@/schema/forms/moderator-panel-form-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useLocalStorage } from "usehooks-ts";
 
 export default function useModeratorPanel() {
     const [open, setOpen] = useState(false);
 
-    const t = useTranslations("moderatorPanel.ModeratorDialog");
+    const t = useTranslations("moderatorPanel.moderatorDialog");
 
-    const [isFirstRender, setIsFirstRender] = useState(true);
+    const { isFirstRender } = useFirstRender();
 
     const [rows, setRows] = useLocalStorage<ModeratorPanelEntrySchema[]>(
         "moderator-panel-rows",
@@ -80,12 +80,6 @@ export default function useModeratorPanel() {
             );
         }
     };
-
-    useEffect(() => {
-        if (isFirstRender) {
-            setIsFirstRender(false);
-        }
-    }, [isFirstRender]);
 
     return {
         rows: isFirstRender ? [] : rows,

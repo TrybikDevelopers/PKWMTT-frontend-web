@@ -178,7 +178,7 @@
         "polish": "Polish",
         "english": "English",
         "addModerator": "Add Representative",
-        "ModeratorDialog": {
+        "moderatorDialog": {
             "title": "Add Representative",
             "description": "Enter the group and email address of the new representative.",
             "groupLabel": "Group",

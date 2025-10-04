@@ -2,14 +2,16 @@ import type { TFunction } from "@/types/i18n";
 import * as z from "zod/mini";
 
 export const getModeratorPanelFormSchema = (
-    t: TFunction<"moderatorPanel.ModeratorDialog">,
+    t: TFunction<"moderatorPanel.moderatorDialog">,
 ) => {
     const moderatorPanelEntrySchema = z.object({
         group: z.string().check(z.minLength(1, t("groupRequired"))),
         email: z
             .string()
-            .check(z.regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, t("emailInvalid")))
-            .check(z.minLength(1, t("emailRequired"))),
+            .check(
+                z.minLength(1, t("emailRequired")),
+                z.email(t("emailInvalid")),
+            ),
     });
 
     const entriesArraySchema = z.array(moderatorPanelEntrySchema);

@@ -63,7 +63,7 @@ export default function ModeratorTable({ rows, onDelete, onSendAgain }: Props) {
                                                     onClick={() =>
                                                         onSendAgain(index)
                                                     }
-                                                    className="flex items-center gap-1 text-xs"
+                                                    className="flex cursor-pointer items-center gap-1 text-xs"
                                                 >
                                                     <Send className="h-3 w-3" />
                                                 </Button>
@@ -73,7 +73,7 @@ export default function ModeratorTable({ rows, onDelete, onSendAgain }: Props) {
                                                     onClick={() =>
                                                         onDelete(index)
                                                     }
-                                                    className="text-destructive hover:bg-destructive/10 hover:text-destructive"
+                                                    className="text-destructive hover:bg-destructive/10 hover:text-destructive cursor-pointer"
                                                 >
                                                     <Trash2 className="h-4 w-4" />
                                                 </Button>

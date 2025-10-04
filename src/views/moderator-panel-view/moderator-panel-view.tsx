@@ -1,38 +1,16 @@
 "use client";
 
-import { SettingsToggle } from "@/components/settings/settings-toggle";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
-import useFirstRender from "@/hooks/use-first-render";
-import { useRouter } from "@/i18n/navigation";
-import { Globe, Moon } from "lucide-react";
-import { type Locale, useLocale, useTranslations } from "next-intl";
-import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 import AddModeratorDialog from "./components/add-moderator-dialog";
 import ModeratorTable from "./components/moderator-table";
 import useModeratorPanel from "./hooks/use-moderator-panel";
 
 type Props = {
-    data: string[];
-    selectedGeneralGroup?: string;
+    generalGroups: string[];
 };
 
-export default function ModeratorPanelView({
-    data,
-    selectedGeneralGroup,
-}: Props) {
+export default function ModeratorPanelView({ generalGroups }: Props) {
     const t = useTranslations("moderatorPanel");
-    const tSettings = useTranslations("settings.applicationAppearance");
-
-    const locale = useLocale();
-    const router = useRouter();
-    const { setTheme, theme } = useTheme();
-    const { isFirstRender } = useFirstRender();
 
     const {
         rows,
@@ -62,58 +40,11 @@ export default function ModeratorPanelView({
                     <AddModeratorDialog
                         open={open}
                         form={form}
-                        data={data}
+                        generalGroups={generalGroups}
                         addedGroups={rows.map((r) => r.group)}
-                        selectedGeneralGroup={selectedGeneralGroup}
                         onSubmit={onSubmit}
                         onOpenChange={handleDialogOpenChange}
                     />
-                </div>
-
-                {/* Theme and Language Controls */}
-                <div className="flex items-center gap-6">
-                    <SettingsToggle
-                        title={tSettings("darkMode")}
-                        icon={Moon}
-                        checked={isFirstRender ? false : theme === "dark"}
-                        onCheckedChange={() =>
-                            setTheme((prev) =>
-                                prev === "dark" ? "light" : "dark",
-                            )
-                        }
-                    />
-                    <div className="flex items-center gap-3">
-                        <Globe className="text-foreground h-5 w-5" />
-                        <span className="text-foreground font-medium">
-                            {tSettings("language")}
-                        </span>
-                        <Select
-                            value={locale}
-                            onValueChange={(value) => {
-                                const newLocale = value as Locale;
-                                router.replace("/moderator-panel", {
-                                    locale: newLocale,
-                                });
-                                router.prefetch({ pathname: "/" });
-                                router.prefetch({ pathname: "/calendar" });
-                                router.prefetch({
-                                    pathname: "/ects-calculator",
-                                });
-                            }}
-                        >
-                            <SelectTrigger size="sm" className="w-32">
-                                <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="pl">
-                                    {tSettings("polish")}
-                                </SelectItem>
-                                <SelectItem value="en">
-                                    {tSettings("english")}
-                                </SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
                 </div>
             </div>
 

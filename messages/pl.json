@@ -178,7 +178,7 @@
         "polish": "Polski",
         "english": "Angielski",
         "addModerator": "Dodaj Starostę",
-        "ModeratorDialog": {
+        "moderatorDialog": {
             "title": "Dodaj Starostę",
             "description": "Wprowadź grupę i adres email nowego starosty.",
             "groupLabel": "Grupa",
