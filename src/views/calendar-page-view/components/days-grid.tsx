@@ -1,4 +1,5 @@
 import type { CalendarExam } from "@/types/data-access/calendar";
+import { toZonedTime } from "date-fns-tz";
 import CalendarDay from "./calendar-day";
 
 type Props = {
@@ -13,7 +14,7 @@ type Props = {
 export default function DaysGrid({ cells, calendarExams }: Props) {
     const getItemsForDay = (day: Date) => {
         return calendarExams.filter((exam) => {
-            const examDate = new Date(exam.date);
+            const examDate = toZonedTime(new Date(exam.date), "Europe/Warsaw");
 
             return (
                 examDate.getDate() === day.getDate() &&
