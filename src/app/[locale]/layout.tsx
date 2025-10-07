@@ -1,4 +1,3 @@
-import DownloadMobileAppDialog from "@/components/download-mobile-app-dialog";
 import Header from "@/components/header/header";
 import RootLayoutProvider from "@/components/providers/root-layout-provider";
 import { Toaster } from "@/components/ui/sonner";
@@ -33,7 +32,6 @@ export default async function RootLayout({
                 <RootLayoutProvider>
                     <Header />
                     {children}
-                    <DownloadMobileAppDialog />
                     <Toaster duration={3000} />
                 </RootLayoutProvider>
             </body>

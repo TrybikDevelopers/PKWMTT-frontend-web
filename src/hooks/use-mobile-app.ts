@@ -1,5 +1,6 @@
 import { fetchMobileApk } from "@/server/data-access/mobile-apk";
 import { useTranslations } from "next-intl";
+import posthog from "posthog-js";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useLocalStorage } from "usehooks-ts";
@@ -8,6 +9,7 @@ import { z } from "zod/mini";
 const MOBILE_APP_DIALOG_LAST_SHOWN_KEY = "mobile-app-dialog-last-shown";
 const MOBILE_APP_DOWNLOAD_LAST_KEY = "mobile-app-last-download";
 const RATE_LIMIT_THRESHOLD_MS = 1000 * 60 * 5; // 5 minutes
+const DIALOG_SHOW_THRESHOLD_MS = 1000 * 60 * 60 * 24 * 14; // 14 days
 
 const dateSchema = z.iso.datetime();
 
@@ -23,7 +25,8 @@ const dateDeserializer = (value: string): Date | null => {
 export function useMobileAppDialog() {
     const [isOpen, setIsOpen] = useState(false);
 
-    const { status, handleDownload, isRateLimited } = useMobileAppDownload();
+    const { status, handleDownload, isRateLimited, lastDownload } =
+        useMobileAppDownload();
 
     const [lastShown, setLastShown] = useLocalStorage<Date | null>(
         MOBILE_APP_DIALOG_LAST_SHOWN_KEY,
@@ -42,18 +45,24 @@ export function useMobileAppDialog() {
     );
 
     useEffect(() => {
+        const thresholdPassed = lastShown
+            ? Date.now() - lastShown.getTime() > DIALOG_SHOW_THRESHOLD_MS
+            : true; // fallback to true if lastShown is not a date
+
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
         const shouldShowDialog: boolean =
-            !(lastShown instanceof Date) && !isRateLimited;
+            thresholdPassed && !isRateLimited && !isIOS && !lastDownload;
 
         const timer = setTimeout(() => {
             if (shouldShowDialog) {
                 updateOpen(true);
                 setLastShown(new Date());
             }
-        }, 3000);
+        }, 5000);
 
         return () => clearTimeout(timer);
-    }, [lastShown, isRateLimited, updateOpen, setLastShown]);
+    }, [lastShown, isRateLimited, updateOpen, setLastShown, lastDownload]);
 
     return {
         isOpen,
@@ -108,6 +117,9 @@ export function useMobileAppDownload() {
 
             setStatus("success");
             setLastDownload(new Date());
+
+            // send download event
+            posthog.capture("download_mobile_app");
         } catch (error) {
             console.error(error);
 
@@ -120,5 +132,6 @@ export function useMobileAppDownload() {
         status,
         handleDownload,
         isRateLimited,
+        lastDownload,
     };
 }
