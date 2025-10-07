@@ -1,5 +1,6 @@
 import { fetchMobileApk } from "@/server/data-access/mobile-apk";
 import { useTranslations } from "next-intl";
+import posthog from "posthog-js";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useLocalStorage } from "usehooks-ts";
@@ -116,6 +117,9 @@ export function useMobileAppDownload() {
 
             setStatus("success");
             setLastDownload(new Date());
+
+            // send download event
+            posthog.capture("download_mobile_app");
         } catch (error) {
             console.error(error);
 
