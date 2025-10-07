@@ -1,3 +1,4 @@
+import DownloadMobileAppDialog from "@/components/download-mobile-app-dialog";
 import { getValidTimetableSettings } from "@/server/data-access/timetable";
 import { api, HydrateClient } from "@/trpc/server";
 import DesktopTimetable from "./components/desktop-timetable/desktop-timetable";
@@ -24,12 +25,15 @@ export default async function MainPageView() {
     void api.timetable.getAcademicHours.prefetch();
 
     return (
-        <HydrateClient>
-            <div className="text-foreground flex h-full w-full flex-col">
-                <MobileTimetable timetableSettings={timetableSettings} />
+        <>
+            <HydrateClient>
+                <div className="text-foreground flex h-full w-full flex-col">
+                    <MobileTimetable timetableSettings={timetableSettings} />
 
-                <DesktopTimetable timetableSettings={timetableSettings} />
-            </div>
-        </HydrateClient>
+                    <DesktopTimetable timetableSettings={timetableSettings} />
+                </div>
+            </HydrateClient>
+            <DownloadMobileAppDialog />
+        </>
     );
 }
