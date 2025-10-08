@@ -24,7 +24,7 @@ export default function DesktopLessonsCard({
     return (
         <div
             className={cn(
-                "relative flex h-full w-full flex-row gap-2 transition-all duration-200",
+                "relative flex h-full w-full flex-row gap-2 rounded-lg transition-all duration-200",
                 isActive && "ring-accent bg-accent/10 ring-2",
             )}
         >
