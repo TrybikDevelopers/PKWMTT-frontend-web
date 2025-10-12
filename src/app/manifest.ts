@@ -2,9 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: "PKWMTT App", // TODO: Update this to app name
-        short_name: "PWKMTT App",
-        description: "PKWMTT App",
+        name: "PKWM App",
+        short_name: "PKWM App",
+        description:
+            "Manage your university timetable, academic calendar, and calculate ECTS with PKWM App.",
         start_url: "/",
         display: "standalone",
         background_color: "#191919",

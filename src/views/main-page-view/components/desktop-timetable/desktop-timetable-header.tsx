@@ -37,33 +37,40 @@ export default function DesktopTimetableHeader({
             <div
                 ref={headerRef}
                 className={cn(
-                    "bg-background grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] gap-4",
+                    "bg-background",
                     isSticky &&
-                        "fixed top-0 right-0 left-0 z-50 mx-4 shadow-md",
+                        "fixed top-0 right-0 left-0 z-50 w-full shadow-md",
                 )}
             >
-                <div className="flex items-center justify-center">
-                    <Button
-                        type="button"
-                        className="group hover:bg-foreground/10 flex h-fit w-fit cursor-pointer flex-row items-center gap-1 rounded-md bg-transparent p-2 transition-colors"
-                        onClick={toggleWeekParity}
-                    >
-                        <RefreshCcw className="text-foreground size-4" />
-                        <div className="text-foreground h-fit w-fit text-sm">
-                            {weekParity === "EVEN"
-                                ? t("common.even")
-                                : t("common.odd")}
-                        </div>
-                    </Button>
-                </div>
-                {days.map((day, index) => (
-                    <div
-                        key={`day-header-${index}`}
-                        className="text-foreground py-4 text-center text-xl font-bold"
-                    >
-                        {day}
+                <div
+                    className={cn(
+                        "mx-auto grid w-full max-w-[1920px] grid-cols-[120px_1fr_1fr_1fr_1fr_1fr] gap-4",
+                        isSticky && "px-4",
+                    )}
+                >
+                    <div className="flex items-center justify-center">
+                        <Button
+                            type="button"
+                            className="group hover:bg-foreground/10 flex h-fit w-fit cursor-pointer flex-row items-center gap-1 rounded-md bg-transparent p-2 transition-colors"
+                            onClick={toggleWeekParity}
+                        >
+                            <RefreshCcw className="text-foreground size-4" />
+                            <div className="text-foreground h-fit w-fit text-sm">
+                                {weekParity === "EVEN"
+                                    ? t("common.even")
+                                    : t("common.odd")}
+                            </div>
+                        </Button>
                     </div>
-                ))}
+                    {days.map((day, index) => (
+                        <div
+                            key={`day-header-${index}`}
+                            className="text-foreground py-4 text-center text-xl font-bold"
+                        >
+                            {day}
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     );
