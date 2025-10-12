@@ -1,5 +1,7 @@
+import { useNow } from "next-intl";
+
 const useCurrentDayIndex = () => {
-    const now = new Date();
+    const now = useNow();
     const today = now.getDay();
 
     // For Saturday (6) return Friday (4)
@@ -12,7 +14,7 @@ const useCurrentDayIndex = () => {
               ? 0 // Sunday -> Monday
               : today - 1; // Weekday -> same day
 
-    return currentDayIndex;
+    return { currentDayIndex };
 };
 
 export default useCurrentDayIndex;
