@@ -1,4 +1,4 @@
-# PKWMTT Web
+# PKWM App Web
 
 A modern web application for university students to manage their academic schedules, view timetables, track ECTS credits, and stay organized with their academic calendar.
 
