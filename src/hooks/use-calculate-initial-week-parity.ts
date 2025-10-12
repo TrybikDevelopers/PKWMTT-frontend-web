@@ -7,9 +7,10 @@ const useCalculateInitialWeekParity = () => {
 
     const { weekParity: realWeekParity } = useWeekParity();
 
-    // when the day is 6 (saturday) or 0 (sunday), the week parity is the opposite of the real week parity
+    // when the day is 0 (sunday), the week parity is the opposite of the real week parity
+    // 6 (saturday) falls back to normal week parity
     const calculatedInitialWeekParity =
-        today === 6 || today === 0
+        today === 0
             ? realWeekParity === "EVEN"
                 ? "ODD"
                 : "EVEN"
