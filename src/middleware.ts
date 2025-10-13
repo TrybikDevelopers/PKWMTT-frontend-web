@@ -15,23 +15,6 @@ export default async function middleware(request: NextRequest) {
         !request.nextUrl.pathname.startsWith("/_vercel") &&
         !request.nextUrl.pathname.includes(".")
     ) {
-        const languageCookie = request.cookies.get("NEXT_LOCALE");
-        const preferredLocale = languageCookie?.value as
-            | "pl"
-            | "en"
-            | undefined;
-
-        if (
-            preferredLocale &&
-            (preferredLocale === "pl" || preferredLocale === "en")
-        ) {
-            const customRouting = createMiddleware({
-                ...routing,
-                defaultLocale: preferredLocale,
-            });
-            return customRouting(request);
-        }
-
         return handleI18nRouting(request);
     }
 
