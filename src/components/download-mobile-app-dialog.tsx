@@ -24,7 +24,7 @@ export default function DownloadMobileAppDialog() {
             <DialogContent
                 className="sm:max-w-md"
                 showCloseButton={true}
-                // onInteractOutside={(e) => e.preventDefault()}
+                onOpenAutoFocus={(e) => e.preventDefault()}
             >
                 <DialogHeader>
                     <DialogTitle className="mt-1">{t("title")}</DialogTitle>

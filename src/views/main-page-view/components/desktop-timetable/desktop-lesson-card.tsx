@@ -6,37 +6,22 @@ import {
 import { cn } from "@/lib/utils";
 import type { ClassEntry } from "@/types/data-access/timetable";
 import { useTranslations } from "next-intl";
-import useLessonCard from "../../hooks/use-lesson-card";
-
-type Props = {
-    lesson: ClassEntry | null;
-    hour: string;
-    weekDayIndex: number;
-};
+import useLessonBadge from "../../hooks/use-lesson-badge";
 
 export default function DesktopLessonCard({
     lesson,
-    hour,
-    weekDayIndex,
-}: Props) {
+    isActive,
+}: {
+    lesson: ClassEntry;
+    isActive: boolean;
+}) {
     const t = useTranslations("home.common");
 
-    const { badge, isCurrentLessonActive } = useLessonCard(
-        lesson?.type ?? null,
-        hour,
-        weekDayIndex,
-    );
-
-    if (!lesson) return null;
+    const { badge } = useLessonBadge(lesson.type);
 
     return (
-        <div
-            className={cn(
-                "bg-background-darker flex h-full w-full flex-col justify-between gap-2 rounded-lg p-2 transition-all duration-200",
-                isCurrentLessonActive && "ring-accent bg-accent/10 ring-2",
-            )}
-        >
-            <div className="flex items-start justify-between gap-2">
+        <div className="bg-background-darker relative flex h-full w-full flex-row justify-between gap-2 rounded-lg p-2">
+            <div className="flex flex-col justify-between gap-2">
                 <div
                     className={cn(
                         "text-foreground flex-1 truncate text-xs font-medium",
@@ -44,8 +29,18 @@ export default function DesktopLessonCard({
                 >
                     {lesson.name}
                 </div>
-                <Tooltip>
-                    {badge && (
+                <div
+                    className={cn(
+                        "truncate text-xs",
+                        isActive ? "text-foreground" : "text-text-muted",
+                    )}
+                >
+                    {t("classRoom")}: {lesson.classroom}
+                </div>
+            </div>
+            <div className="flex h-full flex-col items-end justify-between">
+                {badge && (
+                    <Tooltip disableHoverableContent>
                         <TooltipTrigger>
                             <span
                                 className={cn(
@@ -56,23 +51,11 @@ export default function DesktopLessonCard({
                                 {badge.icon && <badge.icon size={22} />}
                             </span>
                         </TooltipTrigger>
-                    )}
-                    {badge && (
                         <TooltipContent>
                             <p>{badge.word}</p>
                         </TooltipContent>
-                    )}
-                </Tooltip>
-            </div>
-            <div
-                className={cn(
-                    "truncate text-xs",
-                    isCurrentLessonActive
-                        ? "text-foreground"
-                        : "text-text-muted",
+                    </Tooltip>
                 )}
-            >
-                {t("classRoom")}: {lesson.classroom}
             </div>
         </div>
     );

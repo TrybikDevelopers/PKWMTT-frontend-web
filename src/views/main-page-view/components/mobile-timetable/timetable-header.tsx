@@ -48,7 +48,7 @@ export default function TimetableHeader({
                 ref={headerRef}
                 className={cn(
                     "bg-background",
-                    isSticky && "fixed top-0 right-0 left-0 z-50 shadow-md",
+                    isSticky && "fixed top-0 right-0 left-0 z-60 shadow-md",
                 )}
             >
                 <div className="mx-auto flex max-w-2xl items-center justify-between p-4">

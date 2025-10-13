@@ -80,6 +80,7 @@ function getMonthMatrix(
             last.getMonth(),
             last.getDate() + 1,
         );
+
         cells.push({
             date,
             inCurrentMonth: false,

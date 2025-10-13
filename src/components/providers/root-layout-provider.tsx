@@ -1,3 +1,4 @@
+import { timeZone } from "@/i18n/request";
 import { TRPCReactProvider } from "@/trpc/react";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "./theme-provider";
@@ -14,7 +15,7 @@ export default function RootLayoutProvider({
             enableSystem
             disableTransitionOnChange
         >
-            <NextIntlClientProvider>
+            <NextIntlClientProvider timeZone={timeZone}>
                 <TRPCReactProvider>{children}</TRPCReactProvider>
             </NextIntlClientProvider>
         </ThemeProvider>
