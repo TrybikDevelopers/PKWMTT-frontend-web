@@ -11,7 +11,7 @@ export default function Header() {
                 className="ml-2 grid aspect-square h-14 w-auto shrink-0 rounded-lg bg-[#1e1e1e] p-1.5 dark:bg-transparent"
             >
                 <Image
-                    src={"/logo.png"}
+                    src={"/logo-new.png"}
                     width={1024}
                     height={1024}
                     alt="logo"
