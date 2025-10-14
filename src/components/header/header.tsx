@@ -8,24 +8,24 @@ export default function Header() {
         <header className="bg-background-darker flex h-18 w-full shrink-0 items-center">
             <Link
                 href="/"
-                className="grid aspect-square h-full w-auto shrink-0 p-2.5"
+                className="ml-2 grid aspect-square h-14 w-auto shrink-0 rounded-lg bg-[#1e1e1e] p-1.5 dark:bg-transparent"
             >
                 <Image
                     src={"/logo.png"}
                     width={1024}
                     height={1024}
                     alt="logo"
-                    className="block object-cover dark:hidden"
+                    className="block object-cover"
                     priority
                 />
-                <Image
-                    src={"/logo-dark.png"}
+                {/* <Image
+                    src={"/logo.png"}
                     width={1024}
                     height={1024}
                     alt="logo"
                     className="hidden object-cover dark:block"
                     priority
-                />
+                /> */}
             </Link>
             <div className="flex h-full w-full items-center justify-end p-5">
                 <DesktopNav />
