@@ -1,14 +1,18 @@
 import "server-only";
 
 import { getTimetableFormSchema } from "@/schema/forms/timetable-form-schema";
+import { getSubGroupsForGeneralAndSubjectSchema } from "@/schema/trpc/timetable/get-sub-groups-for-general-and-subject";
 import { getSubGroupsSchema } from "@/schema/trpc/timetable/get-sub-groups-schema";
+import { getSubjectsForGeneralGroupSchema } from "@/schema/trpc/timetable/get-subjects-for-general-group-schema";
 import { getTimetableSchema } from "@/schema/trpc/timetable/get-timetable-schema";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { setTimetableSettings } from "@/server/cookies";
 import {
     fetchAcademicHours,
     fetchGeneralGroups,
+    fetchSubGroupsForGeneralAndSubject,
     fetchSubGroupsForGeneralGroup,
+    fetchSubjectsForGeneralGroup,
     fetchTimetable,
 } from "@/server/data-access/timetable";
 import { TRPCError } from "@trpc/server";
@@ -101,5 +105,39 @@ export const timetableRouter = createTRPCRouter({
             return {
                 success: true,
             };
+        }),
+    getSubjectsForGeneralGroup: publicProcedure
+        .input(getSubjectsForGeneralGroupSchema)
+        .query(async ({ input }) => {
+            const { subjects, error } = await fetchSubjectsForGeneralGroup(
+                input.generalGroup,
+            );
+
+            if (error) {
+                throw new TRPCError({
+                    code: "INTERNAL_SERVER_ERROR",
+                    message: "Failed to fetch subjects",
+                });
+            }
+
+            return subjects;
+        }),
+    getSubGroupsForGeneralAndSubject: publicProcedure
+        .input(getSubGroupsForGeneralAndSubjectSchema)
+        .query(async ({ input }) => {
+            const { subGroups, error } =
+                await fetchSubGroupsForGeneralAndSubject(
+                    input.generalGroup,
+                    input.subject,
+                );
+
+            if (error) {
+                throw new TRPCError({
+                    code: "INTERNAL_SERVER_ERROR",
+                    message: "Failed to fetch sub groups",
+                });
+            }
+
+            return subGroups;
         }),
 });

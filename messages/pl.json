@@ -135,7 +135,7 @@
             "description": "Dostosuj swoje doświadczenie PKWM App i zarządzaj swoimi preferencjami."
         },
         "studentGroups": {
-            "text": "Grupy Studenckie",
+            "text": "Grupy studenckie",
             "select": "Wybierz",
             "search": "Szukaj",
             "generalGroup": "Dziekańska",
@@ -143,8 +143,28 @@
             "kompLabGruop": "Komputerowa",
             "projGruop": "Projektowa"
         },
+        "customSubjects": {
+            "text": "Przedmioty niestandardowe",
+            "emptyState": "Nie dodano jeszcze żadnych niestandardowych przedmiotów. Kliknij przycisk poniżej, aby dodać pierwszy przedmiot.",
+            "addButton": "Dodaj przedmiot niestandardowy",
+            "removeButton": "Usuń",
+            "maxSubjectsReached": "Osiągnięto maksymalną liczbę niestandardowych przedmiotów (10).",
+            "dialogTitle": "Dodaj przedmiot niestandardowy",
+            "dialogDescription": "Podaj szczegóły swojego niestandardowego przedmiotu.",
+            "nameLabel": "Nazwa przedmiotu",
+            "namePlaceholder": "np. Matematyka zaawansowana",
+            "generalGroupLabel": "Oddział",
+            "generalGroupPlaceholder": "Nie znaleziono oddziału",
+            "subGroupLabel": "Podgrupa",
+            "subGroupPlaceholder": "Wybierz podgrupę",
+            "subGroupNone": "Brak",
+            "cancelButton": "Anuluj",
+            "confirmButton": "Dodaj przedmiot",
+            "nameRequired": "Nazwa przedmiotu jest wymagana",
+            "generalGroupRequired": "Oddział jest wymagany"
+        },
         "applicationAppearance": {
-            "text": "Wygląd Aplikacji",
+            "text": "Wygląd aplikacji",
             "darkMode": "Tryb ciemny",
             "language": "Język",
             "polish": "Polski",

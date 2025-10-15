@@ -135,7 +135,7 @@
             "description": "Customize your PKWM App experience and manage your preferences."
         },
         "studentGroups": {
-            "text": "Student Groups",
+            "text": "Student groups",
             "select": "Select",
             "search": "Search",
             "generalGroup": "General Group",
@@ -143,8 +143,28 @@
             "kompLabGruop": "Computer Laboratory",
             "projGruop": "Project"
         },
+        "customSubjects": {
+            "text": "Custom Subjects",
+            "emptyState": "No custom subjects added yet. Click the button below to add your first custom subject.",
+            "addButton": "Add Custom Subject",
+            "removeButton": "Remove",
+            "maxSubjectsReached": "You have reached the maximum number of custom subjects (10).",
+            "dialogTitle": "Add Custom Subject",
+            "dialogDescription": "Provide the details for your custom subject.",
+            "nameLabel": "Subject Name",
+            "namePlaceholder": "e.g. Advanced Mathematics",
+            "generalGroupLabel": "General Group",
+            "generalGroupPlaceholder": "No general group found",
+            "subGroupLabel": "Subgroup",
+            "subGroupPlaceholder": "Select subgroup",
+            "subGroupNone": "None",
+            "cancelButton": "Cancel",
+            "confirmButton": "Add Subject",
+            "nameRequired": "Subject name is required",
+            "generalGroupRequired": "General group is required"
+        },
         "applicationAppearance": {
-            "text": "Application Appearance",
+            "text": "Application appearance",
             "darkMode": "Dark Mode",
             "language": "Language",
             "polish": "Polish",

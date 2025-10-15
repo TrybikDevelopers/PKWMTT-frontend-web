@@ -1,0 +1,117 @@
+import { Button } from "@/components/ui/button";
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+    CommandList,
+} from "@/components/ui/command";
+import {
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from "@/components/ui/form";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { useFormContext } from "react-hook-form";
+
+type Props = {
+    subjects: string[];
+};
+
+export default function SubjectsField({ subjects }: Props) {
+    const [comboboxOpen, setComboboxOpen] = useState(false);
+
+    const form = useFormContext<{ name: string }>();
+    const t = useTranslations("settings.customSubjects");
+    const tStudentGroups = useTranslations("settings.studentGroups");
+
+    return (
+        <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+                <FormItem className="flex w-full flex-col">
+                    <FormLabel>{t("nameLabel")}</FormLabel>
+                    <Popover
+                        modal={true}
+                        open={comboboxOpen}
+                        onOpenChange={setComboboxOpen}
+                    >
+                        <PopoverTrigger asChild>
+                            <FormControl>
+                                <Button
+                                    variant="outline"
+                                    role="combobox"
+                                    className={cn(
+                                        "w-full cursor-pointer justify-between font-normal duration-150",
+                                        !field.value && "text-muted-foreground",
+                                    )}
+                                >
+                                    {field.value
+                                        ? subjects.find(
+                                              (subject) =>
+                                                  subject === field.value,
+                                          )
+                                        : tStudentGroups("select")}
+                                    <ChevronsUpDown className="opacity-50" />
+                                </Button>
+                            </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="max-h-[var(--radix-popover-content-available-height)] w-[var(--radix-popover-trigger-width)] p-0">
+                            <Command className="w-full max-w-full">
+                                <CommandInput
+                                    placeholder={tStudentGroups("search")}
+                                    className="h-9 w-full"
+                                />
+                                <CommandList className="w-full">
+                                    <CommandEmpty>
+                                        {t("namePlaceholder")}
+                                    </CommandEmpty>
+                                    <CommandGroup className="w-full">
+                                        {subjects.map((subject) => (
+                                            <CommandItem
+                                                value={subject}
+                                                key={subject}
+                                                onSelect={() => {
+                                                    form.setValue(
+                                                        "name",
+                                                        subject,
+                                                    );
+
+                                                    setComboboxOpen(false);
+                                                }}
+                                                className="h-8"
+                                            >
+                                                {subject}
+                                                <Check
+                                                    className={cn(
+                                                        "ml-auto",
+                                                        subject === field.value
+                                                            ? "opacity-100"
+                                                            : "opacity-0",
+                                                    )}
+                                                />
+                                            </CommandItem>
+                                        ))}
+                                    </CommandGroup>
+                                </CommandList>
+                            </Command>
+                        </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                </FormItem>
+            )}
+        />
+    );
+}

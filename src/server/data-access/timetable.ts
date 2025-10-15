@@ -101,6 +101,38 @@ export const fetchSubGroupsForGeneralGroup = async (
     };
 };
 
+export const fetchSubGroupsForGeneralAndSubject = async (
+    generalGroup: string,
+    subject: string,
+): Promise<FetchSubGroupsResult> => {
+    const url = generateFetchUrl(
+        `/timetables/groups/${generalGroup}/${subject}`,
+    );
+
+    const headers = getGenericHeaders();
+
+    const response = await fetch(url, {
+        method: "GET",
+        headers,
+    });
+
+    if (!response.ok) {
+        console.log(await response.text());
+
+        return {
+            subGroups: null,
+            error: "UnknownError",
+        };
+    }
+
+    const data = (await response.json()) as SubGroups;
+
+    return {
+        subGroups: data,
+        error: null,
+    };
+};
+
 export const fetchAcademicHours =
     async (): Promise<FetchAcademicHoursResult> => {
         const url = generateFetchUrl("/timetables/hours");
