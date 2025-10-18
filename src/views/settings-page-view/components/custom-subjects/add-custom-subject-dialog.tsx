@@ -12,12 +12,9 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
-import { api } from "@/trpc/react";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useForm, useWatch } from "react-hook-form";
-import { z } from "zod";
+import useCustomSubjectForm from "../../hooks/use-custom-subject-form";
 import GeneralGroupField from "./general-group-field";
 import SubgroupField from "./subgroup-field";
 import SubjectsField from "./subjects-field";
@@ -26,7 +23,7 @@ type Props = {
     open: boolean;
     onOpenChange: (open: boolean) => void;
     onSubmit: (values: {
-        name: string;
+        subject: string;
         generalGroup: string;
         subGroup?: string;
     }) => void;
@@ -41,61 +38,15 @@ export default function AddCustomSubjectDialog({
 }: Props) {
     const t = useTranslations("settings.customSubjects");
 
-    const customSubjectSchema = z.object({
-        name: z.string().min(1, t("nameRequired")),
-        generalGroup: z.string().min(1, t("generalGroupRequired")),
-        subGroup: z.string().optional(),
-    });
-
-    type CustomSubjectSchema = z.infer<typeof customSubjectSchema>;
-
-    const form = useForm<CustomSubjectSchema>({
-        resolver: zodResolver(customSubjectSchema),
-        defaultValues: {
-            name: "",
-            generalGroup: "",
-            subGroup: "",
-        },
-    });
-
-    const [generalGroup, subject] = useWatch({
-        control: form.control,
-        name: ["generalGroup", "name"],
-    });
-
-    const [generalGroups] = api.timetable.getGeneralGroups.useSuspenseQuery();
-
-    const { data: subjects, isFetching: isFetchingSubjects } =
-        api.timetable.getSubjectsForGeneralGroup.useQuery(
-            {
-                generalGroup,
-            },
-            {
-                enabled: generalGroup.length > 0,
-            },
-        );
-
-    const { data: subGroups, isFetching: isFetchingSubGroups } =
-        api.timetable.getSubGroupsForGeneralAndSubject.useQuery(
-            {
-                generalGroup,
-                subject,
-            },
-            {
-                enabled: generalGroup.length > 0 && subject.length > 0,
-            },
-        );
-
-    // Clear subGroup when generalGroup changes
-    // useEffect(() => {
-    //     form.setValue("subGroup", "");
-    // }, [generalGroup, form]);
-
-    const handleSubmit = (values: CustomSubjectSchema) => {
-        onSubmit(values);
-        form.reset();
-        onOpenChange(false);
-    };
+    const {
+        form,
+        generalGroups,
+        subjects,
+        subGroups,
+        // isFetchingSubjects,
+        // isFetchingSubGroups,
+        handleSubmit,
+    } = useCustomSubjectForm({ onSubmit, onOpenChange });
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
@@ -103,10 +54,10 @@ export default function AddCustomSubjectDialog({
                 <Button
                     type="button"
                     variant="default"
-                    className="w-full cursor-pointer sm:w-auto"
+                    className="w-full cursor-pointer sm:w-fit"
                     disabled={isMaxReached}
                 >
-                    <Plus className="mr-2 h-4 w-4" />
+                    <Plus className="size-4" />
                     {t("addButton")}
                 </Button>
             </DialogTrigger>
@@ -118,10 +69,7 @@ export default function AddCustomSubjectDialog({
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
-                    <form
-                        onSubmit={form.handleSubmit(handleSubmit)}
-                        className="grid gap-4"
-                    >
+                    <form onSubmit={handleSubmit} className="grid gap-4">
                         <GeneralGroupField generalGroups={generalGroups} />
 
                         {subjects && subjects.length > 0 && (

@@ -20,6 +20,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import type { CustomSubjectFormSchema } from "@/schema/forms/custom-subject-form-schema";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -32,14 +33,14 @@ type Props = {
 export default function SubjectsField({ subjects }: Props) {
     const [comboboxOpen, setComboboxOpen] = useState(false);
 
-    const form = useFormContext<{ name: string }>();
+    const form = useFormContext<CustomSubjectFormSchema>();
+
     const t = useTranslations("settings.customSubjects");
-    const tStudentGroups = useTranslations("settings.studentGroups");
 
     return (
         <FormField
             control={form.control}
-            name="name"
+            name="subject"
             render={({ field }) => (
                 <FormItem className="flex w-full flex-col">
                     <FormLabel>{t("nameLabel")}</FormLabel>
@@ -63,7 +64,7 @@ export default function SubjectsField({ subjects }: Props) {
                                               (subject) =>
                                                   subject === field.value,
                                           )
-                                        : tStudentGroups("select")}
+                                        : t("select")}
                                     <ChevronsUpDown className="opacity-50" />
                                 </Button>
                             </FormControl>
@@ -71,7 +72,7 @@ export default function SubjectsField({ subjects }: Props) {
                         <PopoverContent className="max-h-[var(--radix-popover-content-available-height)] w-[var(--radix-popover-trigger-width)] p-0">
                             <Command className="w-full max-w-full">
                                 <CommandInput
-                                    placeholder={tStudentGroups("search")}
+                                    placeholder={t("search")}
                                     className="h-9 w-full"
                                 />
                                 <CommandList className="w-full">
@@ -85,7 +86,7 @@ export default function SubjectsField({ subjects }: Props) {
                                                 key={subject}
                                                 onSelect={() => {
                                                     form.setValue(
-                                                        "name",
+                                                        "subject",
                                                         subject,
                                                     );
 

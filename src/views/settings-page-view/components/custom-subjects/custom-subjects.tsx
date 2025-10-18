@@ -8,7 +8,7 @@ import CustomSubjectItem from "./custom-subject-item";
 
 type CustomSubject = {
     id: string;
-    name: string;
+    subject: string;
     generalGroup: string;
     subGroup?: string;
 };
@@ -16,18 +16,19 @@ type CustomSubject = {
 const MAX_CUSTOM_SUBJECTS = 10;
 
 export default function CustomSubjects() {
-    const t = useTranslations("settings.customSubjects");
     const [customSubjects, setCustomSubjects] = useState<CustomSubject[]>([]);
     const [dialogOpen, setDialogOpen] = useState(false);
 
+    const t = useTranslations("settings.customSubjects");
+
     const handleAddSubject = (values: {
-        name: string;
+        subject: string;
         generalGroup: string;
         subGroup?: string;
     }) => {
         const newSubject: CustomSubject = {
             id: Date.now().toString(),
-            name: values.name,
+            subject: values.subject,
             generalGroup: values.generalGroup,
             subGroup: values.subGroup,
         };
@@ -50,49 +51,42 @@ export default function CustomSubjects() {
             </h2>
             <Card className="bg-card border-border">
                 <CardContent className="xs:px-6 xs:py-4 space-y-4 px-4 py-4">
-                    {customSubjects.length === 0 ? (
-                        <div className="space-y-4">
-                            <p className="text-muted-foreground text-center text-sm">
+                    <div className="space-y-6 py-2">
+                        {customSubjects.length > 0 && (
+                            <>
+                                <div className="space-y-2">
+                                    {customSubjects.map((subject) => (
+                                        <CustomSubjectItem
+                                            key={subject.id}
+                                            id={subject.id}
+                                            subject={subject.subject}
+                                            generalGroup={subject.generalGroup}
+                                            subGroup={subject.subGroup}
+                                            onRemove={handleRemoveSubject}
+                                        />
+                                    ))}
+                                </div>
+                                {isMaxReached && (
+                                    <p className="text-muted-foreground text-center text-sm">
+                                        {t("maxSubjectsReached")}
+                                    </p>
+                                )}
+                            </>
+                        )}
+                        {customSubjects.length === 0 && (
+                            <p className="text-muted-foreground mx-auto max-w-xl text-center text-sm">
                                 {t("emptyState")}
                             </p>
-                            <div className="flex justify-center">
-                                <AddCustomSubjectDialog
-                                    open={dialogOpen}
-                                    onOpenChange={setDialogOpen}
-                                    onSubmit={handleAddSubject}
-                                    isMaxReached={isMaxReached}
-                                />
-                            </div>
+                        )}
+                        <div className="flex justify-center">
+                            <AddCustomSubjectDialog
+                                open={dialogOpen}
+                                onOpenChange={setDialogOpen}
+                                onSubmit={handleAddSubject}
+                                isMaxReached={isMaxReached}
+                            />
                         </div>
-                    ) : (
-                        <div className="space-y-4">
-                            <div className="space-y-2">
-                                {customSubjects.map((subject) => (
-                                    <CustomSubjectItem
-                                        key={subject.id}
-                                        id={subject.id}
-                                        name={subject.name}
-                                        generalGroup={subject.generalGroup}
-                                        subGroup={subject.subGroup}
-                                        onRemove={handleRemoveSubject}
-                                    />
-                                ))}
-                            </div>
-                            {isMaxReached && (
-                                <p className="text-muted-foreground text-center text-sm">
-                                    {t("maxSubjectsReached")}
-                                </p>
-                            )}
-                            <div className="flex justify-center">
-                                <AddCustomSubjectDialog
-                                    open={dialogOpen}
-                                    onOpenChange={setDialogOpen}
-                                    onSubmit={handleAddSubject}
-                                    isMaxReached={isMaxReached}
-                                />
-                            </div>
-                        </div>
-                    )}
+                    </div>
                 </CardContent>
             </Card>
         </div>

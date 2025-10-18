@@ -12,6 +12,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import type { CustomSubjectFormSchema } from "@/schema/forms/custom-subject-form-schema";
 import { useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 
@@ -20,7 +21,7 @@ type Props = {
 };
 
 export default function SubgroupField({ subGroups }: Props) {
-    const form = useFormContext<{ subGroup: string }>();
+    const form = useFormContext<CustomSubjectFormSchema>();
     const t = useTranslations("settings.customSubjects");
 
     return (

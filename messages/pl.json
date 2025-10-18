@@ -146,7 +146,7 @@
         "customSubjects": {
             "text": "Przedmioty niestandardowe",
             "emptyState": "Nie dodano jeszcze żadnych niestandardowych przedmiotów. Kliknij przycisk poniżej, aby dodać pierwszy przedmiot.",
-            "addButton": "Dodaj przedmiot niestandardowy",
+            "addButton": "Dodaj",
             "removeButton": "Usuń",
             "maxSubjectsReached": "Osiągnięto maksymalną liczbę niestandardowych przedmiotów (10).",
             "dialogTitle": "Dodaj przedmiot niestandardowy",
@@ -160,8 +160,7 @@
             "subGroupNone": "Brak",
             "cancelButton": "Anuluj",
             "confirmButton": "Dodaj przedmiot",
-            "nameRequired": "Nazwa przedmiotu jest wymagana",
-            "generalGroupRequired": "Oddział jest wymagany"
+            "required": "To pole jest wymagane"
         },
         "applicationAppearance": {
             "text": "Wygląd aplikacji",

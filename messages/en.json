@@ -146,7 +146,7 @@
         "customSubjects": {
             "text": "Custom Subjects",
             "emptyState": "No custom subjects added yet. Click the button below to add your first custom subject.",
-            "addButton": "Add Custom Subject",
+            "addButton": "Add",
             "removeButton": "Remove",
             "maxSubjectsReached": "You have reached the maximum number of custom subjects (10).",
             "dialogTitle": "Add Custom Subject",
@@ -160,8 +160,9 @@
             "subGroupNone": "None",
             "cancelButton": "Cancel",
             "confirmButton": "Add Subject",
-            "nameRequired": "Subject name is required",
-            "generalGroupRequired": "General group is required"
+            "required": "This field is required",
+            "select": "Select",
+            "search": "Search"
         },
         "applicationAppearance": {
             "text": "Application appearance",

@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 
 type Props = {
     id: string;
-    name: string;
+    subject: string;
     generalGroup: string;
     subGroup?: string;
     onRemove: (id: string) => void;
@@ -14,7 +14,7 @@ type Props = {
 
 export default function CustomSubjectItem({
     id,
-    name,
+    subject,
     generalGroup,
     subGroup,
     onRemove,
@@ -24,7 +24,7 @@ export default function CustomSubjectItem({
     return (
         <div className="border-border bg-background hover:bg-accent/50 flex items-center justify-between rounded-lg border p-4 transition-colors">
             <div className="flex-1 space-y-1">
-                <h3 className="text-foreground font-medium">{name}</h3>
+                <h3 className="text-foreground font-medium">{subject}</h3>
                 <div className="text-muted-foreground flex flex-wrap gap-x-4 gap-y-1 text-sm">
                     <span>
                         <span className="font-medium">
