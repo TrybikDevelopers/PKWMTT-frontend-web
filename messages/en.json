@@ -179,6 +179,15 @@
         "polish": "Polish",
         "english": "English",
         "addModerator": "Add Representative",
+        "loginForm": {
+            "title": "Login to moderator panel",
+            "description": "Enter valid data to enter moderator panel",
+            "loginLabel": "Login",
+            "loginPlaceholder": "username",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "********",
+            "submitButton": "Login"
+        },
         "moderatorDialog": {
             "title": "Add Representative",
             "description": "Enter the group and email address of the new representative.",

@@ -179,6 +179,17 @@
         "polish": "Polski",
         "english": "Angielski",
         "addModerator": "Dodaj Starostę",
+        "loginForm": {
+            "title": "Logowanie do panelu moderatora",
+            "description": "Wprowadź prawidłowe dane aby wejść do panelu moderatora",
+            "loginLabel": "Login",
+            "loginPlaceholder": "nazwa użytkownika",
+            "passwordLabel": "Hasło",
+            "passwordPlaceholder": "********",
+            "submitButton": "Zaloguj",
+            "loginRequired": "Login jest wymagany",
+            "passwordRequired": "Hasło jest wymagane"
+        },
         "moderatorDialog": {
             "title": "Dodaj Starostę",
             "description": "Wprowadź grupę i adres email nowego starosty.",
@@ -193,7 +204,7 @@
             "emailInvalid": "Proszę wprowadzić prawidłowy adres email",
             "selectGroup": "Wybierz Grupę",
             "searchGroup": "Szukaj Grupy",
-            "noGroupFound": "No group found"
+            "noGroupFound": "Nie znaleziono grupy"
         },
 
         "table": {
