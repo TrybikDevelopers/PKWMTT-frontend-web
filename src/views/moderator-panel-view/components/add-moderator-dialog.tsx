@@ -26,6 +26,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
+    useFormField,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -34,7 +35,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { ModeratorPanelEntrySchema } from "@/schema/forms/moderator-panel-form-schema";
+import type { ModeratorPanelEntrySchema } from "@/schema/forms/moderator-panel-form-schema";
 import { Check, ChevronsUpDown, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -98,98 +99,115 @@ export default function AddModeratorDialog({
                             <FormField
                                 control={form.control}
                                 name="group"
-                                render={({ field }) => (
-                                    <FormItem className="flex w-full flex-col">
-                                        <FormLabel className="">
-                                            {t("groupLabel")}
-                                        </FormLabel>
-                                        <Popover
-                                            open={comboboxOpen}
-                                            onOpenChange={setComboboxOpen}
-                                            modal={true}
-                                        >
-                                            <PopoverTrigger asChild>
-                                                <FormControl>
-                                                    <Button
-                                                        variant="outline"
-                                                        role="combobox"
-                                                        className={cn(
-                                                            "ml-auto w-full cursor-pointer justify-between font-normal duration-150",
-                                                            !field.value &&
-                                                                "text-muted-foreground",
-                                                        )}
-                                                    >
-                                                        {field.value
-                                                            ? sanitizedGeneralGroups.find(
-                                                                  (dat) =>
-                                                                      dat ===
-                                                                      field.value,
-                                                              )
-                                                            : t("selectGroup")}
-                                                        <ChevronsUpDown className="opacity-50" />
-                                                    </Button>
-                                                </FormControl>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="max-h-[var(--radix-popover-content-available-height)] w-[var(--radix-popover-trigger-width)] p-0">
-                                                <Command className="w-full max-w-full">
-                                                    <CommandInput
-                                                        placeholder={t(
-                                                            "searchGroup",
-                                                        )}
-                                                        className="h-9 w-full"
-                                                    />
-                                                    <CommandList className="w-full">
-                                                        <CommandEmpty>
-                                                            {t("noGroupFound")}
-                                                        </CommandEmpty>
-                                                        <CommandGroup className="w-full">
-                                                            {sanitizedGeneralGroups
-                                                                .filter(
-                                                                    (dat) =>
-                                                                        !addedGroups.includes(
-                                                                            dat,
-                                                                        ),
-                                                                )
-                                                                .map((dat) => (
-                                                                    <CommandItem
-                                                                        value={
-                                                                            dat
-                                                                        }
-                                                                        key={
-                                                                            dat
-                                                                        }
-                                                                        onSelect={() => {
-                                                                            form.setValue(
-                                                                                "group",
+                                render={({ field }) => {
+                                    const { error } = useFormField();
+                                    return (
+                                        <FormItem className="flex w-full flex-col">
+                                            <FormLabel className="">
+                                                {t("groupLabel")}
+                                            </FormLabel>
+                                            <Popover
+                                                open={comboboxOpen}
+                                                onOpenChange={setComboboxOpen}
+                                                modal={true}
+                                            >
+                                                <PopoverTrigger asChild>
+                                                    <FormControl>
+                                                        <Button
+                                                            variant="outline"
+                                                            role="combobox"
+                                                            className={cn(
+                                                                "ml-auto w-full cursor-pointer justify-between font-normal duration-150",
+                                                                !field.value &&
+                                                                    "text-muted-foreground",
+                                                                error &&
+                                                                    "!border-destructive focus-visible:ring-destructive",
+                                                            )}
+                                                        >
+                                                            {field.value
+                                                                ? sanitizedGeneralGroups.find(
+                                                                      (
+                                                                          subject,
+                                                                      ) =>
+                                                                          subject ===
+                                                                          field.value,
+                                                                  )
+                                                                : t(
+                                                                      "selectGroup",
+                                                                  )}
+                                                            <ChevronsUpDown className="opacity-50" />
+                                                        </Button>
+                                                    </FormControl>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="max-h-[var(--radix-popover-content-available-height)] w-[var(--radix-popover-trigger-width)] p-0">
+                                                    <Command className="w-full max-w-full">
+                                                        <CommandInput
+                                                            placeholder={t(
+                                                                "searchGroup",
+                                                            )}
+                                                            className="h-9 w-full"
+                                                        />
+                                                        <CommandList className="w-full">
+                                                            <CommandEmpty>
+                                                                {t(
+                                                                    "noGroupFound",
+                                                                )}
+                                                            </CommandEmpty>
+                                                            <CommandGroup className="w-full">
+                                                                {sanitizedGeneralGroups
+                                                                    .filter(
+                                                                        (dat) =>
+                                                                            !addedGroups.includes(
                                                                                 dat,
-                                                                            );
+                                                                            ),
+                                                                    )
+                                                                    .map(
+                                                                        (
+                                                                            dat,
+                                                                        ) => (
+                                                                            <CommandItem
+                                                                                value={
+                                                                                    dat
+                                                                                }
+                                                                                key={
+                                                                                    dat
+                                                                                }
+                                                                                onSelect={() => {
+                                                                                    form.setValue(
+                                                                                        "group",
+                                                                                        dat,
+                                                                                    );
 
-                                                                            setComboboxOpen(
-                                                                                false,
-                                                                            );
-                                                                        }}
-                                                                        className="h-8"
-                                                                    >
-                                                                        {dat}
-                                                                        <Check
-                                                                            className={cn(
-                                                                                "ml-auto",
-                                                                                dat ===
-                                                                                    field.value
-                                                                                    ? "opacity-100"
-                                                                                    : "opacity-0",
-                                                                            )}
-                                                                        />
-                                                                    </CommandItem>
-                                                                ))}
-                                                        </CommandGroup>
-                                                    </CommandList>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
+                                                                                    setComboboxOpen(
+                                                                                        false,
+                                                                                    );
+                                                                                }}
+                                                                                className="h-8"
+                                                                            >
+                                                                                {
+                                                                                    dat
+                                                                                }
+                                                                                <Check
+                                                                                    className={cn(
+                                                                                        "ml-auto",
+                                                                                        dat ===
+                                                                                            field.value
+                                                                                            ? "opacity-100"
+                                                                                            : "opacity-0",
+                                                                                    )}
+                                                                                />
+                                                                            </CommandItem>
+                                                                        ),
+                                                                    )}
+                                                            </CommandGroup>
+                                                        </CommandList>
+                                                    </Command>
+                                                </PopoverContent>
+                                            </Popover>
+                                            <FormMessage />
+                                        </FormItem>
+                                    );
+                                }}
                             />
                         ) : (
                             <FormField

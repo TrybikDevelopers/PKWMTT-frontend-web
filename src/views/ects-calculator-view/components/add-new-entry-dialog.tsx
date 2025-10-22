@@ -116,7 +116,7 @@ export default function AddNewEntryDialog({
                                                                 !field.value &&
                                                                     "text-muted-foreground",
                                                                 error &&
-                                                                    "border-destructive focus-visible:ring-destructive",
+                                                                    "!border-destructive focus-visible:ring-destructive",
                                                             )}
                                                         >
                                                             {field.value
