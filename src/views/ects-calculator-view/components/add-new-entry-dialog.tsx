@@ -24,6 +24,7 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
+    useFormField,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -93,97 +94,106 @@ export default function AddNewEntryDialog({
                             <FormField
                                 control={form.control}
                                 name="name"
-                                render={({ field }) => (
-                                    <FormItem className="flex w-full flex-col">
-                                        <FormLabel className="">
-                                            {t("nameLabel")}
-                                        </FormLabel>
-                                        <Popover
-                                            open={comboboxOpen}
-                                            onOpenChange={setComboboxOpen}
-                                            modal={true}
-                                        >
-                                            <PopoverTrigger asChild>
-                                                <FormControl>
-                                                    <Button
-                                                        variant="outline"
-                                                        role="combobox"
-                                                        className={cn(
-                                                            "ml-auto w-full cursor-pointer justify-between font-normal duration-150",
-                                                            !field.value &&
-                                                                "text-muted-foreground",
-                                                        )}
-                                                    >
-                                                        {field.value
-                                                            ? subjects.find(
-                                                                  (subject) =>
-                                                                      subject ===
-                                                                      field.value,
-                                                              )
-                                                            : t("select")}
-                                                        <ChevronsUpDown className="opacity-50" />
-                                                    </Button>
-                                                </FormControl>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="max-h-[var(--radix-popover-content-available-height)] w-[var(--radix-popover-trigger-width)] p-0">
-                                                <Command className="w-full max-w-full">
-                                                    <CommandInput
-                                                        placeholder={t(
-                                                            "search",
-                                                        )}
-                                                        className="h-9 w-full"
-                                                    />
-                                                    <CommandList className="w-full">
-                                                        <CommandEmpty>
-                                                            {t(
-                                                                "noSubjectFound",
+                                render={({ field }) => {
+                                    const { error } = useFormField();
+                                    return (
+                                        <FormItem className="flex w-full flex-col">
+                                            <FormLabel className="">
+                                                {t("nameLabel")}
+                                            </FormLabel>
+                                            <Popover
+                                                open={comboboxOpen}
+                                                onOpenChange={setComboboxOpen}
+                                                modal={true}
+                                            >
+                                                <PopoverTrigger asChild>
+                                                    <FormControl>
+                                                        <Button
+                                                            variant="outline"
+                                                            role="combobox"
+                                                            className={cn(
+                                                                "ml-auto w-full cursor-pointer justify-between font-normal duration-150",
+                                                                !field.value &&
+                                                                    "text-muted-foreground",
+                                                                error &&
+                                                                    "border-destructive focus-visible:ring-destructive",
                                                             )}
-                                                        </CommandEmpty>
-                                                        <CommandGroup className="w-full">
-                                                            {subjects.map(
-                                                                (subject) => (
-                                                                    <CommandItem
-                                                                        value={
-                                                                            subject
-                                                                        }
-                                                                        key={
-                                                                            subject
-                                                                        }
-                                                                        onSelect={() => {
-                                                                            form.setValue(
-                                                                                "name",
-                                                                                subject,
-                                                                            );
+                                                        >
+                                                            {field.value
+                                                                ? subjects.find(
+                                                                      (
+                                                                          subject,
+                                                                      ) =>
+                                                                          subject ===
+                                                                          field.value,
+                                                                  )
+                                                                : t("select")}
+                                                            <ChevronsUpDown className="opacity-50" />
+                                                        </Button>
+                                                    </FormControl>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="max-h-[var(--radix-popover-content-available-height)] w-[var(--radix-popover-trigger-width)] p-0">
+                                                    <Command className="w-full max-w-full">
+                                                        <CommandInput
+                                                            placeholder={t(
+                                                                "search",
+                                                            )}
+                                                            className="h-9 w-full"
+                                                        />
+                                                        <CommandList className="w-full">
+                                                            <CommandEmpty>
+                                                                {t(
+                                                                    "noSubjectFound",
+                                                                )}
+                                                            </CommandEmpty>
+                                                            <CommandGroup className="w-full">
+                                                                {subjects.map(
+                                                                    (
+                                                                        subject,
+                                                                    ) => (
+                                                                        <CommandItem
+                                                                            value={
+                                                                                subject
+                                                                            }
+                                                                            key={
+                                                                                subject
+                                                                            }
+                                                                            onSelect={() => {
+                                                                                form.setValue(
+                                                                                    "name",
+                                                                                    subject,
+                                                                                );
 
-                                                                            setComboboxOpen(
-                                                                                false,
-                                                                            );
-                                                                        }}
-                                                                        className="h-8"
-                                                                    >
-                                                                        {
-                                                                            subject
-                                                                        }
-                                                                        <Check
-                                                                            className={cn(
-                                                                                "ml-auto",
-                                                                                subject ===
-                                                                                    field.value
-                                                                                    ? "opacity-100"
-                                                                                    : "opacity-0",
-                                                                            )}
-                                                                        />
-                                                                    </CommandItem>
-                                                                ),
-                                                            )}
-                                                        </CommandGroup>
-                                                    </CommandList>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
+                                                                                setComboboxOpen(
+                                                                                    false,
+                                                                                );
+                                                                            }}
+                                                                            className="h-8"
+                                                                        >
+                                                                            {
+                                                                                subject
+                                                                            }
+                                                                            <Check
+                                                                                className={cn(
+                                                                                    "ml-auto",
+                                                                                    subject ===
+                                                                                        field.value
+                                                                                        ? "opacity-100"
+                                                                                        : "opacity-0",
+                                                                                )}
+                                                                            />
+                                                                        </CommandItem>
+                                                                    ),
+                                                                )}
+                                                            </CommandGroup>
+                                                        </CommandList>
+                                                    </Command>
+                                                </PopoverContent>
+                                            </Popover>
+                                            <FormMessage />
+                                        </FormItem>
+                                    );
+                                }}
                             />
                         ) : (
                             <FormField
