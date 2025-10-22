@@ -1,3 +1,4 @@
+import useHideLectures from "@/hooks/use-hide-lectures";
 import type { Timetable } from "@/types/data-access/timetable";
 import { useCallback } from "react";
 import DesktopLessonsCard from "./desktop-lessons-card";
@@ -12,6 +13,8 @@ const useDesktopTimetableGrid = (
     timetableData: Timetable["data"],
     weekParity: "EVEN" | "ODD",
 ) => {
+    const { hideLectures } = useHideLectures();
+
     const getLessons = useCallback(
         (dayIndex: number, hourIndex: number) => {
             const dayData = timetableData[dayIndex];
@@ -23,11 +26,18 @@ const useDesktopTimetableGrid = (
             // filter and sort (to make sure that the lessons are in the same order)
             const lessons = classData
                 .filter((l) => l.rowId === hourIndex)
+                .filter((l) => {
+                    // Hide lectures if the setting is enabled
+                    if (hideLectures && l.type === "LECTURE") {
+                        return false;
+                    }
+                    return true;
+                })
                 .sort((a, b) => a.name.localeCompare(b.name));
 
             return lessons;
         },
-        [timetableData, weekParity],
+        [timetableData, weekParity, hideLectures],
     );
 
     return { getLessons };

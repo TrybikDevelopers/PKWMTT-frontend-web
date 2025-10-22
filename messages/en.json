@@ -148,7 +148,8 @@
             "darkMode": "Dark Mode",
             "language": "Language",
             "polish": "Polish",
-            "english": "English"
+            "english": "English",
+            "hideLectures": "Hide Lectures"
         },
         "mobileApp": {
             "text": "Mobile App",

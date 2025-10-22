@@ -148,7 +148,8 @@
             "darkMode": "Tryb ciemny",
             "language": "Język",
             "polish": "Polski",
-            "english": "Angielski"
+            "english": "Angielski",
+            "hideLectures": "Ukryj Wykłady"
         },
         "mobileApp": {
             "text": "Aplikacja mobilna",
