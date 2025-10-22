@@ -186,7 +186,8 @@
             "loginPlaceholder": "username",
             "passwordLabel": "Password",
             "passwordPlaceholder": "********",
-            "submitButton": "Login"
+            "submitButton": "Login",
+            "required": "This field cannot be empty"
         },
         "moderatorDialog": {
             "title": "Add Representative",

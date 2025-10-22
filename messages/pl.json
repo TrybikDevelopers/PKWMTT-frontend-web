@@ -187,6 +187,7 @@
             "passwordLabel": "Hasło",
             "passwordPlaceholder": "********",
             "submitButton": "Zaloguj",
+            "required": "Pole nie może być puste",
             "loginRequired": "Login jest wymagany",
             "passwordRequired": "Hasło jest wymagane"
         },
