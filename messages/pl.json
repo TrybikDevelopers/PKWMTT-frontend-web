@@ -135,7 +135,7 @@
             "description": "Dostosuj swoje doświadczenie PKWM App i zarządzaj swoimi preferencjami."
         },
         "studentGroups": {
-            "text": "Grupy Studenckie",
+            "text": "Grupy studenckie",
             "select": "Wybierz",
             "search": "Szukaj",
             "generalGroup": "Dziekańska",
@@ -144,7 +144,7 @@
             "projGruop": "Projektowa"
         },
         "applicationAppearance": {
-            "text": "Wygląd Aplikacji",
+            "text": "Wygląd aplikacji",
             "darkMode": "Tryb ciemny",
             "language": "Język",
             "polish": "Polski",

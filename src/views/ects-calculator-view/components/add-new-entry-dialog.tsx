@@ -109,14 +109,16 @@ export default function AddNewEntryDialog({
                                                 <PopoverTrigger asChild>
                                                     <FormControl>
                                                         <Button
-                                                            variant="outline"
+                                                            variant={
+                                                                error
+                                                                    ? "error"
+                                                                    : "outline"
+                                                            }
                                                             role="combobox"
                                                             className={cn(
                                                                 "ml-auto w-full cursor-pointer justify-between font-normal duration-150",
                                                                 !field.value &&
                                                                     "text-muted-foreground",
-                                                                error &&
-                                                                    "!border-destructive focus-visible:ring-destructive",
                                                             )}
                                                         >
                                                             {field.value

@@ -135,7 +135,7 @@
             "description": "Customize your PKWM App experience and manage your preferences."
         },
         "studentGroups": {
-            "text": "Student Groups",
+            "text": "Student groups",
             "select": "Select",
             "search": "Search",
             "generalGroup": "General Group",
@@ -144,15 +144,15 @@
             "projGruop": "Project"
         },
         "applicationAppearance": {
-            "text": "Application Appearance",
+            "text": "Application appearance",
             "darkMode": "Dark Mode",
             "language": "Language",
             "polish": "Polish",
             "english": "English",
-            "hideLectures": "Hide Lectures"
+            "hideLectures": "Hide lectures"
         },
         "mobileApp": {
-            "text": "Mobile App",
+            "text": "Mobile app",
             "androidApk": "Android APK"
         }
     },
