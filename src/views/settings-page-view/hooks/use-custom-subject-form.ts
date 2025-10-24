@@ -1,3 +1,4 @@
+import { useRouter } from "@/i18n/navigation";
 import {
     type CustomSubjectFormSchema,
     getCustomSubjectFormSchema,
@@ -7,14 +8,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { useForm, useWatch } from "react-hook-form";
+import { toast } from "sonner";
 
 type Props = {
-    onSubmit: (values: CustomSubjectFormSchema) => void;
     onOpenChange: (open: boolean) => void;
 };
 
-const useCustomSubjectForm = ({ onSubmit, onOpenChange }: Props) => {
+const useCustomSubjectForm = ({ onOpenChange }: Props) => {
     const t = useTranslations("settings.customSubjects");
+    const tErrors = useTranslations("errors");
+
+    const router = useRouter();
 
     const form = useForm<CustomSubjectFormSchema>({
         resolver: zodResolver(getCustomSubjectFormSchema(t)),
@@ -53,10 +57,25 @@ const useCustomSubjectForm = ({ onSubmit, onOpenChange }: Props) => {
             },
         );
 
+    const { mutate, isPending } =
+        api.timetable.submitCustomSubjectsForm.useMutation({
+            onSuccess: () => {
+                form.reset({
+                    generalGroup: "",
+                    subject: "",
+                    subGroup: "",
+                });
+                onOpenChange(false);
+
+                router.refresh();
+            },
+            onError: () => {
+                toast.error(tErrors("actions.unknown"));
+            },
+        });
+
     const handleSubmit = form.handleSubmit((values) => {
-        onSubmit(values);
-        form.reset();
-        onOpenChange(false);
+        mutate(values);
     });
 
     // Clear subGroup when generalGroup changes
@@ -76,6 +95,7 @@ const useCustomSubjectForm = ({ onSubmit, onOpenChange }: Props) => {
         isFetchingSubjects,
         isFetchingSubGroups,
         handleSubmit,
+        isSubmitting: isPending,
     };
 };
 

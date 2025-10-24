@@ -22,18 +22,12 @@ import SubjectsField from "./subjects-field";
 type Props = {
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    onSubmit: (values: {
-        subject: string;
-        generalGroup: string;
-        subGroup?: string;
-    }) => void;
     isMaxReached: boolean;
 };
 
 export default function AddCustomSubjectDialog({
     open,
     onOpenChange,
-    onSubmit,
     isMaxReached,
 }: Props) {
     const t = useTranslations("settings.customSubjects");
@@ -46,7 +40,7 @@ export default function AddCustomSubjectDialog({
         // isFetchingSubjects,
         // isFetchingSubGroups,
         handleSubmit,
-    } = useCustomSubjectForm({ onSubmit, onOpenChange });
+    } = useCustomSubjectForm({ onOpenChange });
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>

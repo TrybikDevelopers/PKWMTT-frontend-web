@@ -1,46 +1,23 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { MAX_CUSTOM_SUBJECTS } from "@/constants/custom-subjects";
+import type { TimetableSettingsSchema } from "@/schema/timetable-settings-schema";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import AddCustomSubjectDialog from "./add-custom-subject-dialog";
 import CustomSubjectItem from "./custom-subject-item";
 
-type CustomSubject = {
-    id: string;
-    subject: string;
-    generalGroup: string;
-    subGroup?: string;
+type Props = {
+    timetableSettings: TimetableSettingsSchema;
 };
 
-const MAX_CUSTOM_SUBJECTS = 10;
-
-export default function CustomSubjects() {
-    const [customSubjects, setCustomSubjects] = useState<CustomSubject[]>([]);
+export default function CustomSubjects({ timetableSettings }: Props) {
     const [dialogOpen, setDialogOpen] = useState(false);
 
     const t = useTranslations("settings.customSubjects");
 
-    const handleAddSubject = (values: {
-        subject: string;
-        generalGroup: string;
-        subGroup?: string;
-    }) => {
-        const newSubject: CustomSubject = {
-            id: Date.now().toString(),
-            subject: values.subject,
-            generalGroup: values.generalGroup,
-            subGroup: values.subGroup,
-        };
-
-        setCustomSubjects((prev) => [...prev, newSubject]);
-    };
-
-    const handleRemoveSubject = (id: string) => {
-        setCustomSubjects((prev) =>
-            prev.filter((subject) => subject.id !== id),
-        );
-    };
+    const customSubjects = timetableSettings.customSubjects;
 
     const isMaxReached = customSubjects.length >= MAX_CUSTOM_SUBJECTS;
 
@@ -55,14 +32,14 @@ export default function CustomSubjects() {
                         {customSubjects.length > 0 && (
                             <>
                                 <div className="space-y-2">
-                                    {customSubjects.map((subject) => (
+                                    {customSubjects.map((subject, index) => (
                                         <CustomSubjectItem
-                                            key={subject.id}
-                                            id={subject.id}
+                                            key={`custom-subject-${index}`}
+                                            id={"Xd"}
                                             subject={subject.subject}
                                             generalGroup={subject.generalGroup}
                                             subGroup={subject.subGroup}
-                                            onRemove={handleRemoveSubject}
+                                            onRemove={() => {}}
                                         />
                                     ))}
                                 </div>
@@ -82,7 +59,6 @@ export default function CustomSubjects() {
                             <AddCustomSubjectDialog
                                 open={dialogOpen}
                                 onOpenChange={setDialogOpen}
-                                onSubmit={handleAddSubject}
                                 isMaxReached={isMaxReached}
                             />
                         </div>

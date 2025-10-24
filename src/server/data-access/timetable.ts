@@ -1,6 +1,9 @@
 import "server-only";
 
-import type { TimetableSettingsSchema } from "@/schema/timetable-settings-schema";
+import type {
+    CustomSubjectSchema,
+    TimetableSettingsSchema,
+} from "@/schema/timetable-settings-schema";
 import type {
     AcademicHours,
     FetchAcademicHoursResult,
@@ -163,18 +166,31 @@ export const fetchAcademicHours =
 export const fetchTimetable = async (
     generalGroup: string,
     subGroups: string[],
+    customSubjects: CustomSubjectSchema[],
 ): Promise<FetchTimetableResult> => {
     const url = generateFetchUrl(`/timetables/${generalGroup}`);
 
     const headers = getGenericHeaders();
+    headers.set("Content-Type", "application/json");
 
     subGroups.forEach((subGroup) => {
         url.searchParams.append("sub", subGroup);
     });
 
+    const body: {
+        generalGroup: string;
+        name: string;
+        subGroup?: string;
+    }[] = customSubjects.map((customSubject) => ({
+        generalGroup: customSubject.generalGroup,
+        name: customSubject.subject,
+        subGroup: customSubject.subGroup,
+    }));
+    console.log(body);
     const response = await fetch(url, {
-        method: "GET",
+        method: "POST",
         headers,
+        body: JSON.stringify(body),
     });
 
     if (!response.ok) {

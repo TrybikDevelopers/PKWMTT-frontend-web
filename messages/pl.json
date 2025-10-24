@@ -160,7 +160,9 @@
             "subGroupNone": "Brak",
             "cancelButton": "Anuluj",
             "confirmButton": "Dodaj przedmiot",
-            "required": "To pole jest wymagane"
+            "required": "To pole jest wymagane",
+            "select": "Wybierz",
+            "search": "Szukaj"
         },
         "applicationAppearance": {
             "text": "Wygląd aplikacji",

@@ -32,7 +32,7 @@ export default async function RootLayout({
                 <RootLayoutProvider>
                     <Header />
                     {children}
-                    <Toaster duration={3000} />
+                    <Toaster duration={3500} />
                 </RootLayoutProvider>
             </body>
         </html>

@@ -17,6 +17,7 @@ export const filterTimetableSettingsInput = (
     return {
         generalGroup: data.generalGroup,
         groups: data.groups,
+        customSubjects: data.customSubjects,
     };
 };
 

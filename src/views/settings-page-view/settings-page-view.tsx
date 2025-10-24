@@ -14,7 +14,9 @@ export default function SettingsPageView({ timetableSettings }: Props) {
             <div className="space-y-8">
                 <StudentGroups timetableSettings={timetableSettings} />
 
-                <CustomSubjects />
+                {timetableSettings && (
+                    <CustomSubjects timetableSettings={timetableSettings} />
+                )}
 
                 <ApplicationAppearance />
 

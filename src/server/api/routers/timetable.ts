@@ -1,6 +1,9 @@
 import "server-only";
 
+import { MAX_CUSTOM_SUBJECTS } from "@/constants/custom-subjects";
+import { getCustomSubjectFormSchema } from "@/schema/forms/custom-subject-form-schema";
 import { getTimetableFormSchema } from "@/schema/forms/timetable-form-schema";
+import { CustomSubjectSchema } from "@/schema/timetable-settings-schema";
 import { getSubGroupsForGeneralAndSubjectSchema } from "@/schema/trpc/timetable/get-sub-groups-for-general-and-subject";
 import { getSubGroupsSchema } from "@/schema/trpc/timetable/get-sub-groups-schema";
 import { getSubjectsForGeneralGroupSchema } from "@/schema/trpc/timetable/get-subjects-for-general-group-schema";
@@ -14,6 +17,7 @@ import {
     fetchSubGroupsForGeneralGroup,
     fetchSubjectsForGeneralGroup,
     fetchTimetable,
+    getValidTimetableSettings,
 } from "@/server/data-access/timetable";
 import { TRPCError } from "@trpc/server";
 import { getTranslations } from "next-intl/server";
@@ -82,6 +86,7 @@ export const timetableRouter = createTRPCRouter({
             const { timetable, error } = await fetchTimetable(
                 input.generalGroup,
                 input.groups,
+                input.customSubjects,
             );
 
             if (error) {
@@ -100,7 +105,56 @@ export const timetableRouter = createTRPCRouter({
             ).parse(value),
         )
         .mutation(async ({ input }) => {
-            await setTimetableSettings(input);
+            const { timetableSettings } = await getValidTimetableSettings();
+
+            await setTimetableSettings({
+                generalGroup: input.generalGroup,
+                groups: input.groups,
+                customSubjects: timetableSettings?.customSubjects || [],
+            });
+
+            return {
+                success: true,
+            };
+        }),
+    submitCustomSubjectsForm: publicProcedure
+        .input(async (value) =>
+            getCustomSubjectFormSchema(
+                await getTranslations("settings.customSubjects"),
+            ).parse(value),
+        )
+        .mutation(async ({ input }) => {
+            const { timetableSettings } = await getValidTimetableSettings();
+
+            if (!timetableSettings) {
+                throw new TRPCError({
+                    code: "BAD_REQUEST",
+                    message:
+                        "Timetable settings are required to submit custom subjects",
+                });
+            }
+
+            const newCustomSubjects: CustomSubjectSchema[] = [
+                ...timetableSettings.customSubjects,
+                {
+                    subject: input.subject,
+                    generalGroup: input.generalGroup,
+                    subGroup: input.subGroup,
+                },
+            ];
+
+            if (newCustomSubjects.length > MAX_CUSTOM_SUBJECTS) {
+                throw new TRPCError({
+                    code: "FORBIDDEN",
+                    message: `You can only add up to ${MAX_CUSTOM_SUBJECTS} custom subjects`,
+                });
+            }
+
+            await setTimetableSettings({
+                generalGroup: timetableSettings.generalGroup,
+                groups: timetableSettings.groups,
+                customSubjects: newCustomSubjects,
+            });
 
             return {
                 success: true,

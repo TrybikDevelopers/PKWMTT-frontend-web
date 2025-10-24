@@ -7,7 +7,7 @@ export const getCustomSubjectFormSchema = (
     const customSubjectSchema = z.object({
         subject: z.string().check(z.minLength(1, t("required"))),
         generalGroup: z.string().check(z.minLength(1, t("required"))),
-        subGroup: z.string().check(z.minLength(1, t("required"))),
+        subGroup: z.optional(z.string()),
     });
 
     return customSubjectSchema;

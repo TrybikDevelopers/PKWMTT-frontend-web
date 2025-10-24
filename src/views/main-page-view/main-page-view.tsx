@@ -21,6 +21,7 @@ export default async function MainPageView() {
     void api.timetable.getTimetable.prefetch({
         generalGroup: timetableSettings.generalGroup,
         groups: timetableSettings.groups,
+        customSubjects: timetableSettings.customSubjects,
     });
     void api.timetable.getAcademicHours.prefetch();
 
