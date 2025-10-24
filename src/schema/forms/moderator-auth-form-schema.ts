@@ -11,7 +11,7 @@ export function getModeratorAuthFormSchema(
         password: z.string().min(1, requiredMessage),
     });
 
-    return { moderatorAuthSchema } as const;
+    return { moderatorAuthSchema };
 }
 
 export type ModeratorAuthFormSchema = z.infer<

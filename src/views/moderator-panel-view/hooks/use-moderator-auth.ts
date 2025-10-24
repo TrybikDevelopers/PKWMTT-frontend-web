@@ -8,13 +8,13 @@ export default function useModeratorAuth() {
     const t = useTranslations("moderatorPanel.loginForm");
     const locale = useLocale();
 
-    const { moderatorAuthSchema } = getModeratorAuthFormSchema(t);
-
     const form = useForm<{
         login: string;
         password: string;
     }>({
-        resolver: zodResolver(moderatorAuthSchema),
+        resolver: zodResolver(
+            getModeratorAuthFormSchema(t).moderatorAuthSchema,
+        ),
         defaultValues: { login: "", password: "" },
         mode: "onSubmit",
         reValidateMode: "onChange",

@@ -9,7 +9,7 @@ import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocalStorage } from "usehooks-ts";
 
-export default function useEctsCalculatorPage() {
+export default function useEctsCalculatorPage(subjects: string[]) {
     const t = useTranslations("ectsCalculator.form");
 
     const [rows, setRows] = useLocalStorage<EctsEntrySchema[]>(
@@ -115,6 +115,10 @@ export default function useEctsCalculatorPage() {
         }
     };
 
+    const filteredSubjects = subjects.filter(
+        (subject) => !rows.some((row) => row.name === subject),
+    );
+
     return {
         // If first render, return empty array to avoid hydration error
         rows: isFirstRender ? [] : rows,
@@ -123,6 +127,7 @@ export default function useEctsCalculatorPage() {
         selected,
         allSelected,
         someSelected,
+        filteredSubjects,
 
         avgGrade,
         totalEcts,

@@ -26,7 +26,6 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-    useFormField,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
@@ -100,7 +99,6 @@ export default function AddModeratorDialog({
                                 control={form.control}
                                 name="group"
                                 render={({ field }) => {
-                                    const { error } = useFormField();
                                     return (
                                         <FormItem className="flex w-full flex-col">
                                             <FormLabel className="">
@@ -114,11 +112,8 @@ export default function AddModeratorDialog({
                                                 <PopoverTrigger asChild>
                                                     <FormControl>
                                                         <Button
-                                                            variant={
-                                                                error
-                                                                    ? "error"
-                                                                    : "outline"
-                                                            }
+                                                            ariaInvalidBorder
+                                                            variant={"outline"}
                                                             role="combobox"
                                                             className={cn(
                                                                 "ml-auto w-full cursor-pointer justify-between font-normal duration-150",
@@ -178,6 +173,9 @@ export default function AddModeratorDialog({
                                                                                     form.setValue(
                                                                                         "group",
                                                                                         dat,
+                                                                                        {
+                                                                                            shouldValidate: true,
+                                                                                        },
                                                                                     );
 
                                                                                     setComboboxOpen(
