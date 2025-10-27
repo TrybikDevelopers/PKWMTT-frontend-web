@@ -23,6 +23,7 @@ export default function ECTSCalculatorView({ subjects }: Props) {
         avgGrade,
         totalEcts,
         weightedAvg,
+        // filteredSubjects,
         toggleAll,
         toggleOne,
         deleteSelected,
@@ -30,7 +31,7 @@ export default function ECTSCalculatorView({ subjects }: Props) {
         handleDialogOpenChange,
         editEntry,
         form,
-    } = useEctsCalculatorPage();
+    } = useEctsCalculatorPage(subjects);
 
     return (
         <div className="w-full p-4">
@@ -97,6 +98,7 @@ export default function ECTSCalculatorView({ subjects }: Props) {
                 )}
             </div>
 
+            {/* {filteredSubjects.length > 0 && ( */}
             <AddNewEntryDialog
                 open={open}
                 selectedCount={selected.size}
@@ -106,6 +108,7 @@ export default function ECTSCalculatorView({ subjects }: Props) {
                 onDeleteSelected={deleteSelected}
                 subjects={subjects}
             />
+            {/* )} */}
         </div>
     );
 }

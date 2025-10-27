@@ -135,7 +135,7 @@
             "description": "Dostosuj swoje doświadczenie PKWM App i zarządzaj swoimi preferencjami."
         },
         "studentGroups": {
-            "text": "Grupy Studenckie",
+            "text": "Grupy studenckie",
             "select": "Wybierz",
             "search": "Szukaj",
             "generalGroup": "Dziekańska",
@@ -144,11 +144,12 @@
             "projGruop": "Projektowa"
         },
         "applicationAppearance": {
-            "text": "Wygląd Aplikacji",
+            "text": "Wygląd aplikacji",
             "darkMode": "Tryb ciemny",
             "language": "Język",
             "polish": "Polski",
-            "english": "Angielski"
+            "english": "Angielski",
+            "hideLectures": "Ukryj Wykłady"
         },
         "mobileApp": {
             "text": "Aplikacja mobilna",
@@ -167,5 +168,52 @@
         "settingsNote": "Możesz ją również pobrać później z zakładki <mark>Ustawienia</mark>.",
         "success": "Pobrano!",
         "error": "Wystąpił błąd podczas pobierania aplikacji mobilnej. Proszę spróbować ponownie później."
+    },
+    "moderatorPanel": {
+        "metadata": {
+            "title": "Panel Moderatora | PKWM App",
+            "description": "Dodawaj, edytuj i usuwaj przedstawicieli"
+        },
+        "title": "Panel Moderatora",
+        "description": "Zarządzaj starostami grup i ich adresami email",
+        "language": "Język",
+        "polish": "Polski",
+        "english": "Angielski",
+        "addModerator": "Dodaj Starostę",
+        "loginForm": {
+            "title": "Logowanie do panelu moderatora",
+            "description": "Wprowadź prawidłowe dane aby wejść do panelu moderatora",
+            "loginLabel": "Login",
+            "loginPlaceholder": "nazwa użytkownika",
+            "passwordLabel": "Hasło",
+            "passwordPlaceholder": "********",
+            "submitButton": "Zaloguj",
+            "required": "Pole nie może być puste",
+            "loginRequired": "Login jest wymagany",
+            "passwordRequired": "Hasło jest wymagane"
+        },
+        "moderatorDialog": {
+            "title": "Dodaj Starostę",
+            "description": "Wprowadź grupę i adres email nowego starosty.",
+            "groupLabel": "Grupa",
+            "groupPlaceholder": "Wybierz Grupę",
+            "emailLabel": "Email",
+            "emailPlaceholder": "starosta@example.com",
+            "cancelButton": "Anuluj",
+            "confirmButton": "Dodaj Starostę",
+            "groupRequired": "Grupa jest wymagana",
+            "emailRequired": "Email jest wymagany",
+            "emailInvalid": "Proszę wprowadzić prawidłowy adres email",
+            "selectGroup": "Wybierz Grupę",
+            "searchGroup": "Szukaj Grupy",
+            "noGroupFound": "Nie znaleziono grupy"
+        },
+
+        "table": {
+            "group": "Grupa",
+            "email": "Email",
+            "actions": "Akcje",
+            "noModeratorsFound": "Nie znaleziono starostów"
+        }
     }
 }

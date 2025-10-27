@@ -135,7 +135,7 @@
             "description": "Customize your PKWM App experience and manage your preferences."
         },
         "studentGroups": {
-            "text": "Student Groups",
+            "text": "Student groups",
             "select": "Select",
             "search": "Search",
             "generalGroup": "General Group",
@@ -144,14 +144,15 @@
             "projGruop": "Project"
         },
         "applicationAppearance": {
-            "text": "Application Appearance",
+            "text": "Application appearance",
             "darkMode": "Dark Mode",
             "language": "Language",
             "polish": "Polish",
-            "english": "English"
+            "english": "English",
+            "hideLectures": "Hide lectures"
         },
         "mobileApp": {
-            "text": "Mobile App",
+            "text": "Mobile app",
             "androidApk": "Android APK"
         }
     },
@@ -167,5 +168,50 @@
         "settingsNote": "You can also download it later from the <mark>Settings</mark> tab.",
         "success": "Downloaded!",
         "error": "An error occurred while downloading the mobile app. Please try again later."
+    },
+    "moderatorPanel": {
+        "metadata": {
+            "title": "Moderator Panel | PKWM App",
+            "description": "Add, Edit and Remove Representatives"
+        },
+        "title": "Moderator Panel",
+        "description": "Manage reports, users, and content of groups representatives",
+        "language": "Language",
+        "polish": "Polish",
+        "english": "English",
+        "addModerator": "Add Representative",
+        "loginForm": {
+            "title": "Login to moderator panel",
+            "description": "Enter valid data to enter moderator panel",
+            "loginLabel": "Login",
+            "loginPlaceholder": "username",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "********",
+            "submitButton": "Login",
+            "required": "This field cannot be empty"
+        },
+        "moderatorDialog": {
+            "title": "Add Representative",
+            "description": "Enter the group and email address of the new representative.",
+            "groupLabel": "Group",
+            "groupPlaceholder": "Select Group",
+            "emailLabel": "Email",
+            "emailPlaceholder": "representative@example.com",
+            "cancelButton": "Cancel",
+            "confirmButton": "Add Representative",
+            "groupRequired": "Group is required",
+            "emailRequired": "Email is required",
+            "emailInvalid": "Please enter a valid email address",
+            "selectGroup": "Select Group",
+            "searchGroup": "Search Group",
+            "noGroupFound": "No group found"
+        },
+
+        "table": {
+            "group": "Group",
+            "email": "Email",
+            "actions": "Actions",
+            "noModeratorsFound": "No representatives found"
+        }
     }
 }

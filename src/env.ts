@@ -1,24 +1,21 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
+const urlSchema = z.url().transform((val) => {
+    const url = new URL(val);
+    return url.origin;
+});
+
 export const env = createEnv({
     server: {
         API_KEY: z.string().check(z.minLength(1)),
-        API_BASE_URL: z.url().transform((val) => {
-            // Ensure the URL is valid and only return the origin
-            const url = new URL(val);
-            return url.origin;
-        }),
+        API_BASE_URL: urlSchema,
     },
     client: {
         NEXT_PUBLIC_IS_PROD: z.boolean(),
         NEXT_PUBLIC_IS_DEV: z.boolean(),
         NEXT_PUBLIC_IS_TEST: z.boolean(),
-        NEXT_PUBLIC_APK_DOWNLOAD_BASE_URL: z.url().transform((val) => {
-            // Ensure the URL is valid and only return the origin
-            const url = new URL(val);
-            return url.origin;
-        }),
+        NEXT_PUBLIC_APK_DOWNLOAD_BASE_URL: urlSchema,
         NEXT_PUBLIC_POSTHOG_KEY: z.string().check(z.minLength(1)),
         NEXT_PUBLIC_POSTHOG_HOST: z.string().check(z.minLength(1)),
     },

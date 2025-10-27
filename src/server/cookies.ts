@@ -1,13 +1,15 @@
 import "server-only";
 
-import { env } from "@/env";
+import {
+    HIDE_LECTURES_COOKIE_KEY,
+    TIMETABLE_SETTINGS_COOKIE_KEY,
+    timetableSettingsCookieOptions,
+} from "@/constants/cookies";
 import {
     type TimetableSettingsSchema,
     timetableSettingsSchema,
 } from "@/schema/timetable-settings-schema";
 import { cookies } from "next/headers";
-
-export const TIMETABLE_SETTINGS_COOKIE_KEY = "NEXT_TIMETABLE_SETTINGS" as const;
 
 export const filterTimetableSettingsInput = (
     data: TimetableSettingsSchema,
@@ -28,13 +30,7 @@ export const setTimetableSettings = async (data: TimetableSettingsSchema) => {
     (await cookies()).set(
         TIMETABLE_SETTINGS_COOKIE_KEY,
         timetableSettingsString,
-        {
-            path: "/",
-            maxAge: 60 * 60 * 24 * 365, // 1 year
-            httpOnly: true,
-            sameSite: "lax",
-            secure: env.NEXT_PUBLIC_IS_PROD,
-        },
+        timetableSettingsCookieOptions,
     );
 };
 
@@ -55,3 +51,10 @@ export const getTimetableSettings =
             return null;
         }
     };
+
+export const getHideLectures = async (): Promise<boolean> => {
+    const hideLecturesCookie = (await cookies()).get(HIDE_LECTURES_COOKIE_KEY);
+    if (!hideLecturesCookie) return false;
+
+    return hideLecturesCookie.value === "true";
+};

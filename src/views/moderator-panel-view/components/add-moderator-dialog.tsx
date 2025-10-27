@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
     Command,
@@ -32,72 +34,75 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import type { EctsEntrySchema } from "@/schema/forms/ects-form-schema";
-import { Check, ChevronsUpDown, Plus, Trash2 } from "lucide-react";
+import type { ModeratorPanelEntrySchema } from "@/schema/forms/moderator-panel-form-schema";
+import { Check, ChevronsUpDown, Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import type { UseFormReturn } from "react-hook-form";
 
 type Props = {
     open: boolean;
-    selectedCount: number;
-    form: UseFormReturn<EctsEntrySchema>;
-    subjects: string[];
-    onSubmit: (values: EctsEntrySchema) => void;
+    form: UseFormReturn<ModeratorPanelEntrySchema>;
+    generalGroups: string[];
+    addedGroups: string[];
+    onSubmit: (values: ModeratorPanelEntrySchema) => void;
     onOpenChange: (open: boolean) => void;
-    onDeleteSelected: () => void;
 };
 
-export default function AddNewEntryDialog({
+export default function AddModeratorDialog({
     open,
-    selectedCount,
     form,
-    subjects,
+    generalGroups,
+    addedGroups,
     onSubmit,
     onOpenChange,
-    onDeleteSelected,
 }: Props) {
-    const t = useTranslations("ectsCalculator.form");
-
+    const t = useTranslations("moderatorPanel.moderatorDialog");
     const [comboboxOpen, setComboboxOpen] = useState(false);
+
+    const sanitizedGeneralGroups = Array.from(
+        new Set(
+            generalGroups.map((group) => {
+                const lastChar = group.slice(-1);
+
+                const isNumber = !isNaN(Number(lastChar));
+
+                if (isNumber) {
+                    return group.slice(0, -1);
+                }
+
+                return group;
+            }),
+        ),
+    );
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            {selectedCount === 0 ? (
-                <DialogTrigger className="bg-accent hover:bg-accent/80 absolute bottom-12 left-1/2 flex h-fit w-fit -translate-x-1/2 cursor-pointer items-center justify-center rounded-full p-3">
-                    <Plus className="size-8 stroke-3 text-white sm:size-12 lg:size-15" />
-                </DialogTrigger>
-            ) : (
-                <Button
-                    type="button"
-                    variant="destructive"
-                    className="absolute bottom-12 left-1/2 flex h-fit w-fit -translate-x-1/2 cursor-pointer items-center justify-center rounded-full p-3"
-                    onClick={onDeleteSelected}
-                >
-                    <Trash2 className="mr-1" /> {t("deleteSelectedButton")}
+            <DialogTrigger asChild>
+                <Button className="cursor-pointer bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200">
+                    <Plus className="mr-2 h-4 w-4" />
+                    {t("title")}
                 </Button>
-            )}
+            </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>{t("dialogTitle")}</DialogTitle>
-                    <DialogDescription>
-                        {t("dialogDescription")}
-                    </DialogDescription>
+                    <DialogTitle>{t("title")}</DialogTitle>
+                    <DialogDescription>{t("description")}</DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
                         className="grid gap-4"
                     >
-                        {subjects.length > 0 ? (
+                        {sanitizedGeneralGroups.length > 0 ? (
                             <FormField
                                 control={form.control}
-                                name="name"
+                                name="group"
                                 render={({ field }) => {
                                     return (
                                         <FormItem className="flex w-full flex-col">
                                             <FormLabel className="">
-                                                {t("nameLabel")}
+                                                {t("groupLabel")}
                                             </FormLabel>
                                             <Popover
                                                 open={comboboxOpen}
@@ -107,6 +112,7 @@ export default function AddNewEntryDialog({
                                                 <PopoverTrigger asChild>
                                                     <FormControl>
                                                         <Button
+                                                            ariaInvalidBorder
                                                             variant={"outline"}
                                                             role="combobox"
                                                             className={cn(
@@ -114,17 +120,18 @@ export default function AddNewEntryDialog({
                                                                 !field.value &&
                                                                     "text-muted-foreground",
                                                             )}
-                                                            ariaInvalidBorder
                                                         >
                                                             {field.value
-                                                                ? subjects.find(
+                                                                ? sanitizedGeneralGroups.find(
                                                                       (
                                                                           subject,
                                                                       ) =>
                                                                           subject ===
                                                                           field.value,
                                                                   )
-                                                                : t("select")}
+                                                                : t(
+                                                                      "selectGroup",
+                                                                  )}
                                                             <ChevronsUpDown className="opacity-50" />
                                                         </Button>
                                                     </FormControl>
@@ -133,58 +140,65 @@ export default function AddNewEntryDialog({
                                                     <Command className="w-full max-w-full">
                                                         <CommandInput
                                                             placeholder={t(
-                                                                "search",
+                                                                "searchGroup",
                                                             )}
                                                             className="h-9 w-full"
                                                         />
                                                         <CommandList className="w-full">
                                                             <CommandEmpty>
                                                                 {t(
-                                                                    "noSubjectFound",
+                                                                    "noGroupFound",
                                                                 )}
                                                             </CommandEmpty>
                                                             <CommandGroup className="w-full">
-                                                                {subjects.map(
-                                                                    (
-                                                                        subject,
-                                                                    ) => (
-                                                                        <CommandItem
-                                                                            value={
-                                                                                subject
-                                                                            }
-                                                                            key={
-                                                                                subject
-                                                                            }
-                                                                            onSelect={() => {
-                                                                                form.setValue(
-                                                                                    "name",
-                                                                                    subject,
-                                                                                    {
-                                                                                        shouldValidate: true,
-                                                                                    },
-                                                                                );
+                                                                {sanitizedGeneralGroups
+                                                                    .filter(
+                                                                        (dat) =>
+                                                                            !addedGroups.includes(
+                                                                                dat,
+                                                                            ),
+                                                                    )
+                                                                    .map(
+                                                                        (
+                                                                            dat,
+                                                                        ) => (
+                                                                            <CommandItem
+                                                                                value={
+                                                                                    dat
+                                                                                }
+                                                                                key={
+                                                                                    dat
+                                                                                }
+                                                                                onSelect={() => {
+                                                                                    form.setValue(
+                                                                                        "group",
+                                                                                        dat,
+                                                                                        {
+                                                                                            shouldValidate: true,
+                                                                                        },
+                                                                                    );
 
-                                                                                setComboboxOpen(
-                                                                                    false,
-                                                                                );
-                                                                            }}
-                                                                            className="h-8"
-                                                                        >
-                                                                            {
-                                                                                subject
-                                                                            }
-                                                                            <Check
-                                                                                className={cn(
-                                                                                    "ml-auto",
-                                                                                    subject ===
-                                                                                        field.value
-                                                                                        ? "opacity-100"
-                                                                                        : "opacity-0",
-                                                                                )}
-                                                                            />
-                                                                        </CommandItem>
-                                                                    ),
-                                                                )}
+                                                                                    setComboboxOpen(
+                                                                                        false,
+                                                                                    );
+                                                                                }}
+                                                                                className="h-8"
+                                                                            >
+                                                                                {
+                                                                                    dat
+                                                                                }
+                                                                                <Check
+                                                                                    className={cn(
+                                                                                        "ml-auto",
+                                                                                        dat ===
+                                                                                            field.value
+                                                                                            ? "opacity-100"
+                                                                                            : "opacity-0",
+                                                                                    )}
+                                                                                />
+                                                                            </CommandItem>
+                                                                        ),
+                                                                    )}
                                                             </CommandGroup>
                                                         </CommandList>
                                                     </Command>
@@ -198,14 +212,14 @@ export default function AddNewEntryDialog({
                         ) : (
                             <FormField
                                 control={form.control}
-                                name="name"
+                                name="group"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>{t("nameLabel")}</FormLabel>
+                                        <FormLabel>{t("groupLabel")}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 placeholder={t(
-                                                    "namePlaceholder",
+                                                    "groupPlaceholder",
                                                 )}
                                                 {...field}
                                             />
@@ -218,13 +232,13 @@ export default function AddNewEntryDialog({
 
                         <FormField
                             control={form.control}
-                            name="ects"
+                            name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{t("ectsLabel")}</FormLabel>
+                                    <FormLabel>{t("emailLabel")}</FormLabel>
                                     <FormControl>
                                         <Input
-                                            placeholder={t("ectsPlaceholder")}
+                                            placeholder={t("emailPlaceholder")}
                                             {...field}
                                         />
                                     </FormControl>
@@ -232,24 +246,6 @@ export default function AddNewEntryDialog({
                                 </FormItem>
                             )}
                         />
-
-                        <FormField
-                            control={form.control}
-                            name="grade"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>{t("gradeLabel")}</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            placeholder={t("gradePlaceholder")}
-                                            {...field}
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
                         <DialogFooter>
                             <DialogClose asChild>
                                 <Button

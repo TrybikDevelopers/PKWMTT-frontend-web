@@ -7,9 +7,13 @@ import DesktopTimetableHeader from "./desktop-timetable-header";
 
 type Props = {
     timetableSettings: TimetableSettingsSchema;
+    hideLectures: boolean;
 };
 
-export default function DesktopTimetable({ timetableSettings }: Props) {
+export default function DesktopTimetable({
+    timetableSettings,
+    hideLectures,
+}: Props) {
     const { hours, timetableData, weekParity, toggleWeekParity } =
         useDesktopTimetable(timetableSettings);
 
@@ -23,6 +27,7 @@ export default function DesktopTimetable({ timetableSettings }: Props) {
                 hours={hours}
                 timetableData={timetableData}
                 weekParity={weekParity}
+                hideLectures={hideLectures}
             />
         </div>
     );

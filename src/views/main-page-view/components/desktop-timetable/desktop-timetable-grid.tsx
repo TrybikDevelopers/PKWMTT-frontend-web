@@ -6,11 +6,13 @@ type Props = {
     hours: string[];
     timetableData: Timetable["data"];
     weekParity: "EVEN" | "ODD";
+    hideLectures: boolean;
 };
 
 const useDesktopTimetableGrid = (
     timetableData: Timetable["data"],
     weekParity: "EVEN" | "ODD",
+    hideLectures: boolean,
 ) => {
     const getLessons = useCallback(
         (dayIndex: number, hourIndex: number) => {
@@ -23,11 +25,15 @@ const useDesktopTimetableGrid = (
             // filter and sort (to make sure that the lessons are in the same order)
             const lessons = classData
                 .filter((l) => l.rowId === hourIndex)
+                .filter((l) => {
+                    // Hide lectures if the setting is enabled
+                    return hideLectures ? l.type !== "LECTURE" : true;
+                })
                 .sort((a, b) => a.name.localeCompare(b.name));
 
             return lessons;
         },
-        [timetableData, weekParity],
+        [timetableData, weekParity, hideLectures],
     );
 
     return { getLessons };
@@ -37,8 +43,13 @@ export default function DesktopTimetableGrid({
     hours,
     timetableData,
     weekParity,
+    hideLectures,
 }: Props) {
-    const { getLessons } = useDesktopTimetableGrid(timetableData, weekParity);
+    const { getLessons } = useDesktopTimetableGrid(
+        timetableData,
+        weekParity,
+        hideLectures,
+    );
 
     return (
         <div className="flex-1 pb-4">
