@@ -1,14 +1,15 @@
+import useFirstRender from "@/hooks/use-first-render";
 import {
     getEctsFormSchema,
     type EctsEntrySchema,
 } from "@/schema/forms/ects-form-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocalStorage } from "usehooks-ts";
 
-export default function useEctsCalculatorPage() {
+export default function useEctsCalculatorPage(subjects: string[]) {
     const t = useTranslations("ectsCalculator.form");
 
     const [rows, setRows] = useLocalStorage<EctsEntrySchema[]>(
@@ -29,7 +30,7 @@ export default function useEctsCalculatorPage() {
         },
     );
 
-    const [isFirstRender, setIsFirstRender] = useState(true);
+    const { isFirstRender } = useFirstRender();
 
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState<Set<number>>(new Set());
@@ -114,11 +115,9 @@ export default function useEctsCalculatorPage() {
         }
     };
 
-    useEffect(() => {
-        if (isFirstRender) {
-            setIsFirstRender(false);
-        }
-    }, [isFirstRender]);
+    const filteredSubjects = subjects.filter(
+        (subject) => !rows.some((row) => row.name === subject),
+    );
 
     return {
         // If first render, return empty array to avoid hydration error
@@ -128,6 +127,7 @@ export default function useEctsCalculatorPage() {
         selected,
         allSelected,
         someSelected,
+        filteredSubjects,
 
         avgGrade,
         totalEcts,

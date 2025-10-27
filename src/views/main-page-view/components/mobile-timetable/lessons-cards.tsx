@@ -1,3 +1,4 @@
+import useHideLectures from "@/hooks/use-hide-lectures";
 import type { Timetable } from "@/types/data-access/timetable";
 import { useCallback } from "react";
 import LessonsCard from "./lessons-card";
@@ -13,6 +14,8 @@ const useLessonsCards = (
     currentDayData: Timetable["data"][number],
     weekParity: "EVEN" | "ODD",
 ) => {
+    const { hideLectures } = useHideLectures();
+
     const getLessons = useCallback(
         (index: number) => {
             const classData =
@@ -23,11 +26,18 @@ const useLessonsCards = (
             // filter and sort (to make sure that the lessons are in the same order)
             const lessons = classData
                 .filter((l) => l.rowId === index)
+                .filter((l) => {
+                    // Hide lectures if the setting is enabled
+                    if (hideLectures && l.type === "LECTURE") {
+                        return false;
+                    }
+                    return true;
+                })
                 .sort((a, b) => a.name.localeCompare(b.name));
 
             return lessons;
         },
-        [currentDayData, weekParity],
+        [currentDayData, weekParity, hideLectures],
     );
 
     return { getLessons };

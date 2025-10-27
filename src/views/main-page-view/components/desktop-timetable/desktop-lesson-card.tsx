@@ -40,7 +40,7 @@ export default function DesktopLessonCard({
             </div>
             <div className="flex h-full flex-col items-end justify-between">
                 {badge && (
-                    <Tooltip disableHoverableContent>
+                    <Tooltip>
                         <TooltipTrigger>
                             <span
                                 className={cn(
