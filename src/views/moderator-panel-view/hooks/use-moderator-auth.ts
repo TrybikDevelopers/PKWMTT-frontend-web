@@ -21,6 +21,7 @@ export default function useModeratorAuth() {
     });
 
     const onSubmit = (values: { login: string; password: string }) => {
+        console.log(values);
         if (locale === "pl") {
             redirect("/moderator/starosci");
         } else {

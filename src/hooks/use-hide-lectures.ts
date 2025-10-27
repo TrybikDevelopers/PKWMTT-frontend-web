@@ -1,15 +1,17 @@
-import { useLocalStorage } from "usehooks-ts";
-
-const HIDE_LECTURES_KEY = "hide-lectures-setting";
+import {
+    getHideLecturesOnClient,
+    setHideLecturesOnClient,
+} from "@/server/cookies-on-client";
+import { useState } from "react";
 
 export default function useHideLectures() {
-    const [hideLectures, setHideLectures] = useLocalStorage<boolean>(
-        HIDE_LECTURES_KEY,
-        false,
-    );
+    const [hideLectures, setHideLectures] = useState(getHideLecturesOnClient);
 
     const toggleHideLectures = () => {
-        setHideLectures((prev) => !prev);
+        const newState = !hideLectures;
+
+        setHideLectures(newState);
+        setHideLecturesOnClient(newState);
     };
 
     return {
